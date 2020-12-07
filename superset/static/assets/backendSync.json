@@ -12,6 +12,24 @@
       "default": "table",
       "description": "The type of visualization to display"
     },
+    "echarts_theme": {
+      "type": "SelectControl",
+      "label": "Echarts Theme",
+      "freeForm": true,
+      "choices": [
+        ["azul", "azul"],
+        ["carp", "carp"],
+        ["darkbold", "darkbold"],
+        ["eduardo", "eduardo"],
+        ["gray", "gray"],
+        ["inspired", "inspired"],
+        ["macarons2", "macarons2"],
+        ["roma", "roma"],
+        ["techblue", "techblue"]
+      ],
+      "default": "techblue",
+      "description": "Echarts Theme"
+    },
     "metrics": {
       "type": "SelectControl",
       "multi": true,

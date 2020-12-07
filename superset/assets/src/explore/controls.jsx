@@ -75,6 +75,18 @@ const ROW_LIMIT_OPTIONS = [10, 50, 100, 250, 500, 1000, 5000, 10000, 50000];
 
 const SERIES_LIMITS = [0, 5, 10, 25, 50, 100, 500];
 
+const ECHARTS_THEMES = [
+  "azul",
+  "carp",
+  "darkbold",
+  "eduardo",
+  "gray",
+  "inspired",
+  "macarons2",
+  "roma",
+  "techblue",
+];
+
 export const D3_TIME_FORMAT_OPTIONS = [
   ['smart_date', 'Adaptative formating'],
   ['%d/%m/%Y', '%d/%m/%Y | 14/01/2019'],
@@ -191,6 +203,15 @@ export const controls = {
   metrics,
 
   metric,
+
+  echarts_theme: {
+    label: t('Echarts Theme'),
+    description: t('Echarts Theme'),
+    type: 'SelectControl',
+    freeForm: true,
+    choices: formatSelectOptions(ECHARTS_THEMES),
+    default: 'techblue',
+  },
 
   datasource: {
     type: 'DatasourceControl',

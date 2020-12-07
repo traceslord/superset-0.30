@@ -496,6 +496,25 @@ class BaseViz(object):
         return json.dumps(self.data)
 
 
+class EchartsFunnelViz(BaseViz):
+
+    viz_type = 'echarts_funnel'
+    verbose_name = _('Echarts Funnel')
+    is_timeseries = False
+
+    def get_data(self, df):
+        fd = self.form_data
+        metric = self.metric_labels[0]
+        df = df.pivot_table(
+            index=self.groupby,
+            values=[metric]
+        )
+        df.sort_values(by=metric, ascending=False, inplace=True)
+        df = df.reset_index()
+        df.columns = ['name', 'value']
+        return df.to_dict(orient='records')
+
+
 class TableViz(BaseViz):
 
     """A basic html table that is sortable and searchable"""

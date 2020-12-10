@@ -20,6 +20,7 @@ import DirectedForce from './DirectedForce';
 import DistBar from './DistBar';
 import DualLine from './DualLine';
 import EchartsFunnel from './EchartsFunnel';
+import EchartsLineMixed from './EchartsLineMixed';
 import EventFlow from './EventFlow';
 import FilterBox from './FilterBox';
 import Heatmap from './Heatmap';
@@ -71,6 +72,7 @@ export const controlPanelConfigs = {
   dist_bar: DistBar,
   dual_line: DualLine,
   echarts_funnel: EchartsFunnel,
+  echarts_line_mixed: EchartsLineMixed,
   event_flow: EventFlow,
   filter_box: FilterBox,
   heatmap: Heatmap,

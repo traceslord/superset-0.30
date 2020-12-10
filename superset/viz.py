@@ -515,6 +515,20 @@ class EchartsFunnelViz(BaseViz):
         return df.to_dict(orient='records')
 
 
+class EchartsLineMixedViz(BaseViz):
+
+    viz_type = 'echarts_line_mixed'
+    verbose_name = _('Echarts Line Mixed')
+    is_timeseries = False
+
+    def get_data(self, df):
+        # print('============================================================')
+        # print(self.form_data)
+        # print(df)
+        # print('============================================================')
+        return df.to_dict(orient='records')
+
+
 class TableViz(BaseViz):
 
     """A basic html table that is sortable and searchable"""

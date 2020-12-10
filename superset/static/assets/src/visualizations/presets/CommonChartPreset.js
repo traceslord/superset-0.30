@@ -7,6 +7,7 @@ import BoxPlotChartPlugin from '../nvd3/BoxPlot/BoxPlotChartPlugin';
 import BubbleChartPlugin from '../nvd3/Bubble/BubbleChartPlugin';
 import DistBarChartPlugin from '../nvd3/DistBar/DistBarChartPlugin';
 import EchartsFunnelChartPlugin from '../EchartsFunnel/EchartsFunnelChartPlugin';
+import EchartsLineMixedChartPlugin from '../EchartsLineMixed/EchartsLineMixedChartPlugin';
 import FilterBoxChartPlugin from '../FilterBox/FilterBoxChartPlugin';
 import HistogramChartPlugin from '../Histogram/HistogramChartPlugin';
 import LineChartPlugin from '../nvd3/Line/LineChartPlugin';
@@ -29,6 +30,7 @@ export default class CommonChartPreset extends Preset {
         new BubbleChartPlugin().configure({ key: 'bubble' }),
         new DistBarChartPlugin().configure({ key: 'dist_bar' }),
         new EchartsFunnelChartPlugin().configure({ key: 'echarts_funnel' }),
+        new EchartsLineMixedChartPlugin().configure({ key: 'echarts_line_mixed' }),
         new FilterBoxChartPlugin().configure({ key: 'filter_box' }),
         new HistogramChartPlugin().configure({ key: 'histogram' }),
         new LineChartPlugin().configure({ key: 'line' }),

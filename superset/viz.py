@@ -526,8 +526,10 @@ class EchartsLineMixedViz(BaseViz):
         d = super(EchartsLineMixedViz, self).query_obj()
         fd = self.form_data
  
-        if not fd.get('y_axis_right'):
-            raise Exception('请选配右侧 Y 轴～')
+        if not fd.get('x_axis'):
+            raise Exception('请选配 X 轴～')
+        if not fd.get('y_axis_left'):
+            raise Exception('请选配左侧 Y 轴～')
 
         d['columns'] = [fd.get('x_axis')] + [fd.get('y_axis_left')] + fd.get('y_axis_right')
         return d

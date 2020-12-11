@@ -519,14 +519,27 @@ class EchartsLineMixedViz(BaseViz):
 
     viz_type = 'echarts_line_mixed'
     verbose_name = _('Echarts Line Mixed')
+    sort_series = False
     is_timeseries = False
 
+    def query_obj(self):
+        d = super(EchartsLineMixedViz, self).query_obj()
+        fd = self.form_data
+ 
+        if not fd.get('y_axis_right'):
+            raise Exception('请选配右侧 Y 轴～')
+
+        d['columns'] = [fd.get('x_axis')] + [fd.get('y_axis_left')] + fd.get('y_axis_right')
+        return d
+
     def get_data(self, df):
-        # print('============================================================')
-        # print(self.form_data)
-        # print(df)
-        # print('============================================================')
-        return df.to_dict(orient='records')
+        fd = self.form_data
+        return {
+            'x_axis': fd['x_axis'],
+            'y_axis_left': fd['y_axis_left'],
+            'y_axis_right': fd['y_axis_right'],
+            'data': df.to_dict(orient='records'),
+        }
 
 
 class TableViz(BaseViz):

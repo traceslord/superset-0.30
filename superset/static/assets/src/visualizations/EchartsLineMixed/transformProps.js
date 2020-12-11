@@ -1,6 +1,5 @@
 export default function transformProps(chartProps) {
   const { width, height, payload } = chartProps;
-  // console.log(chartProps);
   return {
     width,
     height,

@@ -34,126 +34,77 @@ import macarons from 'echarts/theme/macarons';
 import redvelvet from 'echarts/theme/red-velvet';
 import shine from 'echarts/theme/shine';
 
-function echartsLineMixedVis(payload, slice) {
-  // console.log(slice);
-  const div = d3.select(payload);
-  var html = '<div id="main" style="width: ' + slice.width + 'px; height: ' + slice.height + 'px"></div>';
+import { formatDate } from '../../utils/dates';
+
+function echartsLineMixedVis(element, props) {
+  const legendData = [props.data.y_axis_left].concat(props.data.y_axis_right);
+  const series = [
+    {
+      name: props.data.y_axis_left,
+      type: 'line',
+      data: props.data.data.map(data => data[props.data.y_axis_left]),
+    },
+  ].concat(props.data.y_axis_right.map(item => ({
+      name: item,
+      type: 'line',
+      yAxisIndex: 1,
+      smooth: true,
+      itemStyle: {
+        normal: {
+          lineStyle: {
+            type: 'dotted',
+          },
+        },
+      },
+      areaStyle: {},
+      data: props.data.data.map(data => data[item]),
+    })));
+  const div = d3.select(element);
+  const html = '<div id="main" style="width: ' + props.width + 'px; height: ' + props.height + 'px"></div>';
   div.html(html);
-  var myChart = echarts.init(document.getElementById('main'), slice.theme);
+  const myChart = echarts.init(document.getElementById('main'), props.theme);
   myChart.setOption({
     title: {
-      text: "",
-      left: 20
+      text: '',
+      left: 20,
     },
     tooltip: {
-      trigger: "axis"
+      trigger: 'axis',
     },
     toolbox: {
       feature: {
-        saveAsImage: {}
-      }
+        saveAsImage: {},
+      },
     },
     legend: {
-      data: [
-        "remain_story_point",
-        "done_story_point",
-        "added_story_point",
-        "adjusted_story_point",
-        "removed_story_point"
-      ],
-      align: "right",
+      data: legendData,
+      align: 'right',
       right: 60,
-      top: 20
+      top: 20,
     },
     grid: {
-      left: "3%",
-      right: "4%",
+      left: '3%',
+      right: '4%',
       top: 80,
-      bottom: "3%",
-      containLabel: true
+      bottom: '3%',
+      containLabel: true,
     },
     xAxis: [
       {
-        type: "category",
+        type: 'category',
         boundaryGap: false,
-        data: []
-      }
+        data: props.data.data.map(data => formatDate.formateDay(data[props.data.x_axis])),
+      },
     ],
     yAxis: [
       {
-        type: "value"
+        type: 'value',
       },
       {
-        type: "value"
-      }
+        type: 'value',
+      },
     ],
-    series: [
-      {
-        name: "remain_story_point",
-        type: "line",
-        data: []
-      },
-      {
-        name: "done_story_point",
-        type: "line",
-        yAxisIndex: 1,
-        smooth: true,
-        itemStyle: {
-          normal: {
-            lineStyle: {
-              type: "dotted"
-            }
-          }
-        },
-        areaStyle: {},
-        data: []
-      },
-      {
-        name: "added_story_point",
-        type: "line",
-        yAxisIndex: 1,
-        smooth: true,
-        itemStyle: {
-          normal: {
-            lineStyle: {
-              type: "dotted"
-            }
-          }
-        },
-        areaStyle: {},
-        data: []
-      },
-      {
-        name: "adjusted_story_point",
-        type: "line",
-        yAxisIndex: 1,
-        smooth: true,
-        itemStyle: {
-          normal: {
-            lineStyle: {
-              type: "dotted"
-            }
-          }
-        },
-        areaStyle: {},
-        data: []
-      },
-      {
-        name: "removed_story_point",
-        type: "line",
-        yAxisIndex: 1,
-        smooth: true,
-        itemStyle: {
-          normal: {
-            lineStyle: {
-              type: "dotted"
-            }
-          }
-        },
-        areaStyle: {},
-        data: []
-      }
-    ]
+    series,
   });
 }
 

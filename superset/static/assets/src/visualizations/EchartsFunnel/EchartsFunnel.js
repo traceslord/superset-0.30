@@ -36,19 +36,19 @@ import shine from 'echarts/theme/shine';
 
 function echartsFunnelVis(payload, slice) {
   const div = d3.select(payload);
-  var html = '<div id="main" style="width: ' + slice.width + 'px; height: ' + slice.height + 'px"></div>';
+  const html = '<div id="main" style="width: ' + slice.width + 'px; height: ' + slice.height + 'px"></div>';
   div.html(html);
-  var myChart = echarts.init(document.getElementById('main'), slice.theme);
-  var option = {
+  const myChart = echarts.init(document.getElementById('main'), slice.theme);
+  const option = {
     title: {
       text: '',
       subtext: '纯属虚构',
       left: 'left',
-      top: 'bottom'
+      top: 'bottom',
     },
     tooltip: {
       trigger: 'item',
-      formatter: "{a} <br/>{b} : {c}%"
+      formatter: '{a} <br/>{b} : {c}%',
     },
     toolbox: {
       show: true,
@@ -57,13 +57,13 @@ function echartsFunnelVis(payload, slice) {
       feature: {
         dataView: { readOnly: false },
         restore: {},
-        saveAsImage: {}
-      }
+        saveAsImage: {},
+      },
     },
     legend: {
       orient: 'vertical',
       left: 'left',
-      data: []
+      data: [],
     },
     calculable: true,
     series: [
@@ -76,7 +76,7 @@ function echartsFunnelVis(payload, slice) {
         top: '50%',
         funnelAlign: 'right',
         center: ['25%', '25%'],
-        data: []
+        data: [],
       },
       {
         name: '金字塔',
@@ -88,7 +88,7 @@ function echartsFunnelVis(payload, slice) {
         sort: 'ascending',
         funnelAlign: 'right',
         center: ['25%', '75%'],
-        data: []
+        data: [],
       },
       {
         name: '漏斗图',
@@ -99,7 +99,7 @@ function echartsFunnelVis(payload, slice) {
         top: '5%',
         funnelAlign: 'left',
         center: ['75%', '25%'],
-        data: []
+        data: [],
       },
       {
         name: '金字塔',
@@ -111,31 +111,31 @@ function echartsFunnelVis(payload, slice) {
         sort: 'ascending',
         funnelAlign: 'left',
         center: ['75%', '75%'],
-        data: []
-      }
-    ]
+        data: [],
+      },
+    ],
   };
   myChart.setOption(option);
 
   const json = slice.data;
-  var data_name = [];
-  var max_value = 0;
+  const data_name = [];
+  let max_value = 0;
   const data = json;
-  data.forEach(function(item) {
-    data_name.push(item['name']);
-    if (item['value'] > max_value) {
-      max_value = item['value'];
+  data.forEach(function (item) {
+    data_name.push(item.name);
+    if (item.value > max_value) {
+      max_value = item.value;
     }
   });
-  var tmp_series = [];
-  for (var i = 1; i < 5; i++) {
+  const tmp_series = [];
+  for (let i = 1; i < 5; i++) {
     tmp_series.push({
-      data: data
+      data,
     });
   }
-  var option2 = {
+  const option2 = {
     legend: { data: data_name },
-    series: tmp_series
+    series: tmp_series,
   };
 
   myChart.setOption(option2);

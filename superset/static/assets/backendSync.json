@@ -1,17 +1,5 @@
 {
   "controls": {
-    "datasource": {
-      "type": "DatasourceControl",
-      "label": "Datasource",
-      "default": null,
-      "description": null
-    },
-    "viz_type": {
-      "type": "VizTypeControl",
-      "label": "Visualization Type",
-      "default": "table",
-      "description": "The type of visualization to display"
-    },
     "echarts_theme": {
       "type": "SelectControl",
       "label": "Echarts Theme",
@@ -54,6 +42,18 @@
       ],
       "default": "techblue",
       "description": "Echarts Theme"
+    },
+    "datasource": {
+      "type": "DatasourceControl",
+      "label": "Datasource",
+      "default": null,
+      "description": null
+    },
+    "viz_type": {
+      "type": "VizTypeControl",
+      "label": "Visualization Type",
+      "default": "table",
+      "description": "The type of visualization to display"
     },
     "metrics": {
       "type": "SelectControl",

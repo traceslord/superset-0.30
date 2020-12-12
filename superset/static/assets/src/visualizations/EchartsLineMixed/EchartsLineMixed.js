@@ -64,10 +64,6 @@ function echartsLineMixedVis(element, props) {
   div.html(html);
   const myChart = echarts.init(document.getElementById('main'), props.theme);
   myChart.setOption({
-    title: {
-      text: '',
-      left: 20,
-    },
     tooltip: {
       trigger: 'axis',
     },
@@ -80,12 +76,11 @@ function echartsLineMixedVis(element, props) {
       data: legendData,
       align: 'right',
       right: 60,
-      top: 20,
+      top: 10,
     },
     grid: {
       left: '3%',
       right: '4%',
-      top: 80,
       bottom: '3%',
       containLabel: true,
     },

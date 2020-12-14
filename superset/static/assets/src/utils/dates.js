@@ -1,5 +1,5 @@
-const formatNumber = (n) => {
-  n = n.toString();
+const formatNumber = (num) => {
+  const n = num.toString();
   return n[1] ? n : '0' + n;
 };
 

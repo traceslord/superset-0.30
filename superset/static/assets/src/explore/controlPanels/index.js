@@ -19,6 +19,7 @@ import CountryMap from './CountryMap';
 import DirectedForce from './DirectedForce';
 import DistBar from './DistBar';
 import DualLine from './DualLine';
+import EchartsBarStacked from './EchartsBarStacked';
 import EchartsFunnel from './EchartsFunnel';
 import EchartsLineMixed from './EchartsLineMixed';
 import EventFlow from './EventFlow';
@@ -71,6 +72,7 @@ export const controlPanelConfigs = {
   directed_force: DirectedForce,
   dist_bar: DistBar,
   dual_line: DualLine,
+  echarts_bar_stacked: EchartsBarStacked,
   echarts_funnel: EchartsFunnel,
   echarts_line_mixed: EchartsLineMixed,
   event_flow: EventFlow,

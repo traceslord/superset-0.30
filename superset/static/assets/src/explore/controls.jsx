@@ -238,6 +238,30 @@ export const controls = {
     description: t('Echarts Theme'),
   },
 
+  echarts_name: {
+    type: 'SelectControl',
+    label: '名称',
+    default: null,
+    description: '所要显示的名称',
+    mapStateToProps: state => ({
+      choices: (state.datasource) ? state.datasource.all_cols : [],
+    }),
+  },
+
+  echarts_indicator: {
+    type: 'SelectControl',
+    multi: true,
+    label: '指标',
+    default: [],
+    description: '所要显示的指标',
+    optionRenderer: c => <ColumnOption column={c} showType />,
+    valueRenderer: c => <ColumnOption column={c} />,
+    valueKey: 'column_name',
+    mapStateToProps: state => ({
+      options: (state.datasource) ? state.datasource.columns : [],
+    }),
+  },
+
   x_axis: {
     type: 'SelectControl',
     label: 'X 轴',

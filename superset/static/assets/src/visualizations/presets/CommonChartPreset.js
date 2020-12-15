@@ -6,6 +6,7 @@ import BigNumberTotalChartPlugin from '../BigNumberTotal/BigNumberTotalChartPlug
 import BoxPlotChartPlugin from '../nvd3/BoxPlot/BoxPlotChartPlugin';
 import BubbleChartPlugin from '../nvd3/Bubble/BubbleChartPlugin';
 import DistBarChartPlugin from '../nvd3/DistBar/DistBarChartPlugin';
+import EchartsBarDatasetChartPlugin from '../EchartsBarDataset/EchartsBarDatasetChartPlugin';
 import EchartsBarStackedChartPlugin from '../EchartsBarStacked/EchartsBarStackedChartPlugin';
 import EchartsFunnelChartPlugin from '../EchartsFunnel/EchartsFunnelChartPlugin';
 import EchartsLineMixedChartPlugin from '../EchartsLineMixed/EchartsLineMixedChartPlugin';
@@ -30,6 +31,7 @@ export default class CommonChartPreset extends Preset {
         new BoxPlotChartPlugin().configure({ key: 'box_plot' }),
         new BubbleChartPlugin().configure({ key: 'bubble' }),
         new DistBarChartPlugin().configure({ key: 'dist_bar' }),
+        new EchartsBarDatasetChartPlugin().configure({ key: 'echarts_bar_dataset' }),
         new EchartsBarStackedChartPlugin().configure({ key: 'echarts_bar_stacked' }),
         new EchartsFunnelChartPlugin().configure({ key: 'echarts_funnel' }),
         new EchartsLineMixedChartPlugin().configure({ key: 'echarts_line_mixed' }),

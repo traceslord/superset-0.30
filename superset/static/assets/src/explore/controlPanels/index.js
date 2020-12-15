@@ -21,6 +21,7 @@ import DistBar from './DistBar';
 import DualLine from './DualLine';
 import EchartsBarDataset from './EchartsBarDataset';
 import EchartsBarStacked from './EchartsBarStacked';
+import EchartsCumulativeFlow from './EchartsCumulativeFlow';
 import EchartsFunnel from './EchartsFunnel';
 import EchartsLineMixed from './EchartsLineMixed';
 import EventFlow from './EventFlow';
@@ -75,6 +76,7 @@ export const controlPanelConfigs = {
   dual_line: DualLine,
   echarts_bar_dataset: EchartsBarDataset,
   echarts_bar_stacked: EchartsBarStacked,
+  echarts_cumulative_flow: EchartsCumulativeFlow,
   echarts_funnel: EchartsFunnel,
   echarts_line_mixed: EchartsLineMixed,
   event_flow: EventFlow,

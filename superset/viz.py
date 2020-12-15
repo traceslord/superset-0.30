@@ -552,6 +552,34 @@ class EchartsBarStackedViz(BaseViz):
         }
 
 
+class EchartsCumulativeFlowViz(BaseViz):
+
+    viz_type = 'echarts_cumulative_flow'
+    verbose_name = _('Echarts Cumulative Flow')
+    sort_series = False
+    is_timeseries = False
+
+    def query_obj(self):
+        d = super(EchartsCumulativeFlowViz, self).query_obj()
+        fd = self.form_data
+ 
+        if not fd.get('x_axis'):
+            raise Exception('请选配 X 轴～')
+        if not fd.get('echarts_indicator'):
+            raise Exception('请选配要显示的指标～')
+
+        d['columns'] = [fd.get('x_axis')] + fd.get('echarts_indicator')
+        return d
+
+    def get_data(self, df):
+        fd = self.form_data
+        return {
+            'x_axis': fd['x_axis'],
+            'echarts_indicator': fd['echarts_indicator'],
+            'data': df.to_dict(orient='records'),
+        }
+
+
 class EchartsFunnelViz(BaseViz):
 
     viz_type = 'echarts_funnel'

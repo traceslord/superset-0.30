@@ -37,7 +37,7 @@ import 'echarts/theme/tech-blue';
 import 'echarts/theme/vintage';
 
 function echartsBarDatasetVis(element, props) {
-  const indicatorName = props.data.echarts_indicator.map((item) => {
+  const indicatorName = props.data.echarts_indicators.map((item) => {
     let name = item;
     if (name === 'estimated_value') name = '预估';
     else if (name === 'completed_value') name = '实际';
@@ -45,9 +45,9 @@ function echartsBarDatasetVis(element, props) {
   });
   const indicatorValue = props.data.data.map(item => ([
     item[props.data.echarts_name],
-  ].concat(props.data.echarts_indicator.map(data => (item[data])))));
+  ].concat(props.data.echarts_indicators.map(data => (item[data])))));
   const source = [['故事线'].concat(indicatorName)].concat(indicatorValue);
-  const series = props.data.echarts_indicator.map(() => ({
+  const series = props.data.echarts_indicators.map(() => ({
     type: 'bar',
     barWidth: 30,
   }));

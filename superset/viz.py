@@ -509,17 +509,17 @@ class EchartsBarDatasetViz(BaseViz):
  
         if not fd.get('echarts_name'):
             raise Exception('请选择要显示的名称～')
-        if not fd.get('echarts_indicator'):
+        if not fd.get('echarts_indicators'):
             raise Exception('请选配要显示的指标～')
 
-        d['columns'] = [fd.get('echarts_name')] + fd.get('echarts_indicator')
+        d['columns'] = [fd.get('echarts_name')] + fd.get('echarts_indicators')
         return d
 
     def get_data(self, df):
         fd = self.form_data
         return {
             'echarts_name': fd['echarts_name'],
-            'echarts_indicator': fd['echarts_indicator'],
+            'echarts_indicators': fd['echarts_indicators'],
             'data': df.to_dict(orient='records'),
         }
 
@@ -537,17 +537,17 @@ class EchartsBarStackedViz(BaseViz):
  
         if not fd.get('echarts_name'):
             raise Exception('请选择要显示的名称～')
-        if not fd.get('echarts_indicator'):
+        if not fd.get('echarts_indicators'):
             raise Exception('请选配要显示的指标～')
 
-        d['columns'] = [fd.get('echarts_name')] + fd.get('echarts_indicator')
+        d['columns'] = [fd.get('echarts_name')] + fd.get('echarts_indicators')
         return d
 
     def get_data(self, df):
         fd = self.form_data
         return {
             'echarts_name': fd['echarts_name'],
-            'echarts_indicator': fd['echarts_indicator'],
+            'echarts_indicators': fd['echarts_indicators'],
             'data': df.to_dict(orient='records'),
         }
 
@@ -565,17 +565,17 @@ class EchartsCumulativeFlowViz(BaseViz):
  
         if not fd.get('x_axis'):
             raise Exception('请选配 X 轴～')
-        if not fd.get('echarts_indicator'):
+        if not fd.get('echarts_indicators'):
             raise Exception('请选配要显示的指标～')
 
-        d['columns'] = [fd.get('x_axis')] + fd.get('echarts_indicator')
+        d['columns'] = [fd.get('x_axis')] + fd.get('echarts_indicators')
         return d
 
     def get_data(self, df):
         fd = self.form_data
         return {
             'x_axis': fd['x_axis'],
-            'echarts_indicator': fd['echarts_indicator'],
+            'echarts_indicators': fd['echarts_indicators'],
             'data': df.to_dict(orient='records'),
         }
 
@@ -624,6 +624,37 @@ class EchartsLineMixedViz(BaseViz):
             'x_axis': fd['x_axis'],
             'y_axis_left': fd['y_axis_left'],
             'y_axis_right': fd['y_axis_right'],
+            'data': df.to_dict(orient='records'),
+        }
+
+
+class EchartsScatterBubbleViz(BaseViz):
+
+    viz_type = 'echarts_scatter_bubble'
+    verbose_name = _('Echarts Scatter Bubble')
+    sort_series = False
+    is_timeseries = False
+
+    def query_obj(self):
+        d = super(EchartsScatterBubbleViz, self).query_obj()
+        fd = self.form_data
+ 
+        if not fd.get('x_axis'):
+            raise Exception('请选配 X 轴～')
+        if not fd.get('echarts_indicator'):
+            raise Exception('请选配要显示的指标～')
+        if not fd.get('echarts_name'):
+            raise Exception('请选择要显示的名称～')
+
+        d['columns'] = [fd.get('x_axis')] + [fd.get('echarts_indicator')] + [fd.get('echarts_name')]
+        return d
+
+    def get_data(self, df):
+        fd = self.form_data
+        return {
+            'x_axis': fd['x_axis'],
+            'echarts_indicator': fd['echarts_indicator'],
+            'echarts_name': fd['echarts_name'],
             'data': df.to_dict(orient='records'),
         }
 

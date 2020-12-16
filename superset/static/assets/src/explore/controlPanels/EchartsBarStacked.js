@@ -7,7 +7,7 @@ export default {
       expanded: true,
       controlSetRows: [
         ['echarts_name'],
-        ['echarts_indicator'],
+        ['echarts_indicators'],
         ['adhoc_filters'],
       ],
     },

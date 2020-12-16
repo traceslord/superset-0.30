@@ -250,6 +250,16 @@ export const controls = {
 
   echarts_indicator: {
     type: 'SelectControl',
+    label: '指标',
+    default: null,
+    description: '所要显示的指标',
+    mapStateToProps: state => ({
+      choices: (state.datasource) ? state.datasource.all_cols : [],
+    }),
+  },
+
+  echarts_indicators: {
+    type: 'SelectControl',
     multi: true,
     label: '指标',
     default: [],

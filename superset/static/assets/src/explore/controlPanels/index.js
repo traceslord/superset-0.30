@@ -24,6 +24,7 @@ import EchartsBarStacked from './EchartsBarStacked';
 import EchartsCumulativeFlow from './EchartsCumulativeFlow';
 import EchartsFunnel from './EchartsFunnel';
 import EchartsLineMixed from './EchartsLineMixed';
+import EchartsScatterBubble from './EchartsScatterBubble';
 import EventFlow from './EventFlow';
 import FilterBox from './FilterBox';
 import Heatmap from './Heatmap';
@@ -79,6 +80,7 @@ export const controlPanelConfigs = {
   echarts_cumulative_flow: EchartsCumulativeFlow,
   echarts_funnel: EchartsFunnel,
   echarts_line_mixed: EchartsLineMixed,
+  echarts_scatter_bubble: EchartsScatterBubble,
   event_flow: EventFlow,
   filter_box: FilterBox,
   heatmap: Heatmap,

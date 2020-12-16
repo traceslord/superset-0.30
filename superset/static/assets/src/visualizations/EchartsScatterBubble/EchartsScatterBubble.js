@@ -36,17 +36,12 @@ import 'echarts/theme/shine';
 import 'echarts/theme/tech-blue';
 import 'echarts/theme/vintage';
 
-function echartsBarStackedVis(element, props) {
-  const series = props.data.echarts_indicators.map(item => ({
-    name: item,
-    type: 'bar',
-    stack: 'sum',
-    label: {
-      show: true,
-      position: 'insideRight',
-    },
-    data: props.data.data.map(data => data[item]),
-  }));
+function echartsCumulativeFlowVis(element, props) {
+  const data = props.data.data.map(item => ([
+    item[props.data.x_axis],
+    item[props.data.echarts_indicator],
+    item[props.data.echarts_name],
+  ]));
   const div = d3.select(element);
   const html = '<div id="main" style="width: ' + props.width + 'px; height: ' + props.height + 'px"></div>';
   div.html(html);
@@ -55,32 +50,64 @@ function echartsBarStackedVis(element, props) {
     tooltip: {
       trigger: 'axis',
       axisPointer: {
-        type: 'shadow',
+        type: 'cross',
       },
-    },
-    legend: {
-      data: props.data.echarts_indicators,
-      top: 10,
     },
     grid: {
       left: '3%',
       right: '4%',
+      top: '3%',
       bottom: '3%',
       containLabel: true,
     },
     xAxis: [
       {
         type: 'value',
+        splitLine: {
+          lineStyle: {
+            type: 'dashed',
+          },
+        },
       },
     ],
     yAxis: [
       {
-        type: 'category',
-        data: props.data.data.map(data => data[props.data.echarts_name]),
+        type: 'value',
+        splitLine: {
+          lineStyle: {
+            type: 'dashed',
+          },
+        },
       },
     ],
-    series,
+    series: [
+      {
+        type: 'scatter',
+        symbolSize: params => params[1] / params[0],
+        label: {
+          show: true,
+          position: 'top',
+          formatter: params => params.data[2],
+        },
+        itemStyle: {
+          color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [
+            {
+              offset: 0,
+              color: 'rgb(251, 118, 123)',
+            },
+            {
+              offset: 1,
+              color: 'rgb(204, 46, 72)',
+            },
+          ]),
+          shadowBlur: 10,
+          shadowColor: 'rgba(120, 36, 50, 0.5)',
+          shadowOffsetY: 5,
+        },
+        data,
+      },
+    ],
   });
 }
 
-export default echartsBarStackedVis;
+export default echartsCumulativeFlowVis;

@@ -62,7 +62,7 @@ function formatIndicatorName(name) {
 }
 
 function echartsCumulativeFlowVis(element, props) {
-  const series = props.data.echarts_indicator.map(item => ({
+  const series = props.data.echarts_indicators.map(item => ({
     name: formatIndicatorName(item),
     type: 'line',
     stack: '总量',
@@ -85,21 +85,21 @@ function echartsCumulativeFlowVis(element, props) {
         dataZoom: {
           title: {
             zoom: '缩放',
-            back: '还原'
+            back: '还原',
           },
-          yAxisIndex: false
+          yAxisIndex: false,
         },
-        saveAsImage: {}
-      }
+        saveAsImage: {},
+      },
     },
     legend: {
-      data: props.data.echarts_indicator.map(data => formatIndicatorName(data)),
+      data: props.data.echarts_indicators.map(data => formatIndicatorName(data)),
       icon: 'roundRect',
       itemGap: 25,
       itemWidth: 15,
       itemHeight: 15,
       right: 40,
-      top: 40
+      top: 40,
     },
     grid: {
       left: '3%',
@@ -113,7 +113,7 @@ function echartsCumulativeFlowVis(element, props) {
         type: 'category',
         boundaryGap: false,
         data: props.data.data.map(data => formatDate.formateDay(data[props.data.x_axis])),
-      }
+      },
     ],
     yAxis: [
       {
@@ -123,17 +123,17 @@ function echartsCumulativeFlowVis(element, props) {
     dataZoom: [
       {
         type: 'inside',
-        xAxisIndex: 0
+        xAxisIndex: 0,
       },
       {
         type: 'slider',
         xAxisIndex: 0,
         height: 20,
         handleIcon:
-          'M10.7,11.9H9.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4h1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z'
-      }
+          'M10.7,11.9H9.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4h1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+      },
     ],
-    series
+    series,
   });
 }
 

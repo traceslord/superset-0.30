@@ -11,6 +11,7 @@ import EchartsBarStackedChartPlugin from '../EchartsBarStacked/EchartsBarStacked
 import EchartsCumulativeFlowChartPlugin from '../EchartsCumulativeFlow/EchartsCumulativeFlowChartPlugin';
 import EchartsFunnelChartPlugin from '../EchartsFunnel/EchartsFunnelChartPlugin';
 import EchartsLineMixedChartPlugin from '../EchartsLineMixed/EchartsLineMixedChartPlugin';
+import EchartsScatterBubbleChartPlugin from '../EchartsScatterBubble/EchartsScatterBubbleChartPlugin';
 import FilterBoxChartPlugin from '../FilterBox/FilterBoxChartPlugin';
 import HistogramChartPlugin from '../Histogram/HistogramChartPlugin';
 import LineChartPlugin from '../nvd3/Line/LineChartPlugin';
@@ -37,6 +38,7 @@ export default class CommonChartPreset extends Preset {
         new EchartsCumulativeFlowChartPlugin().configure({ key: 'echarts_cumulative_flow' }),
         new EchartsFunnelChartPlugin().configure({ key: 'echarts_funnel' }),
         new EchartsLineMixedChartPlugin().configure({ key: 'echarts_line_mixed' }),
+        new EchartsScatterBubbleChartPlugin().configure({ key: 'echarts_scatter_bubble' }),
         new FilterBoxChartPlugin().configure({ key: 'filter_box' }),
         new HistogramChartPlugin().configure({ key: 'histogram' }),
         new LineChartPlugin().configure({ key: 'line' }),

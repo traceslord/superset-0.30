@@ -52,9 +52,13 @@ function echartsBarDatasetVis(element, props) {
     barWidth: 30,
   }));
   const div = d3.select(element);
-  const html = '<div id="main" style="width: ' + props.width + 'px; height: ' + props.height + 'px"></div>';
+  const randomNumber = Math.round(Math.random() * 1000);
+  const html = `<div
+    id="echarts-bar-dataset-${randomNumber}"
+    style="width: ${props.width}px; height: ${props.height}px"
+  ></div>`;
   div.html(html);
-  const myChart = echarts.init(document.getElementById('main'), props.theme);
+  const myChart = echarts.init(document.getElementById(`echarts-bar-dataset-${randomNumber}`), props.theme);
   myChart.setOption({
     tooltip: {
       trigger: 'axis',

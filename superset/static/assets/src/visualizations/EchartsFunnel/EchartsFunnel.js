@@ -36,11 +36,15 @@ import 'echarts/theme/shine';
 import 'echarts/theme/tech-blue';
 import 'echarts/theme/vintage';
 
-function echartsFunnelVis(payload, slice) {
-  const div = d3.select(payload);
-  const html = '<div id="main" style="width: ' + slice.width + 'px; height: ' + slice.height + 'px"></div>';
+function echartsFunnelVis(element, props) {
+  const div = d3.select(element);
+  const randomNumber = Math.round(Math.random() * 1000);
+  const html = `<div
+    id="echarts-funnel-${randomNumber}"
+    style="width: ${props.width}px; height: ${props.height}px"
+  ></div>`;
   div.html(html);
-  const myChart = echarts.init(document.getElementById('main'), slice.theme);
+  const myChart = echarts.init(document.getElementById(`echarts-funnel-${randomNumber}`), props.theme);
   const option = {
     title: {
       text: '',
@@ -119,7 +123,7 @@ function echartsFunnelVis(payload, slice) {
   };
   myChart.setOption(option);
 
-  const json = slice.data;
+  const json = props.data;
   const dataName = [];
   let maxValue = 0;
   const data = json;

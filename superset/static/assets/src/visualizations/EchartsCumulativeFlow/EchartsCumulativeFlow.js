@@ -39,41 +39,7 @@ import 'echarts/theme/vintage';
 import { formatDate } from '../../utils/dates';
 import './EchartsCumulativeFlow.css';
 
-const CumulativeFlowData = {
-  data: {
-    chart: null,
-    propsData: {},
-    teams: [],
-    teamIndex: 0,
-    teamData: [],
-  },
-  openSelect(e) {
-    const selectDropdown = e.target.parentNode.parentNode.children[1];
-    if (selectDropdown.style.display) return;
-    const timer = setTimeout(() => {
-      selectDropdown.style.display = 'block';
-      clearTimeout(timer);
-    }, 100);
-  },
-  closeSelect() {
-    const selectDropdownArr = document.getElementsByClassName('echarts-select-dropdown');
-    for (let i = 0; i < selectDropdownArr.length; i++) {
-      if (selectDropdownArr[i].style.display === 'block') selectDropdownArr[i].style.display = '';
-    }
-  },
-  selectTeam(e) {
-    const currentIndex = Number(e.target.dataset.index);
-    CumulativeFlowData.data.teamIndex = currentIndex;
-    CumulativeFlowData.drawChart();
-    const echartsSelect = e.target.parentNode.parentNode.parentNode.children[0].children[0];
-    const teams = CumulativeFlowData.data.teams;
-    echartsSelect.value = teams[currentIndex];
-    const children = e.target.parentNode.children;
-    for (let i = 0; i < children.length; i++) {
-      if (currentIndex === i) children[i].className = 'echarts-select-dropdown-item selected';
-      else children[i].className = 'echarts-select-dropdown-item';
-    }
-  },
+const CumulativeFlowFun = {
   formatName(name) {
     switch (name) {
       case 'todo_count':
@@ -96,17 +62,16 @@ const CumulativeFlowData = {
         return name;
     }
   },
-  drawChart() {
-    const chartData = CumulativeFlowData.data.teamData[CumulativeFlowData.data.teamIndex];
-    const propsData = CumulativeFlowData.data.propsData;
+  drawChart(chart, propsData, teamData, teamIndex) {
+    const chartData = teamData[teamIndex];
     const series = propsData.echarts_indicators.map(item => ({
-      name: CumulativeFlowData.formatName(item),
+      name: CumulativeFlowFun.formatName(item),
       type: 'line',
-      stack: '总量',
+      stack: 'stack',
       areaStyle: {},
       data: chartData.map(data => data[item]),
     })).reverse();
-    CumulativeFlowData.data.chart.setOption({
+    chart.setOption({
       tooltip: {
         trigger: 'axis',
         axisPointer: {
@@ -126,7 +91,7 @@ const CumulativeFlowData = {
         },
       },
       legend: {
-        data: propsData.echarts_indicators.map(data => CumulativeFlowData.formatName(data)),
+        data: propsData.echarts_indicators.map(data => CumulativeFlowFun.formatName(data)),
         icon: 'roundRect',
         itemGap: 25,
         itemWidth: 15,
@@ -179,23 +144,21 @@ function echartsCumulativeFlowVis(element, props) {
       teams.push(data[props.data.echarts_select]);
     }
   });
-  CumulativeFlowData.data.propsData = propsData;
-  CumulativeFlowData.data.teams = teams;
-  CumulativeFlowData.data.teamData = teams.map(item => propsData.data.filter(data => data[props.data.echarts_select] === item));
+  const teamData = teams.map(t => propsData.data.filter(d => d[props.data.echarts_select] === t));
 
   const div = d3.select(element);
   const randomNumber = Math.round(Math.random() * 1000);
-  const selectItem = teams.map((data, index) => `<div class="echarts-select-dropdown-item ${index === CumulativeFlowData.data.teamIndex ? 'selected' : ''}" data-index="${index}">${data}</div>`).join('');
+  const selectItem = teams.map((data, index) => `<div class="echarts-select-dropdown-item ${index === 0 ? 'selected' : ''}" data-index="${index}">${data}</div>`).join('');
   const selectHtml = propsData.echarts_select ? `
     <div class="echarts-select">
       <div class="echarts-select-content">
-        <input class="echarts-select-content-input" id="echarts-select-${randomNumber}" type="text" readonly="readonly" autocomplete="off" placeholder="请选择小队" />
+        <input class="echarts-select-content-input" id="echarts-select-input-${randomNumber}" type="text" readonly="readonly" autocomplete="off" placeholder="请选择小队" />
         <div class="echarts-select-content-suffix">
           <div class="echarts-select-content-suffix-icon"></div>
         </div>
       </div>
       <div class="echarts-select-dropdown">
-        <div class="echarts-select-dropdown-list">${selectItem}</div>
+        <div class="echarts-select-dropdown-list" id="echarts-select-dropdown-${randomNumber}">${selectItem}</div>
         <div class="echarts-select-dropdown-arrow"></div>
       </div>
     </div>
@@ -205,18 +168,39 @@ function echartsCumulativeFlowVis(element, props) {
     style="width: ${props.width}px; height: ${props.height}px"
   ></div>`;
   div.html(html);
+  const chart = echarts.init(document.getElementById(`echarts-cumulative-flow-${randomNumber}`), props.theme);
 
-  const echartsSelect = document.getElementById(`echarts-select-${randomNumber}`);
-  const selectItemArr = document.getElementsByClassName('echarts-select-dropdown-item');
-  echartsSelect.addEventListener('click', CumulativeFlowData.openSelect);
+  const echartsSelect = document.getElementById(`echarts-select-input-${randomNumber}`);
+  const selectItemArr = document.getElementById(`echarts-select-dropdown-${randomNumber}`).children;
+  echartsSelect.addEventListener('click', function (e) {
+    const selectDropdown = e.target.parentNode.parentNode.children[1];
+    if (selectDropdown.style.display) return;
+    const timer = setTimeout(() => {
+      selectDropdown.style.display = 'block';
+      clearTimeout(timer);
+    }, 100);
+  });
   for (let i = 0; i < selectItemArr.length; i++) {
-    selectItemArr[i].addEventListener('click', CumulativeFlowData.selectTeam);
+    selectItemArr[i].addEventListener('click', function (e) {
+      const currentIndex = Number(e.target.dataset.index);
+      CumulativeFlowFun.drawChart(chart, propsData, teamData, currentIndex);
+      echartsSelect.value = teams[currentIndex];
+      const children = e.target.parentNode.children;
+      for (let j = 0; j < children.length; j++) {
+        if (currentIndex === j) children[j].className = 'echarts-select-dropdown-item selected';
+        else children[j].className = 'echarts-select-dropdown-item';
+      }
+    });
   }
-  document.addEventListener('click', CumulativeFlowData.closeSelect);
+  document.addEventListener('click', function () {
+    const selectDropdownArr = document.getElementsByClassName('echarts-select-dropdown');
+    for (let i = 0; i < selectDropdownArr.length; i++) {
+      if (selectDropdownArr[i].style.display === 'block') selectDropdownArr[i].style.display = '';
+    }
+  });
 
-  CumulativeFlowData.data.chart = echarts.init(document.getElementById(`echarts-cumulative-flow-${randomNumber}`), props.theme);
-  CumulativeFlowData.drawChart();
-  echartsSelect.value = teams[CumulativeFlowData.data.teamIndex];
+  CumulativeFlowFun.drawChart(chart, propsData, teamData, 0);
+  echartsSelect.value = teams[0];
 }
 
 export default echartsCumulativeFlowVis;

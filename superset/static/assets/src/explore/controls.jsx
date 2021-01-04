@@ -272,6 +272,16 @@ export const controls = {
     }),
   },
 
+  echarts_select: {
+    type: 'SelectControl',
+    label: '选择器',
+    default: null,
+    description: '根据其可筛选对应数据',
+    mapStateToProps: state => ({
+      choices: (state.datasource) ? state.datasource.all_cols : [],
+    }),
+  },
+
   x_axis: {
     type: 'SelectControl',
     label: 'X 轴',

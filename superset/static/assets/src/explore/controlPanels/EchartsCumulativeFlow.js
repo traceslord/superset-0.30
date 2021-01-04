@@ -8,6 +8,7 @@ export default {
       controlSetRows: [
         ['x_axis'],
         ['echarts_indicators'],
+        ['echarts_select'],
         ['adhoc_filters'],
       ],
     },
@@ -18,4 +19,11 @@ export default {
       ],
     },
   ],
+  controlOverrides: {
+    echarts_select: {
+      mapStateToProps: state => ({
+        choices: (state.datasource) ? state.datasource.filterable_cols : [],
+      }),
+    },
+  },
 };

@@ -569,6 +569,8 @@ class EchartsCumulativeFlowViz(BaseViz):
             raise Exception('请选配要显示的指标～')
 
         d['columns'] = [fd.get('x_axis')] + fd.get('echarts_indicators')
+        if fd.get('echarts_select'):
+            d['columns'].append(fd.get('echarts_select'))
         return d
 
     def get_data(self, df):
@@ -576,6 +578,7 @@ class EchartsCumulativeFlowViz(BaseViz):
         return {
             'x_axis': fd['x_axis'],
             'echarts_indicators': fd['echarts_indicators'],
+            'echarts_select': fd['echarts_select'],
             'data': df.to_dict(orient='records'),
         }
 

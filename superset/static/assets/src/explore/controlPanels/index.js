@@ -23,6 +23,7 @@ import EchartsBarDataset from './EchartsBarDataset';
 import EchartsBarStacked from './EchartsBarStacked';
 import EchartsCumulativeFlow from './EchartsCumulativeFlow';
 import EchartsFunnel from './EchartsFunnel';
+import EchartsHeatmapCartesian from './EchartsHeatmapCartesian';
 import EchartsLineMixed from './EchartsLineMixed';
 import EchartsScatterBubble from './EchartsScatterBubble';
 import EventFlow from './EventFlow';
@@ -79,6 +80,7 @@ export const controlPanelConfigs = {
   echarts_bar_stacked: EchartsBarStacked,
   echarts_cumulative_flow: EchartsCumulativeFlow,
   echarts_funnel: EchartsFunnel,
+  echarts_heatmap_cartesian: EchartsHeatmapCartesian,
   echarts_line_mixed: EchartsLineMixed,
   echarts_scatter_bubble: EchartsScatterBubble,
   event_flow: EventFlow,

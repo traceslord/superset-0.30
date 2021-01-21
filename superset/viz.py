@@ -602,6 +602,44 @@ class EchartsFunnelViz(BaseViz):
         return df.to_dict(orient='records')
 
 
+class EchartsHeatmapCartesianViz(BaseViz):
+
+    viz_type = 'echarts_heatmap_cartesian'
+    verbose_name = _('Echarts Heatmap Cartesian')
+    sort_series = False
+    is_timeseries = False
+
+    def query_obj(self):
+        d = super(EchartsHeatmapCartesianViz, self).query_obj()
+        fd = self.form_data
+
+        d['columns'] = [fd.get('x_axis')] + [fd.get('y_axis_left')] + fd.get('echarts_indicators')
+        return d
+
+    def get_data(self, df):
+        fd = self.form_data
+        x_axis = list(set(df.to_dict()[fd['x_axis']].values()))
+        y_axis_left = [t.to_pydatetime() for t in list(set(df.to_dict()[fd['y_axis_left']].values()))]
+        x_axis.sort()
+        y_axis_left.sort()
+        data = []
+        for x in df.to_dict(orient='records'):
+            sum = 0
+            for i in fd['echarts_indicators']:
+                sum += x[i]
+            data.append([
+                x_axis.index(x[fd['x_axis']]),
+                y_axis_left.index(x[fd['y_axis_left']]),
+                sum
+            ])
+        return {
+            'rotate': fd['echarts_rotate'],
+            'x_axis': x_axis,
+            'y_axis_left': y_axis_left,
+            'data': data,
+        }
+
+
 class EchartsLineMixedViz(BaseViz):
 
     viz_type = 'echarts_line_mixed'

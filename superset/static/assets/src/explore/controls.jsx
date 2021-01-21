@@ -282,6 +282,14 @@ export const controls = {
     }),
   },
 
+  echarts_rotate: {
+    type: 'TextControl',
+    label: 'rotate',
+    default: 0,
+    isInt: true,
+    description: 'X 轴刻度标签旋转的角度',
+  },
+
   x_axis: {
     type: 'SelectControl',
     label: 'X 轴',

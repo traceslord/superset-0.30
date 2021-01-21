@@ -1,5 +1,5 @@
 .echarts-select {
-  z-index: 100;
+  z-index: 97;
   position: relative;
   top: 20px;
   display: inline-block;
@@ -12,7 +12,7 @@
   height: 40px;
 }
 .echarts-select-content .echarts-select-content-input {
-  z-index: 200;
+  z-index: 98;
   position: absolute;
   left: 0;
   top: 0;
@@ -60,7 +60,7 @@
 }
 
 .echarts-select .echarts-select-dropdown {
-  z-index: 1000;
+  z-index: 99;
   position: absolute;
   top: 40px;
   display: none;
@@ -73,6 +73,7 @@
 }
 .echarts-select-dropdown .echarts-select-dropdown-list {
   padding: 6px 0;
+  max-height: 250px;
   overflow: scroll;
 }
 .echarts-select-dropdown .echarts-select-dropdown-list .echarts-select-dropdown-item {

@@ -46,21 +46,39 @@ function echartsLineMixedVis(element, props) {
       type: 'line',
       data: props.data.data.map(data => data[props.data.y_axis_left]),
     },
-  ].concat(props.data.y_axis_right.map(item => ({
-      name: item,
-      type: 'line',
-      yAxisIndex: 1,
-      smooth: true,
-      itemStyle: {
-        normal: {
-          lineStyle: {
-            type: 'dotted',
+  ].concat(props.data.y_axis_right.map((item) => {
+    if (props.data.type === '混合堆叠柱状图') {
+      return {
+        name: item,
+        type: 'bar',
+        stack: '堆叠',
+        yAxisIndex: 1,
+        data: props.data.data.map(data => data[item]),
+      };
+    } else if (props.data.type === '混合多柱状图') {
+      return {
+        name: item,
+        type: 'bar',
+        yAxisIndex: 1,
+        data: props.data.data.map(data => data[item]),
+      };
+    }
+      return {
+        name: item,
+        type: 'line',
+        yAxisIndex: 1,
+        smooth: true,
+        itemStyle: {
+          normal: {
+            lineStyle: {
+              type: 'dotted',
+            },
           },
         },
-      },
-      areaStyle: {},
-      data: props.data.data.map(data => data[item]),
-    })));
+        areaStyle: {},
+        data: props.data.data.map(data => data[item]),
+      };
+  }));
   const div = d3.select(element);
   const randomNumber = Math.round(Math.random() * 1000);
   const html = `<div
@@ -72,6 +90,9 @@ function echartsLineMixedVis(element, props) {
   myChart.setOption({
     tooltip: {
       trigger: 'axis',
+      axisPointer: {
+        type: props.data.type === '混合曲线填充图' ? 'line' : 'shadow',
+      },
     },
     toolbox: {
       feature: {
@@ -93,16 +114,26 @@ function echartsLineMixedVis(element, props) {
     xAxis: [
       {
         type: 'category',
-        boundaryGap: false,
-        data: props.data.data.map(data => formatDate.formateDay(data[props.data.x_axis])),
+        name: props.data.x_axis_label,
+        boundaryGap: props.data.type !== '混合曲线填充图',
+        axisLabel: {
+          interval: 0,
+          rotate: props.data.rotate,
+        },
+        data: props.data.data.map((data) => {
+          if (props.data.formate_day) return formatDate.formateDay(data[props.data.x_axis]);
+          return data[props.data.x_axis];
+        }),
       },
     ],
     yAxis: [
       {
         type: 'value',
+        name: props.data.y_axis_left_label,
       },
       {
         type: 'value',
+        name: props.data.y_axis_right_label,
       },
     ],
     series,

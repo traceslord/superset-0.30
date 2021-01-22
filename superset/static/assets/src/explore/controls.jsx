@@ -284,10 +284,25 @@ export const controls = {
 
   echarts_rotate: {
     type: 'TextControl',
-    label: 'rotate',
+    label: 'X 轴标签旋转角度',
     default: 0,
     isInt: true,
     description: 'X 轴刻度标签旋转的角度',
+  },
+
+  echarts_mixed_type: {
+    type: 'SelectControl',
+    freeForm: true,
+    label: '图表混合类型',
+    default: '混合曲线填充图',
+    choices: formatSelectOptions(['混合曲线填充图', '混合多柱状图', '混合堆叠柱状图']),
+    description: '展示的图表类型',
+  },
+
+  echarts_formate_day: {
+    type: 'CheckboxControl',
+    label: 'X 轴标签是否需要格式化时间',
+    default: true,
   },
 
   x_axis: {
@@ -322,6 +337,20 @@ export const controls = {
     mapStateToProps: state => ({
       options: (state.datasource) ? state.datasource.columns : [],
     }),
+  },
+
+  y_axis_left_label: {
+    type: 'TextControl',
+    label: '左侧 Y 轴标签',
+    freeForm: true,
+    default: '',
+  },
+
+  y_axis_right_label: {
+    type: 'TextControl',
+    label: '右侧 Y 轴标签',
+    freeForm: true,
+    default: '',
   },
 
   datasource: {

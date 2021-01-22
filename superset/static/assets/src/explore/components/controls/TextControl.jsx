@@ -59,7 +59,7 @@ export default class TextControl extends React.Component {
     return (
       <div>
         <ControlHeader {...this.props} />
-        <FormGroup controlId="formInlineName" bsSize="small">
+        <FormGroup bsSize="small">
           <FormControl
             type="text"
             placeholder=""

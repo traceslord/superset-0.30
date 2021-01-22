@@ -662,9 +662,15 @@ class EchartsLineMixedViz(BaseViz):
     def get_data(self, df):
         fd = self.form_data
         return {
+            'type': fd['echarts_mixed_type'],
+            'rotate': fd['echarts_rotate'],
+            'formate_day': fd['echarts_formate_day'],
             'x_axis': fd['x_axis'],
             'y_axis_left': fd['y_axis_left'],
             'y_axis_right': fd['y_axis_right'],
+            'x_axis_label': fd['x_axis_label'],
+            'y_axis_left_label': fd['y_axis_left_label'],
+            'y_axis_right_label': fd['y_axis_right_label'],
             'data': df.to_dict(orient='records'),
         }
 

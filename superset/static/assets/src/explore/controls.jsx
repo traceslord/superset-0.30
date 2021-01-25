@@ -272,6 +272,26 @@ export const controls = {
     }),
   },
 
+  echarts_start_time: {
+    type: 'SelectControl',
+    label: '计划开始时间',
+    default: null,
+    description: '计划开始的时间',
+    mapStateToProps: state => ({
+      choices: (state.datasource) ? state.datasource.all_cols : [],
+    }),
+  },
+
+  echarts_end_time: {
+    type: 'SelectControl',
+    label: '计划结束时间',
+    default: null,
+    description: '计划结束的时间',
+    mapStateToProps: state => ({
+      choices: (state.datasource) ? state.datasource.all_cols : [],
+    }),
+  },
+
   echarts_select: {
     type: 'SelectControl',
     label: '选择器',

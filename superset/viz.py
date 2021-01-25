@@ -602,6 +602,40 @@ class EchartsFunnelViz(BaseViz):
         return df.to_dict(orient='records')
 
 
+class EchartsGanttTimeViz(BaseViz):
+
+    viz_type = 'echarts_gantt_time'
+    verbose_name = _('Echarts Gantt Time')
+    sort_series = False
+    is_timeseries = False
+
+    def query_obj(self):
+        d = super(EchartsGanttTimeViz, self).query_obj()
+        fd = self.form_data
+ 
+        if not fd.get('echarts_name'):
+            raise Exception('请选配项目名称～')
+        if not fd.get('echarts_start_time'):
+            raise Exception('请选配左侧计划开始时间～')
+        if not fd.get('echarts_end_time'):
+            raise Exception('请选配左侧计划结束时间～')
+        if not fd.get('echarts_indicator'):
+            raise Exception('请选配左侧计划当前进度～')
+
+        d['columns'] = [fd.get('echarts_name')] + [fd.get('echarts_start_time')] + [fd.get('echarts_end_time')] + [fd.get('echarts_indicator')]
+        return d
+
+    def get_data(self, df):
+        fd = self.form_data
+        return {
+            'echarts_name': fd['echarts_name'],
+            'echarts_start_time': fd['echarts_start_time'],
+            'echarts_end_time': fd['echarts_end_time'],
+            'echarts_indicator': fd['echarts_indicator'],
+            'data': df.to_dict(orient='records'),
+        }
+
+
 class EchartsHeatmapCartesianViz(BaseViz):
 
     viz_type = 'echarts_heatmap_cartesian'

@@ -10,6 +10,7 @@ import EchartsBarDatasetChartPlugin from '../EchartsBarDataset/EchartsBarDataset
 import EchartsBarStackedChartPlugin from '../EchartsBarStacked/EchartsBarStackedChartPlugin';
 import EchartsCumulativeFlowChartPlugin from '../EchartsCumulativeFlow/EchartsCumulativeFlowChartPlugin';
 import EchartsFunnelChartPlugin from '../EchartsFunnel/EchartsFunnelChartPlugin';
+import EchartsGanttTimeChartPlugin from '../EchartsGanttTime/EchartsGanttTimeChartPlugin';
 import EchartsHeatmapCartesianChartPlugin from '../EchartsHeatmapCartesian/EchartsHeatmapCartesianChartPlugin';
 import EchartsLineMixedChartPlugin from '../EchartsLineMixed/EchartsLineMixedChartPlugin';
 import EchartsScatterBubbleChartPlugin from '../EchartsScatterBubble/EchartsScatterBubbleChartPlugin';
@@ -38,6 +39,7 @@ export default class CommonChartPreset extends Preset {
         new EchartsBarStackedChartPlugin().configure({ key: 'echarts_bar_stacked' }),
         new EchartsCumulativeFlowChartPlugin().configure({ key: 'echarts_cumulative_flow' }),
         new EchartsFunnelChartPlugin().configure({ key: 'echarts_funnel' }),
+        new EchartsGanttTimeChartPlugin().configure({ key: 'echarts_gantt_time' }),
         new EchartsHeatmapCartesianChartPlugin().configure({ key: 'echarts_heatmap_cartesian' }),
         new EchartsLineMixedChartPlugin().configure({ key: 'echarts_line_mixed' }),
         new EchartsScatterBubbleChartPlugin().configure({ key: 'echarts_scatter_bubble' }),

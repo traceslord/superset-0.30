@@ -616,11 +616,11 @@ class EchartsGanttTimeViz(BaseViz):
         if not fd.get('echarts_name'):
             raise Exception('请选配项目名称～')
         if not fd.get('echarts_start_time'):
-            raise Exception('请选配左侧计划开始时间～')
+            raise Exception('请选配计划开始时间～')
         if not fd.get('echarts_end_time'):
-            raise Exception('请选配左侧计划结束时间～')
+            raise Exception('请选配计划结束时间～')
         if not fd.get('echarts_indicator'):
-            raise Exception('请选配左侧计划当前进度～')
+            raise Exception('请选配计划当前进度～')
 
         d['columns'] = [fd.get('echarts_name')] + [fd.get('echarts_start_time')] + [fd.get('echarts_end_time')] + [fd.get('echarts_indicator')]
         return d
@@ -728,6 +728,8 @@ class EchartsScatterBubbleViz(BaseViz):
             raise Exception('请选择要显示的名称～')
 
         d['columns'] = [fd.get('x_axis')] + [fd.get('echarts_indicator')] + [fd.get('echarts_name')]
+        if fd.get('echarts_radius'):
+            d['columns'].append(fd.get('echarts_radius'))
         return d
 
     def get_data(self, df):
@@ -736,6 +738,10 @@ class EchartsScatterBubbleViz(BaseViz):
             'x_axis': fd['x_axis'],
             'echarts_indicator': fd['echarts_indicator'],
             'echarts_name': fd['echarts_name'],
+            'echarts_radius': fd['echarts_radius'],
+            'x_axis_label': fd['x_axis_label'],
+            'y_axis_label': fd['y_axis_label'],
+            'echarts_regression_type': fd['echarts_regression_type'],
             'data': df.to_dict(orient='records'),
         }
 

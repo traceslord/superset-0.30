@@ -310,6 +310,25 @@ export const controls = {
     description: 'X 轴刻度标签旋转的角度',
   },
 
+  echarts_radius: {
+    type: 'SelectControl',
+    label: '半径',
+    default: null,
+    description: '气泡半径尺寸',
+    mapStateToProps: state => ({
+      choices: (state.datasource) ? state.datasource.all_cols : [],
+    }),
+  },
+
+  echarts_regression_type: {
+    type: 'SelectControl',
+    freeForm: true,
+    label: '回归线类型',
+    default: null,
+    choices: formatSelectOptions(['linear', 'exponential', 'logarithmic', 'polynomial']),
+    description: '气泡图的回归线',
+  },
+
   echarts_mixed_type: {
     type: 'SelectControl',
     freeForm: true,

@@ -579,6 +579,8 @@ class EchartsCumulativeFlowViz(BaseViz):
             'x_axis': fd['x_axis'],
             'echarts_indicators': fd['echarts_indicators'],
             'echarts_select': fd['echarts_select'],
+            'x_axis_label': fd['x_axis_label'],
+            'y_axis_label': fd['y_axis_label'],
             'data': df.to_dict(orient='records'),
         }
 

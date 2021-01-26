@@ -109,6 +109,7 @@ const CumulativeFlowFun = {
       xAxis: [
         {
           type: 'category',
+          name: propsData.x_axis_label,
           boundaryGap: false,
           data: chartData.map(data => formatDate.formateDay(data[propsData.x_axis])),
         },
@@ -116,6 +117,7 @@ const CumulativeFlowFun = {
       yAxis: [
         {
           type: 'value',
+          name: propsData.y_axis_label,
         },
       ],
       dataZoom: [
@@ -170,37 +172,41 @@ function echartsCumulativeFlowVis(element, props) {
   div.html(html);
   const chart = echarts.init(document.getElementById(`echarts-cumulative-flow-${randomNumber}`), props.theme);
 
-  const echartsSelect = document.getElementById(`echarts-select-input-${randomNumber}`);
-  const selectItemArr = document.getElementById(`echarts-select-dropdown-${randomNumber}`).children;
-  echartsSelect.addEventListener('click', function (e) {
-    const selectDropdown = e.target.parentNode.parentNode.children[1];
-    if (selectDropdown.style.display) return;
-    const timer = setTimeout(() => {
-      selectDropdown.style.display = 'block';
-      clearTimeout(timer);
-    }, 100);
-  });
-  for (let i = 0; i < selectItemArr.length; i++) {
-    selectItemArr[i].addEventListener('click', function (e) {
-      const currentIndex = Number(e.target.dataset.index);
-      CumulativeFlowFun.drawChart(chart, propsData, teamData, currentIndex);
-      echartsSelect.value = teams[currentIndex];
-      const children = e.target.parentNode.children;
-      for (let j = 0; j < children.length; j++) {
-        if (currentIndex === j) children[j].className = 'echarts-select-dropdown-item selected';
-        else children[j].className = 'echarts-select-dropdown-item';
+  if (propsData.echarts_select) {
+    const echartsSelect = document.getElementById(`echarts-select-input-${randomNumber}`);
+    const selectItemArr = document.getElementById(`echarts-select-dropdown-${randomNumber}`).children;
+    echartsSelect.addEventListener('click', function (e) {
+      const selectDropdown = e.target.parentNode.parentNode.children[1];
+      if (selectDropdown.style.display) return;
+      const timer = setTimeout(() => {
+        selectDropdown.style.display = 'block';
+        clearTimeout(timer);
+      }, 100);
+    });
+    for (let i = 0; i < selectItemArr.length; i++) {
+      selectItemArr[i].addEventListener('click', function (e) {
+        const currentIndex = Number(e.target.dataset.index);
+        CumulativeFlowFun.drawChart(chart, propsData, teamData, currentIndex);
+        echartsSelect.value = teams[currentIndex];
+        const children = e.target.parentNode.children;
+        for (let j = 0; j < children.length; j++) {
+          if (currentIndex === j) children[j].className = 'echarts-select-dropdown-item selected';
+          else children[j].className = 'echarts-select-dropdown-item';
+        }
+      });
+    }
+    document.addEventListener('click', function () {
+      const selectDropdownArr = document.getElementsByClassName('echarts-select-dropdown');
+      for (let i = 0; i < selectDropdownArr.length; i++) {
+        if (selectDropdownArr[i].style.display === 'block') selectDropdownArr[i].style.display = '';
       }
     });
-  }
-  document.addEventListener('click', function () {
-    const selectDropdownArr = document.getElementsByClassName('echarts-select-dropdown');
-    for (let i = 0; i < selectDropdownArr.length; i++) {
-      if (selectDropdownArr[i].style.display === 'block') selectDropdownArr[i].style.display = '';
-    }
-  });
 
-  CumulativeFlowFun.drawChart(chart, propsData, teamData, 0);
-  echartsSelect.value = teams[0];
+    CumulativeFlowFun.drawChart(chart, propsData, teamData, 0);
+    echartsSelect.value = teams[0];
+  } else {
+    CumulativeFlowFun.drawChart(chart, propsData, teamData, 0);
+  }
 }
 
 export default echartsCumulativeFlowVis;

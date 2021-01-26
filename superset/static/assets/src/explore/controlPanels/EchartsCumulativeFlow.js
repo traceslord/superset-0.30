@@ -8,8 +8,14 @@ export default {
       controlSetRows: [
         ['x_axis'],
         ['echarts_indicators'],
-        ['echarts_select'],
         ['adhoc_filters'],
+      ],
+    },
+    {
+      label: '样式配置',
+      controlSetRows: [
+        ['echarts_select'],
+        ['x_axis_label', 'y_axis_label'],
       ],
     },
     {
@@ -24,6 +30,12 @@ export default {
       mapStateToProps: state => ({
         choices: (state.datasource) ? state.datasource.filterable_cols : [],
       }),
+    },
+    x_axis_label: {
+      renderTrigger: false,
+    },
+    y_axis_label: {
+      renderTrigger: false,
     },
   },
 };

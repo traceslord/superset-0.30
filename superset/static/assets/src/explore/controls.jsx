@@ -384,10 +384,10 @@ export const controls = {
     description: '展示的图表类型',
   },
 
-  echarts_formate_day: {
+  echarts_checkbox: {
     type: 'CheckboxControl',
-    label: 'X 轴标签是否需要格式化时间',
-    default: true,
+    label: '选择框',
+    default: false,
   },
 
   x_axis: {

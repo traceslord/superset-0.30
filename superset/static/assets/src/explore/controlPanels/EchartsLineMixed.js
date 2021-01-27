@@ -18,7 +18,7 @@ export default {
         ['echarts_mixed_type'],
         ['x_axis_label', 'echarts_rotate'],
         ['y_axis_left_label', 'y_axis_right_label'],
-        ['echarts_formate_day'],
+        ['echarts_checkbox'],
       ],
     },
     {
@@ -31,6 +31,10 @@ export default {
   controlOverrides: {
     x_axis_label: {
       renderTrigger: false,
+    },
+    echarts_checkbox: {
+      label: 'X 轴标签是否需要格式化时间',
+      default: true,
     },
   },
 };

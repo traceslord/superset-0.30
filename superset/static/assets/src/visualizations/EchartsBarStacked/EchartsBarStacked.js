@@ -37,16 +37,25 @@ import 'echarts/theme/tech-blue';
 import 'echarts/theme/vintage';
 
 function echartsBarStackedVis(element, props) {
-  const series = props.data.echarts_indicators.map(item => ({
-    name: item,
-    type: 'bar',
-    stack: '堆叠',
-    label: {
-      show: true,
-      position: props.data.echarts_label_position,
-    },
-    data: props.data.data.map(data => data[item]),
-  }));
+  const series = props.data.echarts_indicators.map((item) => {
+    if (props.data.cancel_stack) {
+      return {
+        name: item,
+        type: 'bar',
+        data: props.data.data.map(data => data[item]),
+      };
+    }
+      return {
+        name: item,
+        type: 'bar',
+        stack: '堆叠',
+        label: {
+          show: true,
+          position: props.data.echarts_label_position,
+        },
+        data: props.data.data.map(data => data[item]),
+      };
+  });
   const div = d3.select(element);
   const randomNumber = Math.round(Math.random() * 1000);
   const html = `<div

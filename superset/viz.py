@@ -599,6 +599,7 @@ class EchartsBarStackedViz(BaseViz):
             'x_axis_label': fd['x_axis_label'],
             'y_axis_label': fd['y_axis_label'],
             'echarts_label_position': fd['echarts_label_position'],
+            'cancel_stack': fd['echarts_checkbox'],
             'data': df.to_dict(orient='records'),
         }
 
@@ -751,7 +752,7 @@ class EchartsLineMixedViz(BaseViz):
         return {
             'type': fd['echarts_mixed_type'],
             'rotate': fd['echarts_rotate'],
-            'formate_day': fd['echarts_formate_day'],
+            'formate_day': fd['echarts_checkbox'],
             'x_axis': fd['x_axis'],
             'y_axis_left': fd['y_axis_left'],
             'y_axis_right': fd['y_axis_right'],

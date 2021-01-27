@@ -16,6 +16,7 @@ export default {
       controlSetRows: [
         ['x_axis_label', 'y_axis_label'],
         ['echarts_label_position'],
+        ['echarts_checkbox'],
       ],
     },
     {
@@ -31,6 +32,9 @@ export default {
     },
     y_axis_label: {
       renderTrigger: false,
+    },
+    echarts_checkbox: {
+      label: '取消堆叠',
     },
   },
 };

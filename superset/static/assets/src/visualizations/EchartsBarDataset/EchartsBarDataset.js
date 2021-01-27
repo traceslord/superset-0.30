@@ -49,7 +49,7 @@ function echartsBarDatasetVis(element, props) {
   const source = [['故事线'].concat(indicatorName)].concat(indicatorValue);
   const series = props.data.echarts_indicators.map(() => ({
     type: 'bar',
-    barWidth: 30,
+    barWidth: props.data.bar_width,
   }));
   const div = d3.select(element);
   const randomNumber = Math.round(Math.random() * 1000);
@@ -74,8 +74,15 @@ function echartsBarDatasetVis(element, props) {
       containLabel: true,
     },
     dataset: { source },
-    xAxis: { type: 'category' },
-    yAxis: {},
+    xAxis: {
+      type: 'category',
+      name: props.data.x_axis_label,
+      axisLabel: {
+        interval: 0,
+        rotate: props.data.rotate,
+      },
+    },
+    yAxis: { name: props.data.y_axis_label },
     series,
   });
 }

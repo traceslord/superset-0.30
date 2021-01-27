@@ -310,6 +310,13 @@ export const controls = {
     description: 'X 轴刻度标签旋转的角度',
   },
 
+  echarts_bar_width: {
+    type: 'TextControl',
+    label: '柱条宽度',
+    default: null,
+    description: '柱条的宽度',
+  },
+
   echarts_radius: {
     type: 'SelectControl',
     label: '半径',

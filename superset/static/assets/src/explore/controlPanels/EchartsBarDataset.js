@@ -12,10 +12,26 @@ export default {
       ],
     },
     {
+      label: '样式配置',
+      controlSetRows: [
+        ['x_axis_label', 'y_axis_label'],
+        ['echarts_rotate'],
+        ['echarts_bar_width'],
+      ],
+    },
+    {
       label: t('Theme'),
       controlSetRows: [
         ['echarts_theme'],
       ],
     },
   ],
+  controlOverrides: {
+    x_axis_label: {
+      renderTrigger: false,
+    },
+    y_axis_label: {
+      renderTrigger: false,
+    },
+  },
 };

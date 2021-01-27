@@ -146,6 +146,12 @@ function echartsCumulativeFlowVis(element, props) {
       teams.push(data[props.data.echarts_select]);
     }
   });
+  teams.forEach((data, index, self) => {
+    if (data === '') {
+      self.splice(index, 1);
+      self.push(data);
+    }
+  });
   const teamData = teams.map(t => propsData.data.filter(d => d[props.data.echarts_select] === t));
 
   const div = d3.select(element);

@@ -333,6 +333,20 @@ export const controls = {
     description: '柱条的宽度',
   },
 
+  echarts_plus_label: {
+    type: 'TextControl',
+    label: '正数标签',
+    freeForm: true,
+    default: '',
+  },
+
+  echarts_minus_label: {
+    type: 'TextControl',
+    label: '负数标签',
+    freeForm: true,
+    default: '',
+  },
+
   echarts_radius: {
     type: 'SelectControl',
     label: '半径',

@@ -20,6 +20,7 @@ import DirectedForce from './DirectedForce';
 import DistBar from './DistBar';
 import DualLine from './DualLine';
 import EchartsBarDataset from './EchartsBarDataset';
+import EchartsBarPlusminus from './EchartsBarPlusminus';
 import EchartsBarStacked from './EchartsBarStacked';
 import EchartsCumulativeFlow from './EchartsCumulativeFlow';
 import EchartsFunnel from './EchartsFunnel';
@@ -78,6 +79,7 @@ export const controlPanelConfigs = {
   dist_bar: DistBar,
   dual_line: DualLine,
   echarts_bar_dataset: EchartsBarDataset,
+  echarts_bar_plusminus: EchartsBarPlusminus,
   echarts_bar_stacked: EchartsBarStacked,
   echarts_cumulative_flow: EchartsCumulativeFlow,
   echarts_funnel: EchartsFunnel,

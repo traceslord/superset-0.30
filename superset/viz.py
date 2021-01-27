@@ -528,6 +528,50 @@ class EchartsBarDatasetViz(BaseViz):
         }
 
 
+class EchartsBarPlusminusViz(BaseViz):
+
+    viz_type = 'echarts_bar_plusminus'
+    verbose_name = _('Echarts Bar Plusminus')
+    sort_series = False
+    is_timeseries = False
+
+    def query_obj(self):
+        d = super(EchartsBarPlusminusViz, self).query_obj()
+        fd = self.form_data
+ 
+        if not fd.get('echarts_name'):
+            raise Exception('请选择要显示的名称～')
+        if not fd.get('echarts_indicator'):
+            raise Exception('请选配要显示的指标～')
+
+        d['columns'] = [fd.get('echarts_name')] + [fd.get('echarts_indicator')]
+        return d
+
+    def get_data(self, df):
+        fd = self.form_data
+        data = []
+        for x in df.to_dict(orient='records'):
+            if x[fd['echarts_indicator']] < 0:
+                data.append({
+                    'name': x[fd['echarts_name']],
+                    'plus': 0,
+                    'minus': x[fd['echarts_indicator']],
+                })
+            else:
+                data.append({
+                    'name': x[fd['echarts_name']],
+                    'plus': x[fd['echarts_indicator']],
+                    'minus': 0,
+                })
+        return {
+            'x_axis_label': fd['x_axis_label'],
+            'y_axis_label': fd['y_axis_label'],
+            'echarts_plus_label': fd['echarts_plus_label'],
+            'echarts_minus_label': fd['echarts_minus_label'],
+            'data': data,
+        }
+
+
 class EchartsBarStackedViz(BaseViz):
 
     viz_type = 'echarts_bar_stacked'

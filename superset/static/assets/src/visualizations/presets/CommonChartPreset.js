@@ -7,6 +7,7 @@ import BoxPlotChartPlugin from '../nvd3/BoxPlot/BoxPlotChartPlugin';
 import BubbleChartPlugin from '../nvd3/Bubble/BubbleChartPlugin';
 import DistBarChartPlugin from '../nvd3/DistBar/DistBarChartPlugin';
 import EchartsBarDatasetChartPlugin from '../EchartsBarDataset/EchartsBarDatasetChartPlugin';
+import EchartsBarPlusminusChartPlugin from '../EchartsBarPlusminus/EchartsBarPlusminusChartPlugin';
 import EchartsBarStackedChartPlugin from '../EchartsBarStacked/EchartsBarStackedChartPlugin';
 import EchartsCumulativeFlowChartPlugin from '../EchartsCumulativeFlow/EchartsCumulativeFlowChartPlugin';
 import EchartsFunnelChartPlugin from '../EchartsFunnel/EchartsFunnelChartPlugin';
@@ -36,6 +37,7 @@ export default class CommonChartPreset extends Preset {
         new BubbleChartPlugin().configure({ key: 'bubble' }),
         new DistBarChartPlugin().configure({ key: 'dist_bar' }),
         new EchartsBarDatasetChartPlugin().configure({ key: 'echarts_bar_dataset' }),
+        new EchartsBarPlusminusChartPlugin().configure({ key: 'echarts_bar_plusminus' }),
         new EchartsBarStackedChartPlugin().configure({ key: 'echarts_bar_stacked' }),
         new EchartsCumulativeFlowChartPlugin().configure({ key: 'echarts_cumulative_flow' }),
         new EchartsFunnelChartPlugin().configure({ key: 'echarts_funnel' }),

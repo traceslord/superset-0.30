@@ -40,10 +40,10 @@ function echartsBarStackedVis(element, props) {
   const series = props.data.echarts_indicators.map(item => ({
     name: item,
     type: 'bar',
-    stack: 'sum',
+    stack: '堆叠',
     label: {
       show: true,
-      position: 'insideRight',
+      position: props.data.echarts_label_position,
     },
     data: props.data.data.map(data => data[item]),
   }));
@@ -64,22 +64,28 @@ function echartsBarStackedVis(element, props) {
     },
     legend: {
       data: props.data.echarts_indicators,
-      top: 10,
+      icon: 'roundRect',
+      itemGap: 25,
+      itemWidth: 15,
+      itemHeight: 15,
+      top: 15,
     },
     grid: {
       left: '3%',
-      right: '4%',
+      right: '7%',
       bottom: '3%',
       containLabel: true,
     },
     xAxis: [
       {
         type: 'value',
+        name: props.data.x_axis_label,
       },
     ],
     yAxis: [
       {
         type: 'category',
+        name: props.data.y_axis_label,
         data: props.data.data.map(data => data[props.data.echarts_name]),
       },
     ],

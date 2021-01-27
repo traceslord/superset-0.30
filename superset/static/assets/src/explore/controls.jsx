@@ -112,6 +112,22 @@ const ECHARTS_THEMES = [
   'vintage',
 ];
 
+const ECHARTS_POSITIONS = [
+  'top',
+  'left',
+  'right',
+  'bottom',
+  'insideLeft',
+  'inside',
+  'insideRight',
+  'insideTop',
+  'insideBottom',
+  'insideTopLeft',
+  'insideBottomLeft',
+  'insideTopRight',
+  'insideBottomRight',
+];
+
 export const D3_TIME_FORMAT_OPTIONS = [
   ['smart_date', 'Adaptative formating'],
   ['%d/%m/%Y', '%d/%m/%Y | 14/01/2019'],
@@ -325,6 +341,15 @@ export const controls = {
     mapStateToProps: state => ({
       choices: (state.datasource) ? state.datasource.all_cols : [],
     }),
+  },
+
+  echarts_label_position: {
+    type: 'SelectControl',
+    freeForm: true,
+    label: '图形上文本标签位置',
+    default: 'insideLeft',
+    choices: formatSelectOptions(ECHARTS_POSITIONS),
+    description: '图形上文本标签的位置',
   },
 
   echarts_regression_type: {

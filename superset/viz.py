@@ -552,6 +552,9 @@ class EchartsBarStackedViz(BaseViz):
         return {
             'echarts_name': fd['echarts_name'],
             'echarts_indicators': fd['echarts_indicators'],
+            'x_axis_label': fd['x_axis_label'],
+            'y_axis_label': fd['y_axis_label'],
+            'echarts_label_position': fd['echarts_label_position'],
             'data': df.to_dict(orient='records'),
         }
 

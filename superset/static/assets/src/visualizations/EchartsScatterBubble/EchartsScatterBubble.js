@@ -137,7 +137,10 @@ function echartsCumulativeFlowVis(element, props) {
       axisPointer: {
         type: 'cross',
       },
-      formatter: params => `${params.value[2]}：<br />故事点：${params.value[1]}<br />工时：${params.value[0]} 小时`,
+      formatter: (params) => {
+        if (!params.value) return '';
+        return `${params.value[2]}：<br />故事点：${params.value[1]}<br />工时：${params.value[0]} 小时`;
+      },
     },
     grid: {
       left: '3%',

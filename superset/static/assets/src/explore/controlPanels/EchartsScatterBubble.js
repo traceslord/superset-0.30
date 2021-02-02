@@ -6,9 +6,10 @@ export default {
       label: '配置选项',
       expanded: true,
       controlSetRows: [
-        ['x_axis'],
-        ['echarts_indicator'],
+        ['metric'],
+        ['metric_2'],
         ['echarts_name'],
+        ['groupby'],
         ['adhoc_filters'],
       ],
     },
@@ -28,6 +29,14 @@ export default {
     },
   ],
   controlOverrides: {
+    metric: {
+      label: 'X 轴',
+      description: 'X 轴要显示的列',
+    },
+    metric_2: {
+      label: 'Y 轴',
+      description: 'Y 轴要显示的列',
+    },
     x_axis_label: {
       renderTrigger: false,
     },

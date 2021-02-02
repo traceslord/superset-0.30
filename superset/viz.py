@@ -506,7 +506,7 @@ class EchartsBarDatasetViz(BaseViz):
     def query_obj(self):
         d = super(EchartsBarDatasetViz, self).query_obj()
         fd = self.form_data
- 
+
         if not fd.get('echarts_name'):
             raise Exception('请选择要显示的名称～')
         if not fd.get('echarts_indicators'):
@@ -538,7 +538,7 @@ class EchartsBarPlusminusViz(BaseViz):
     def query_obj(self):
         d = super(EchartsBarPlusminusViz, self).query_obj()
         fd = self.form_data
- 
+
         if not fd.get('echarts_name'):
             raise Exception('请选择要显示的名称～')
         if not fd.get('echarts_indicator'):
@@ -582,7 +582,7 @@ class EchartsBarStackedViz(BaseViz):
     def query_obj(self):
         d = super(EchartsBarStackedViz, self).query_obj()
         fd = self.form_data
- 
+
         if not fd.get('echarts_name'):
             raise Exception('请选择要显示的名称～')
         if not fd.get('echarts_indicators'):
@@ -614,7 +614,7 @@ class EchartsCumulativeFlowViz(BaseViz):
     def query_obj(self):
         d = super(EchartsCumulativeFlowViz, self).query_obj()
         fd = self.form_data
- 
+
         if not fd.get('x_axis'):
             raise Exception('请选配 X 轴～')
         if not fd.get('echarts_indicators'):
@@ -666,7 +666,7 @@ class EchartsGanttTimeViz(BaseViz):
     def query_obj(self):
         d = super(EchartsGanttTimeViz, self).query_obj()
         fd = self.form_data
- 
+
         if not fd.get('echarts_name'):
             raise Exception('请选配项目名称～')
         if not fd.get('echarts_start_time'):
@@ -738,7 +738,7 @@ class EchartsLineMixedViz(BaseViz):
     def query_obj(self):
         d = super(EchartsLineMixedViz, self).query_obj()
         fd = self.form_data
- 
+
         if not fd.get('x_axis'):
             raise Exception('请选配 X 轴～')
         if not fd.get('y_axis_left'):
@@ -770,27 +770,11 @@ class EchartsScatterBubbleViz(BaseViz):
     sort_series = False
     is_timeseries = False
 
-    def query_obj(self):
-        d = super(EchartsScatterBubbleViz, self).query_obj()
-        fd = self.form_data
- 
-        if not fd.get('x_axis'):
-            raise Exception('请选配 X 轴～')
-        if not fd.get('echarts_indicator'):
-            raise Exception('请选配要显示的指标～')
-        if not fd.get('echarts_name'):
-            raise Exception('请选择要显示的名称～')
-
-        d['columns'] = [fd.get('x_axis')] + [fd.get('echarts_indicator')] + [fd.get('echarts_name')]
-        if fd.get('echarts_radius'):
-            d['columns'].append(fd.get('echarts_radius'))
-        return d
-
     def get_data(self, df):
         fd = self.form_data
         return {
-            'x_axis': fd['x_axis'],
-            'echarts_indicator': fd['echarts_indicator'],
+            'x_axis': fd['metric']['label'],
+            'echarts_indicator': fd['metric_2']['label'],
             'echarts_name': fd['echarts_name'],
             'echarts_radius': fd['echarts_radius'],
             'x_axis_label': fd['x_axis_label'],

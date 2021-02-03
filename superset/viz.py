@@ -593,6 +593,7 @@ class EchartsBarStackedViz(BaseViz):
 
     def get_data(self, df):
         fd = self.form_data
+        print(df)
         return {
             'echarts_name': fd['echarts_name'],
             'echarts_indicators': fd['echarts_indicators'],
@@ -601,6 +602,31 @@ class EchartsBarStackedViz(BaseViz):
             'echarts_label_position': fd['echarts_label_position'],
             'cancel_stack': fd['echarts_checkbox'],
             'data': df.to_dict(orient='records'),
+        }
+
+
+class EchartsBarStacked2Viz(BaseViz):
+
+    viz_type = 'echarts_bar_stacked_2'
+    verbose_name = _('Echarts Bar Stacked 2')
+    sort_series = False
+    is_timeseries = False
+
+    def get_data(self, df):
+        fd = self.form_data
+        metric = self.metric_labels[0]
+        df = df.pivot_table(
+            index=self.groupby[0],
+            values=[metric],
+            columns=['issuetype'],
+            fill_value=0
+        )
+        return {
+            'x_axis_label': fd['x_axis_label'],
+            'y_axis_label': fd['y_axis_label'],
+            'echarts_label_position': fd['echarts_label_position'],
+            'cancel_stack': fd['echarts_checkbox'],
+            'data': df.to_dict(orient='split'),
         }
 
 

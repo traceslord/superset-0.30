@@ -86,6 +86,7 @@
     "dnd-core": "^2.6.0",
     "dompurify": "^1.0.3",
     "echarts": "^4.9.0",
+    "echarts-liquidfill": "^2.0.6",
     "echarts-stat": "^1.2.0",
     "geojson-extent": "^0.3.2",
     "geolib": "^2.0.24",

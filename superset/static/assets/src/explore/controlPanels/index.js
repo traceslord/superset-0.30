@@ -27,6 +27,7 @@ import EchartsCumulativeFlow from './EchartsCumulativeFlow';
 import EchartsFunnel from './EchartsFunnel';
 import EchartsGanttTime from './EchartsGanttTime';
 import EchartsHeatmapCartesian from './EchartsHeatmapCartesian';
+import EchartsHydrograph from './EchartsHydrograph';
 import EchartsLineMixed from './EchartsLineMixed';
 import EchartsScatterBubble from './EchartsScatterBubble';
 import EventFlow from './EventFlow';
@@ -87,6 +88,7 @@ export const controlPanelConfigs = {
   echarts_funnel: EchartsFunnel,
   echarts_gantt_time: EchartsGanttTime,
   echarts_heatmap_cartesian: EchartsHeatmapCartesian,
+  echarts_hydrograph: EchartsHydrograph,
   echarts_line_mixed: EchartsLineMixed,
   echarts_scatter_bubble: EchartsScatterBubble,
   event_flow: EventFlow,

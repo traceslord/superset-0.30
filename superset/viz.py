@@ -593,7 +593,6 @@ class EchartsBarStackedViz(BaseViz):
 
     def get_data(self, df):
         fd = self.form_data
-        print(df)
         return {
             'echarts_name': fd['echarts_name'],
             'echarts_indicators': fd['echarts_indicators'],
@@ -751,6 +750,31 @@ class EchartsHeatmapCartesianViz(BaseViz):
             'x_axis': x_axis,
             'y_axis_left': y_axis_left,
             'data': data,
+        }
+
+
+class EchartsHydrographViz(BaseViz):
+
+    viz_type = 'echarts_hydrograph'
+    verbose_name = _('Echarts Hydrograph')
+    sort_series = False
+    is_timeseries = False
+
+    def query_obj(self):
+        d = super(EchartsHydrographViz, self).query_obj()
+        fd = self.form_data
+
+        if not fd.get('echarts_indicator'):
+            raise Exception('请选配要显示的指标～')
+
+        d['columns'] = [fd.get('echarts_indicator')]
+        return d
+
+    def get_data(self, df):
+        fd = self.form_data
+        return {
+            'echarts_indicator': fd['echarts_indicator'],
+            'data': df.to_dict(orient='records'),
         }
 
 

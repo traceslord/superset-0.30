@@ -14,6 +14,7 @@ import EchartsCumulativeFlowChartPlugin from '../EchartsCumulativeFlow/EchartsCu
 import EchartsFunnelChartPlugin from '../EchartsFunnel/EchartsFunnelChartPlugin';
 import EchartsGanttTimeChartPlugin from '../EchartsGanttTime/EchartsGanttTimeChartPlugin';
 import EchartsHeatmapCartesianChartPlugin from '../EchartsHeatmapCartesian/EchartsHeatmapCartesianChartPlugin';
+import EchartsHydrographChartPlugin from '../EchartsHydrograph/EchartsHydrographChartPlugin';
 import EchartsLineMixedChartPlugin from '../EchartsLineMixed/EchartsLineMixedChartPlugin';
 import EchartsScatterBubbleChartPlugin from '../EchartsScatterBubble/EchartsScatterBubbleChartPlugin';
 import FilterBoxChartPlugin from '../FilterBox/FilterBoxChartPlugin';
@@ -45,6 +46,7 @@ export default class CommonChartPreset extends Preset {
         new EchartsFunnelChartPlugin().configure({ key: 'echarts_funnel' }),
         new EchartsGanttTimeChartPlugin().configure({ key: 'echarts_gantt_time' }),
         new EchartsHeatmapCartesianChartPlugin().configure({ key: 'echarts_heatmap_cartesian' }),
+        new EchartsHydrographChartPlugin().configure({ key: 'echarts_hydrograph' }),
         new EchartsLineMixedChartPlugin().configure({ key: 'echarts_line_mixed' }),
         new EchartsScatterBubbleChartPlugin().configure({ key: 'echarts_scatter_bubble' }),
         new FilterBoxChartPlugin().configure({ key: 'filter_box' }),

@@ -38,12 +38,14 @@ import 'echarts/theme/vintage';
 
 function echartsBarStacked2Vis(element, props) {
   const splitData = props.data.data;
-  const propsData = splitData.index.map(item => ({ name: item }));
+  const propsData = splitData.index.map(item => ({ name: item, sum: 0 }));
   splitData.columns.forEach((item, itemIndex) => {
     propsData.forEach((subitem, subIndex) => {
       subitem[item[1]] = splitData.data[subIndex][itemIndex];
+      subitem.sum += subitem[item[1]];
     });
   });
+  propsData.sort((a, b) => a.sum - b.sum);
   const series = splitData.columns.map((item) => {
     if (props.data.cancel_stack) {
       return {

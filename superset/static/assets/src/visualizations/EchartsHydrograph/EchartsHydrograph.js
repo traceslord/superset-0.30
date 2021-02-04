@@ -3,7 +3,7 @@ import echarts from 'echarts';
 import 'echarts-liquidfill';
 
 function echartsHydrographVis(element, props) {
-  const data = props.data.data.map(item => item.shift);
+  const data = props.data.data.map(item => item[props.data.echarts_indicator]);
   const div = d3.select(element);
   const randomNumber = Math.round(Math.random() * 1000);
   const html = `<div

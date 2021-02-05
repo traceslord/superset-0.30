@@ -96,7 +96,12 @@ function echartsLineMixedVis(element, props) {
     },
     toolbox: {
       feature: {
-        saveAsImage: {},
+        dataView: {
+          show: props.data.data_view,
+        },
+        saveAsImage: {
+          show: props.data.save_as_image,
+        },
       },
     },
     legend: {

@@ -524,6 +524,8 @@ class EchartsBarDatasetViz(BaseViz):
             'y_axis_label': fd['y_axis_label'],
             'rotate': fd['echarts_rotate'],
             'bar_width': fd['echarts_bar_width'],
+            'data_view': fd['echarts_data_view'],
+            'save_as_image': fd['echarts_save_as_image'],
             'data': df.to_dict(orient='records'),
         }
 
@@ -568,6 +570,8 @@ class EchartsBarPlusminusViz(BaseViz):
             'y_axis_label': fd['y_axis_label'],
             'echarts_plus_label': fd['echarts_plus_label'],
             'echarts_minus_label': fd['echarts_minus_label'],
+            'data_view': fd['echarts_data_view'],
+            'save_as_image': fd['echarts_save_as_image'],
             'data': data,
         }
 
@@ -600,6 +604,8 @@ class EchartsBarStackedViz(BaseViz):
             'y_axis_label': fd['y_axis_label'],
             'echarts_label_position': fd['echarts_label_position'],
             'cancel_stack': fd['echarts_checkbox'],
+            'data_view': fd['echarts_data_view'],
+            'save_as_image': fd['echarts_save_as_image'],
             'data': df.to_dict(orient='records'),
         }
 
@@ -625,6 +631,8 @@ class EchartsBarStacked2Viz(BaseViz):
             'y_axis_label': fd['y_axis_label'],
             'echarts_label_position': fd['echarts_label_position'],
             'cancel_stack': fd['echarts_checkbox'],
+            'data_view': fd['echarts_data_view'],
+            'save_as_image': fd['echarts_save_as_image'],
             'data': df.to_dict(orient='split'),
         }
 
@@ -658,6 +666,8 @@ class EchartsCumulativeFlowViz(BaseViz):
             'echarts_select': fd['echarts_select'],
             'x_axis_label': fd['x_axis_label'],
             'y_axis_label': fd['y_axis_label'],
+            'data_view': fd['echarts_data_view'],
+            'save_as_image': fd['echarts_save_as_image'],
             'data': df.to_dict(orient='records'),
         }
 
@@ -711,6 +721,7 @@ class EchartsGanttTimeViz(BaseViz):
             'echarts_start_time': fd['echarts_start_time'],
             'echarts_end_time': fd['echarts_end_time'],
             'echarts_indicator': fd['echarts_indicator'],
+            'save_as_image': fd['echarts_save_as_image'],
             'data': df.to_dict(orient='records'),
         }
 
@@ -749,6 +760,7 @@ class EchartsHeatmapCartesianViz(BaseViz):
             'rotate': fd['echarts_rotate'],
             'x_axis': x_axis,
             'y_axis_left': y_axis_left,
+            'save_as_image': fd['echarts_save_as_image'],
             'data': data,
         }
 
@@ -809,6 +821,8 @@ class EchartsLineMixedViz(BaseViz):
             'x_axis_label': fd['x_axis_label'],
             'y_axis_left_label': fd['y_axis_left_label'],
             'y_axis_right_label': fd['y_axis_right_label'],
+            'data_view': fd['echarts_data_view'],
+            'save_as_image': fd['echarts_save_as_image'],
             'data': df.to_dict(orient='records'),
         }
 
@@ -830,6 +844,8 @@ class EchartsScatterBubbleViz(BaseViz):
             'x_axis_label': fd['x_axis_label'],
             'y_axis_label': fd['y_axis_label'],
             'echarts_regression_type': fd['echarts_regression_type'],
+            'data_view': fd['echarts_data_view'],
+            'save_as_image': fd['echarts_save_as_image'],
             'data': df.to_dict(orient='records'),
         }
 

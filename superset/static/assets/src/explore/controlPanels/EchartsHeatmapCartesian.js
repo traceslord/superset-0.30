@@ -13,6 +13,12 @@ export default {
       ],
     },
     {
+      label: '工具箱',
+      controlSetRows: [
+        ['echarts_save_as_image'],
+      ],
+    },
+    {
       label: '样式配置',
       controlSetRows: [
         ['echarts_rotate'],

@@ -81,7 +81,9 @@ function echartsGanttTimeVis(element, props) {
     },
     toolbox: {
       feature: {
-        saveAsImage: {},
+        saveAsImage: {
+          show: props.data.save_as_image,
+        },
       },
     },
     grid: {

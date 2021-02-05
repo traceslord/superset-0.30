@@ -80,6 +80,16 @@ function echartsBarStacked2Vis(element, props) {
         type: 'shadow',
       },
     },
+    toolbox: {
+      feature: {
+        dataView: {
+          show: props.data.data_view,
+        },
+        saveAsImage: {
+          show: props.data.save_as_image,
+        },
+      },
+    },
     legend: {
       data: splitData.columns.map(data => data[1]),
       icon: 'roundRect',

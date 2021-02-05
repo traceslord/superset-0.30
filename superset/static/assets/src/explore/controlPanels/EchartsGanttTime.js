@@ -14,6 +14,12 @@ export default {
       ],
     },
     {
+      label: '工具箱',
+      controlSetRows: [
+        ['echarts_save_as_image'],
+      ],
+    },
+    {
       label: t('Theme'),
       controlSetRows: [
         ['echarts_theme'],

@@ -52,6 +52,16 @@ function echartsBarPlusminusVis(element, props) {
         type: 'shadow',
       },
     },
+    toolbox: {
+      feature: {
+        dataView: {
+          show: props.data.data_view,
+        },
+        saveAsImage: {
+          show: props.data.save_as_image,
+        },
+      },
+    },
     grid: {
       left: '3%',
       right: '8%',

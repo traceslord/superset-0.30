@@ -87,7 +87,12 @@ const CumulativeFlowFun = {
             },
             yAxisIndex: false,
           },
-          saveAsImage: {},
+          dataView: {
+            show: propsData.data_view,
+          },
+          saveAsImage: {
+            show: propsData.save_as_image,
+          },
         },
       },
       legend: {

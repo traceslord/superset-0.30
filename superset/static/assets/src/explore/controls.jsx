@@ -438,6 +438,20 @@ export const controls = {
     default: '',
   },
 
+  echarts_data_view: {
+    type: 'CheckboxControl',
+    label: '数据视图',
+    description: '数据视图工具，可以展现当前图表所用的数据，编辑后可以动态更新',
+    default: true,
+  },
+
+  echarts_save_as_image: {
+    type: 'CheckboxControl',
+    label: '导出图片',
+    description: '保存为图片',
+    default: true,
+  },
+
   datasource: {
     type: 'DatasourceControl',
     label: t('Datasource'),

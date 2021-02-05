@@ -59,6 +59,13 @@ function echartsHeatmapCartesianVis(element, props) {
     tooltip: {
       position: 'top',
     },
+    toolbox: {
+      feature: {
+        saveAsImage: {
+          show: props.data.save_as_image,
+        },
+      },
+    },
     animation: false,
     grid: {
       top: 60,

@@ -66,6 +66,16 @@ function echartsBarDatasetVis(element, props) {
         type: 'shadow',
       },
     },
+    toolbox: {
+      feature: {
+        dataView: {
+          show: props.data.data_view,
+        },
+        saveAsImage: {
+          show: props.data.save_as_image,
+        },
+      },
+    },
     legend: { top: 10 },
     grid: {
       left: '3%',

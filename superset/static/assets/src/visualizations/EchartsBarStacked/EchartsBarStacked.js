@@ -71,6 +71,16 @@ function echartsBarStackedVis(element, props) {
         type: 'shadow',
       },
     },
+    toolbox: {
+      feature: {
+        dataView: {
+          show: props.data.data_view,
+        },
+        saveAsImage: {
+          show: props.data.save_as_image,
+        },
+      },
+    },
     legend: {
       data: props.data.echarts_indicators,
       icon: 'roundRect',

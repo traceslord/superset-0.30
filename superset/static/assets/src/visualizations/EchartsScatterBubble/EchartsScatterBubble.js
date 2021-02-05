@@ -142,6 +142,16 @@ function echartsCumulativeFlowVis(element, props) {
         return `${params.value[2]}：<br />故事点：${params.value[1]}<br />工时：${params.value[0]} 小时`;
       },
     },
+    toolbox: {
+      feature: {
+        dataView: {
+          show: props.data.data_view,
+        },
+        saveAsImage: {
+          show: props.data.save_as_image,
+        },
+      },
+    },
     grid: {
       left: '3%',
       right: '8%',

@@ -737,24 +737,23 @@ class EchartsHeatmapCartesianViz(BaseViz):
         d = super(EchartsHeatmapCartesianViz, self).query_obj()
         fd = self.form_data
 
-        d['columns'] = [fd.get('x_axis')] + [fd.get('y_axis_left')] + fd.get('echarts_indicators')
+        d['columns'] = [fd.get('x_axis')] + [fd.get('y_axis_left')] + [fd.get('echarts_indicator')]
         return d
 
     def get_data(self, df):
         fd = self.form_data
         x_axis = list(set(df.to_dict()[fd['x_axis']].values()))
-        y_axis_left = [t.to_pydatetime() for t in list(set(df.to_dict()[fd['y_axis_left']].values()))]
+        y_axis_left = list(set(df.to_dict()[fd['y_axis_left']].values()))
         x_axis.sort()
         y_axis_left.sort()
+        if fd.get('echarts_checkbox'):
+            x_axis = ['12a', '1a', '2a', '3a', '4a', '5a', '6a', '7a', '8a', '9a', '10a', '11a', '12p', '1p', '2p', '3p', '4p', '5p', '6p', '7p', '8p', '9p', '10p', '11p']
         data = []
         for x in df.to_dict(orient='records'):
-            sum = 0
-            for i in fd['echarts_indicators']:
-                sum += x[i]
             data.append([
                 x_axis.index(x[fd['x_axis']]),
                 y_axis_left.index(x[fd['y_axis_left']]),
-                sum
+                x[fd['echarts_indicator']]
             ])
         return {
             'rotate': fd['echarts_rotate'],

@@ -806,11 +806,14 @@ class EchartsLineMixedViz(BaseViz):
             raise Exception('请选配左侧 Y 轴～')
 
         d['columns'] = [fd.get('x_axis')] + [fd.get('y_axis_left')] + fd.get('y_axis_right')
+        if fd.get('echarts_select'):
+            d['columns'].append(fd.get('echarts_select'))
         return d
 
     def get_data(self, df):
         fd = self.form_data
         return {
+            'echarts_select': fd['echarts_select'],
             'type': fd['echarts_mixed_type'],
             'rotate': fd['echarts_rotate'],
             'formate_day': fd['echarts_checkbox'],

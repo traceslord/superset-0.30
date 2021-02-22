@@ -15,6 +15,7 @@ export default {
     {
       label: '样式配置',
       controlSetRows: [
+        ['echarts_select'],
         ['echarts_mixed_type'],
         ['x_axis_label', 'echarts_rotate'],
         ['y_axis_left_label', 'y_axis_right_label'],
@@ -36,6 +37,11 @@ export default {
     },
   ],
   controlOverrides: {
+    echarts_select: {
+      mapStateToProps: state => ({
+        choices: (state.datasource) ? state.datasource.filterable_cols : [],
+      }),
+    },
     x_axis_label: {
       renderTrigger: false,
     },

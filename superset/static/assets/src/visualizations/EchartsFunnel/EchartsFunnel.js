@@ -38,7 +38,7 @@ import 'echarts/theme/vintage';
 
 function echartsFunnelVis(element, props) {
   const div = d3.select(element);
-  const randomNumber = Math.round(Math.random() * 1000);
+  const randomNumber = Math.round(Math.random() * 10000000000000000);
   const html = `<div
     id="echarts-funnel-${randomNumber}"
     style="width: ${props.width}px; height: ${props.height}px"

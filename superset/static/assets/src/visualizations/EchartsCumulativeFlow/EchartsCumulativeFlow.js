@@ -101,7 +101,7 @@ const CumulativeFlowFun = {
         itemGap: 25,
         itemWidth: 15,
         itemHeight: 15,
-        right: 40,
+        right: '4%',
         top: 40,
       },
       grid: {
@@ -147,8 +147,8 @@ function echartsCumulativeFlowVis(element, props) {
   const propsData = props.data;
   const teams = [];
   propsData.data.forEach((data) => {
-    if (teams.indexOf(data[props.data.echarts_select]) === -1) {
-      teams.push(data[props.data.echarts_select]);
+    if (teams.indexOf(data[propsData.echarts_select]) === -1) {
+      teams.push(data[propsData.echarts_select]);
     }
   });
   teams.forEach((data, index, self) => {
@@ -157,10 +157,10 @@ function echartsCumulativeFlowVis(element, props) {
       self.push(data);
     }
   });
-  const teamData = teams.map(t => propsData.data.filter(d => d[props.data.echarts_select] === t));
+  const teamData = teams.map(t => propsData.data.filter(d => d[propsData.echarts_select] === t));
 
   const div = d3.select(element);
-  const randomNumber = Math.round(Math.random() * 1000);
+  const randomNumber = Math.round(Math.random() * 10000000000000000);
   const selectItem = teams.map((data, index) => `<div class="echarts-select-dropdown-item ${index === 0 ? 'selected' : ''}" data-index="${index}">${data}</div>`).join('');
   const selectHtml = propsData.echarts_select ? `
     <div class="echarts-select">

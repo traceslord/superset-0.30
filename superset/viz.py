@@ -675,6 +675,48 @@ class EchartsCumulativeFlowViz(BaseViz):
         }
 
 
+class EchartsCustomGraphicViz(BaseViz):
+
+    viz_type = 'echarts_custom_graphic'
+    verbose_name = _('Echarts Custom Graphic')
+    sort_series = False
+    is_timeseries = False
+
+    def query_obj(self):
+        d = super(EchartsCustomGraphicViz, self).query_obj()
+        fd = self.form_data
+
+        if not fd.get('x_axis'):
+            raise Exception('请选择 X 轴～')
+        if not fd.get('echarts_indicators'):
+            raise Exception('请选择 Y 轴～')
+
+        d['columns'] = [fd.get('x_axis')] + fd.get('echarts_indicators')
+        if fd.get('echarts_select'):
+            d['columns'].append(fd.get('echarts_select'))
+        return d
+
+    def get_data(self, df):
+        fd = self.form_data
+        return {
+            'x_axis': fd['x_axis'],
+            'indicators': fd['echarts_indicators'],
+            'echarts_select': fd['echarts_select'],
+            'type': fd['echarts_graphic_type'],
+            'x_axis_label': fd['x_axis_label'],
+            'y_axis_label': fd['y_axis_label'],
+            'rotate': fd['echarts_rotate'],
+            'formate_day': fd['echarts_checkbox'],
+            'stack': fd['echarts_stack'],
+            'area': fd['echarts_area'],
+            'smooth': fd['echarts_smooth'],
+            'bar_width': fd['echarts_bar_width'],
+            'data_view': fd['echarts_data_view'],
+            'save_as_image': fd['echarts_save_as_image'],
+            'data': df.to_dict(orient='records'),
+        }
+
+
 class EchartsFunnelViz(BaseViz):
 
     viz_type = 'echarts_funnel'

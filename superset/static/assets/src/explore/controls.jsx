@@ -330,7 +330,7 @@ export const controls = {
     type: 'TextControl',
     label: '柱条宽度',
     default: null,
-    description: '柱条的宽度',
+    description: '柱条的宽度，不设时自适应，可设为绝对值例如 40 或者百分数例如 60%',
   },
 
   echarts_plus_label: {
@@ -384,9 +384,36 @@ export const controls = {
     description: '展示的图表类型',
   },
 
+  echarts_graphic_type: {
+    type: 'SelectControl',
+    freeForm: true,
+    label: '图表类型',
+    default: '折线图',
+    choices: formatSelectOptions(['折线图', '柱状图']),
+    description: '展示的图表类型',
+  },
+
   echarts_checkbox: {
     type: 'CheckboxControl',
     label: '选择框',
+    default: false,
+  },
+
+  echarts_stack: {
+    type: 'CheckboxControl',
+    label: '堆叠',
+    default: false,
+  },
+
+  echarts_area: {
+    type: 'CheckboxControl',
+    label: '区域填充',
+    default: false,
+  },
+
+  echarts_smooth: {
+    type: 'CheckboxControl',
+    label: '平滑曲线',
     default: false,
   },
 

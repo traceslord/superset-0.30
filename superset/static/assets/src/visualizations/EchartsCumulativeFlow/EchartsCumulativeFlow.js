@@ -108,7 +108,7 @@ const CumulativeFlowFun = {
         left: '3%',
         right: '4%',
         top: 70,
-        bottom: 50,
+        bottom: 70,
         containLabel: true,
       },
       xAxis: [

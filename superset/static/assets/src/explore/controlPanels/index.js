@@ -25,6 +25,7 @@ import EchartsBarStacked from './EchartsBarStacked';
 import EchartsBarStacked2 from './EchartsBarStacked2';
 import EchartsCumulativeFlow from './EchartsCumulativeFlow';
 import EchartsCustomGraphic from './EchartsCustomGraphic';
+import EchartsCustomLine from './EchartsCustomLine';
 import EchartsFunnel from './EchartsFunnel';
 import EchartsGanttTime from './EchartsGanttTime';
 import EchartsHeatmapCartesian from './EchartsHeatmapCartesian';
@@ -87,6 +88,7 @@ export const controlPanelConfigs = {
   echarts_bar_stacked_2: EchartsBarStacked2,
   echarts_cumulative_flow: EchartsCumulativeFlow,
   echarts_custom_graphic: EchartsCustomGraphic,
+  echarts_custom_line: EchartsCustomLine,
   echarts_funnel: EchartsFunnel,
   echarts_gantt_time: EchartsGanttTime,
   echarts_heatmap_cartesian: EchartsHeatmapCartesian,

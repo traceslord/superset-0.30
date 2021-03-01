@@ -717,6 +717,39 @@ class EchartsCustomGraphicViz(BaseViz):
         }
 
 
+class EchartsCustomLineViz(BaseViz):
+
+    viz_type = 'echarts_custom_line'
+    verbose_name = _('Echarts Custom Line')
+    sort_series = False
+    is_timeseries = False
+
+    def query_obj(self):
+        d = super(EchartsCustomLineViz, self).query_obj()
+        fd = self.form_data
+
+        if not fd.get('x_axis'):
+            raise Exception('请选择 X 轴～')
+        if not fd.get('echarts_indicators'):
+            raise Exception('请选择 Y 轴～')
+
+        d['columns'] = [fd.get('x_axis')] + fd.get('echarts_indicators')
+        if fd.get('echarts_select'):
+            d['columns'].append(fd.get('echarts_select'))
+        return d
+
+    def get_data(self, df):
+        fd = self.form_data
+        return {
+            'x_axis': fd['x_axis'],
+            'indicators': fd['echarts_indicators'],
+            'echarts_select': fd['echarts_select'],
+            'data_view': fd['echarts_data_view'],
+            'save_as_image': fd['echarts_save_as_image'],
+            'data': df.to_dict(orient='records'),
+        }
+
+
 class EchartsFunnelViz(BaseViz):
 
     viz_type = 'echarts_funnel'
@@ -782,30 +815,29 @@ class EchartsHeatmapCartesianViz(BaseViz):
         d = super(EchartsHeatmapCartesianViz, self).query_obj()
         fd = self.form_data
 
+        if not fd.get('x_axis'):
+            raise Exception('请选择 X 轴～')
+        if not fd.get('y_axis_left'):
+            raise Exception('请选择 Y 轴～')
+        if not fd.get('echarts_indicator'):
+            raise Exception('请选配要显示的指标～')
+
         d['columns'] = [fd.get('x_axis')] + [fd.get('y_axis_left')] + [fd.get('echarts_indicator')]
+        if fd.get('echarts_select'):
+            d['columns'].append(fd.get('echarts_select'))
         return d
 
     def get_data(self, df):
         fd = self.form_data
-        x_axis = list(set(df.to_dict()[fd['x_axis']].values()))
-        y_axis_left = list(set(df.to_dict()[fd['y_axis_left']].values()))
-        x_axis.sort()
-        y_axis_left.sort()
-        if fd.get('echarts_checkbox'):
-            x_axis = ['12a', '1a', '2a', '3a', '4a', '5a', '6a', '7a', '8a', '9a', '10a', '11a', '12p', '1p', '2p', '3p', '4p', '5p', '6p', '7p', '8p', '9p', '10p', '11p']
-        data = []
-        for x in df.to_dict(orient='records'):
-            data.append([
-                x_axis.index(x[fd['x_axis']]),
-                y_axis_left.index(x[fd['y_axis_left']]),
-                x[fd['echarts_indicator']]
-            ])
         return {
+            'x_axis': fd['x_axis'],
+            'y_axis_left': fd['y_axis_left'],
+            'echarts_indicator': fd['echarts_indicator'],
+            'echarts_select': fd['echarts_select'],
             'rotate': fd['echarts_rotate'],
-            'x_axis': x_axis,
-            'y_axis_left': y_axis_left,
+            'format_time': fd['echarts_checkbox'],
             'save_as_image': fd['echarts_save_as_image'],
-            'data': data,
+            'data': df.to_dict(orient='records'),
         }
 
 

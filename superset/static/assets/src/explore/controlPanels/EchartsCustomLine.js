@@ -7,22 +7,15 @@ export default {
       expanded: true,
       controlSetRows: [
         ['x_axis'],
-        ['y_axis_left'],
-        ['echarts_indicator'],
+        ['echarts_indicators'],
         ['echarts_select'],
         ['adhoc_filters'],
       ],
     },
     {
-      label: '样式配置',
-      controlSetRows: [
-        ['echarts_rotate'],
-        ['echarts_checkbox'],
-      ],
-    },
-    {
       label: '工具箱',
       controlSetRows: [
+        ['echarts_data_view'],
         ['echarts_save_as_image'],
       ],
     },
@@ -34,14 +27,14 @@ export default {
     },
   ],
   controlOverrides: {
-    y_axis_left: {
+    echarts_indicators: {
       label: 'Y 轴',
       description: 'Y 轴要显示的列',
     },
-    echarts_checkbox: {
-      label: '格式化 X 轴分时排序',
-      description: '仅适用于分时开发热度图，格式化后的排序为：12a、1a、2a、3a、4a、5a、6a、7a、8a、9a、10a、11a、12p、1p、2p、3p、4p、5p、6p、7p、8p、9p、10p、11p',
-      default: false,
+    echarts_select: {
+      mapStateToProps: state => ({
+        choices: (state.datasource) ? state.datasource.filterable_cols : [],
+      }),
     },
   },
 };

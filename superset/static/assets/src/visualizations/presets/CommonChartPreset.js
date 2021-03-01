@@ -12,6 +12,7 @@ import EchartsBarStackedChartPlugin from '../EchartsBarStacked/EchartsBarStacked
 import EchartsBarStacked2ChartPlugin from '../EchartsBarStacked2/EchartsBarStacked2ChartPlugin';
 import EchartsCumulativeFlowChartPlugin from '../EchartsCumulativeFlow/EchartsCumulativeFlowChartPlugin';
 import EchartsCustomGraphicChartPlugin from '../EchartsCustomGraphic/EchartsCustomGraphicChartPlugin';
+import EchartsCustomLineChartPlugin from '../EchartsCustomLine/EchartsCustomLineChartPlugin';
 import EchartsFunnelChartPlugin from '../EchartsFunnel/EchartsFunnelChartPlugin';
 import EchartsGanttTimeChartPlugin from '../EchartsGanttTime/EchartsGanttTimeChartPlugin';
 import EchartsHeatmapCartesianChartPlugin from '../EchartsHeatmapCartesian/EchartsHeatmapCartesianChartPlugin';
@@ -45,6 +46,7 @@ export default class CommonChartPreset extends Preset {
         new EchartsBarStacked2ChartPlugin().configure({ key: 'echarts_bar_stacked_2' }),
         new EchartsCumulativeFlowChartPlugin().configure({ key: 'echarts_cumulative_flow' }),
         new EchartsCustomGraphicChartPlugin().configure({ key: 'echarts_custom_graphic' }),
+        new EchartsCustomLineChartPlugin().configure({ key: 'echarts_custom_line' }),
         new EchartsFunnelChartPlugin().configure({ key: 'echarts_funnel' }),
         new EchartsGanttTimeChartPlugin().configure({ key: 'echarts_gantt_time' }),
         new EchartsHeatmapCartesianChartPlugin().configure({ key: 'echarts_heatmap_cartesian' }),

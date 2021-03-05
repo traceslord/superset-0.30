@@ -46,7 +46,7 @@ function echartsCumulativeFlowVis(element, props) {
     item[x],
     item[y],
     item[name],
-    radius ? item[radius] : item[y] / item[x],
+    item[y] / item[x] * Number(radius),
   ]);
   const series = [];
   series[0] = {

@@ -348,13 +348,11 @@ export const controls = {
   },
 
   echarts_radius: {
-    type: 'SelectControl',
-    label: '半径',
-    default: null,
-    description: '气泡半径尺寸',
-    mapStateToProps: state => ({
-      choices: (state.datasource) ? state.datasource.all_cols : [],
-    }),
+    type: 'TextControl',
+    label: '半径系数（半径：Y 轴 / X 轴 * 系数）',
+    freeForm: true,
+    default: '1',
+    description: '气泡半径尺寸的系数',
   },
 
   echarts_label_position: {

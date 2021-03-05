@@ -852,18 +852,11 @@ class EchartsHydrographViz(BaseViz):
         d = super(EchartsHydrographViz, self).query_obj()
         fd = self.form_data
 
-        if not fd.get('echarts_indicator'):
+        if not fd.get('metric'):
             raise Exception('请选配要显示的指标～')
 
-        d['columns'] = [fd.get('echarts_indicator')]
+        d['metrics'] = [fd.get('metric')]
         return d
-
-    def get_data(self, df):
-        fd = self.form_data
-        return {
-            'echarts_indicator': fd['echarts_indicator'],
-            'data': df.to_dict(orient='records'),
-        }
 
 
 class EchartsLineMixedViz(BaseViz):

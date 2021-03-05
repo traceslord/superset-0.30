@@ -4,7 +4,7 @@ export default {
       label: '配置选项',
       expanded: true,
       controlSetRows: [
-        ['echarts_indicator'],
+        ['metric'],
         ['adhoc_filters'],
       ],
     },

@@ -477,6 +477,415 @@ export const controls = {
     default: true,
   },
 
+  echarts_legend_type: {
+    type: 'SelectControl',
+    freeForm: true,
+    label: '图例类型',
+    default: '普通图例',
+    choices: formatSelectOptions(['普通图例', '可滚动翻页的图例']),
+    description: '图例的类型',
+  },
+
+  echarts_legend_icon: {
+    type: 'SelectControl',
+    freeForm: true,
+    label: 'Icon',
+    default: 'roundRect',
+    choices: formatSelectOptions(['circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow', 'none']),
+    description: '图例项的 icon',
+  },
+
+  echarts_legend_item_gap: {
+    type: 'TextControl',
+    label: '图形间隔',
+    freeForm: true,
+    default: '10',
+    description: '图例每项之间的间隔',
+  },
+
+  echarts_legend_item_width: {
+    type: 'TextControl',
+    label: '图形宽度',
+    freeForm: true,
+    default: '25',
+    description: '图例标记的图形宽度',
+  },
+
+  echarts_legend_item_height: {
+    type: 'TextControl',
+    label: '图形高度',
+    freeForm: true,
+    default: '14',
+    description: '图例标记的图形高度',
+  },
+
+  echarts_legend_top: {
+    type: 'TextControl',
+    label: '上',
+    freeForm: true,
+    default: 'auto',
+    description: '图例组件离容器上侧的距离',
+  },
+
+  echarts_legend_bottom: {
+    type: 'TextControl',
+    label: '下',
+    freeForm: true,
+    default: 'auto',
+    description: '图例组件离容器下侧的距离',
+  },
+
+  echarts_legend_left: {
+    type: 'TextControl',
+    label: '左',
+    freeForm: true,
+    default: 'auto',
+    description: '图例组件离容器左侧的距离',
+  },
+
+  echarts_legend_right: {
+    type: 'TextControl',
+    label: '右',
+    freeForm: true,
+    default: 'auto',
+    description: '图例组件离容器右侧的距离',
+  },
+
+  echarts_grid_width: {
+    type: 'TextControl',
+    label: '网格宽度',
+    freeForm: true,
+    default: 'auto',
+    description: '网格组件的宽度',
+  },
+
+  echarts_grid_height: {
+    type: 'TextControl',
+    label: '网格高度',
+    freeForm: true,
+    default: 'auto',
+    description: '网格组件的高度',
+  },
+
+  echarts_grid_background_color: {
+    type: 'TextControl',
+    label: '网格背景色',
+    freeForm: true,
+    default: 'transparent',
+    description: '颜色可以使用 RGB、RGBA 表示，也可以使用十六进制格式',
+  },
+
+  echarts_grid_border_color: {
+    type: 'TextControl',
+    label: '网格的边框颜色',
+    freeForm: true,
+    default: '#ccc',
+    description: '颜色可以使用 RGB、RGBA 表示，也可以使用十六进制格式',
+  },
+
+  echarts_grid_border_width: {
+    type: 'TextControl',
+    label: '网格的边框线宽',
+    freeForm: true,
+    default: '1',
+  },
+
+  echarts_grid_top: {
+    type: 'TextControl',
+    label: '上',
+    freeForm: true,
+    default: '60',
+    description: '网格组件离容器上侧的距离',
+  },
+
+  echarts_grid_bottom: {
+    type: 'TextControl',
+    label: '下',
+    freeForm: true,
+    default: '60',
+    description: '网格组件离容器下侧的距离',
+  },
+
+  echarts_grid_left: {
+    type: 'TextControl',
+    label: '左',
+    freeForm: true,
+    default: '10%',
+    description: '网格组件离容器左侧的距离',
+  },
+
+  echarts_grid_right: {
+    type: 'TextControl',
+    label: '右',
+    freeForm: true,
+    default: '10%',
+    description: '网格组件离容器右侧的距离',
+  },
+
+  echarts_grid_contain_label: {
+    type: 'CheckboxControl',
+    label: '网格区域是否包含坐标轴的刻度标签',
+    default: true,
+  },
+
+  echarts_x_axis_name: {
+    type: 'TextControl',
+    label: '坐标轴名称',
+    freeForm: true,
+    default: '',
+  },
+
+  echarts_x_axis_name_rotate: {
+    type: 'TextControl',
+    label: '坐标轴名字旋转的角度',
+    default: 0,
+    isInt: true,
+    description: '坐标轴名字旋转，角度值',
+  },
+
+  echarts_x_axis_name_location: {
+    type: 'SelectControl',
+    freeForm: true,
+    label: '名称显示位置',
+    default: 'end',
+    choices: formatSelectOptions(['start', 'center', 'end']),
+    description: '坐标轴名称显示的位置',
+  },
+
+  echarts_x_axis_name_gap: {
+    type: 'TextControl',
+    label: '名称与轴线的间距',
+    default: 15,
+    isInt: true,
+    description: '坐标轴名称与轴线之间的距离',
+  },
+
+  echarts_x_axis_inverse: {
+    type: 'CheckboxControl',
+    label: '是否是反向坐标轴',
+    default: false,
+  },
+
+  echarts_x_axis_label_rotate: {
+    type: 'TextControl',
+    label: '刻度标签旋转的角度',
+    default: 0,
+    isInt: true,
+    description: '旋转的角度从 -90 度到 90 度',
+  },
+
+  echarts_x_axis_data_format: {
+    type: 'CheckboxControl',
+    label: '是否格式化刻度标签的时间格式',
+    default: false,
+  },
+
+  echarts_y_axis_name: {
+    type: 'TextControl',
+    label: '坐标轴名称',
+    freeForm: true,
+    default: '',
+  },
+
+  echarts_y_axis_name_rotate: {
+    type: 'TextControl',
+    label: '坐标轴名字旋转的角度',
+    default: 0,
+    isInt: true,
+    description: '坐标轴名字旋转，角度值',
+  },
+
+  echarts_y_axis_name_location: {
+    type: 'SelectControl',
+    freeForm: true,
+    label: '名称显示位置',
+    default: 'end',
+    choices: formatSelectOptions(['start', 'center', 'end']),
+    description: '坐标轴名称显示的位置',
+  },
+
+  echarts_y_axis_name_gap: {
+    type: 'TextControl',
+    label: '名称与轴线的间距',
+    default: 15,
+    isInt: true,
+    description: '坐标轴名称与轴线之间的距离',
+  },
+
+  echarts_y_axis_inverse: {
+    type: 'CheckboxControl',
+    label: '是否是反向坐标轴',
+    default: false,
+  },
+
+  echarts_y_axis_label_rotate: {
+    type: 'TextControl',
+    label: '刻度标签旋转的角度',
+    default: 0,
+    isInt: true,
+    description: '旋转的角度从 -90 度到 90 度',
+  },
+
+  echarts_y_axis_data_format: {
+    type: 'CheckboxControl',
+    label: '是否格式化刻度标签的时间格式',
+    default: false,
+  },
+
+  echarts_tooltip_show: {
+    type: 'CheckboxControl',
+    label: '是否显示提示框组件',
+    default: true,
+  },
+
+  echarts_tooltip_formatter: {
+    type: 'TextAreaControl',
+    language: 'javascript',
+    label: '提示框浮层内容格式器',
+    description: '支持字符串模板和回调函数两种形式',
+    default: '',
+  },
+
+  echarts_tooltip_background_color: {
+    type: 'TextControl',
+    label: '背景色',
+    description: '提示框浮层的背景颜色',
+    default: 'rgba(50, 50, 50, 0.7)',
+  },
+
+  echarts_tooltip_border_color: {
+    type: 'TextControl',
+    label: '边框色',
+    description: '提示框浮层的边框颜色',
+    default: '#333',
+  },
+
+  echarts_tooltip_border_width: {
+    type: 'TextControl',
+    label: '边框宽',
+    description: '提示框浮层的边框宽',
+    default: 0,
+    isInt: true,
+  },
+
+  echarts_tooltip_padding_top: {
+    type: 'TextControl',
+    label: '上内边距',
+    description: '提示框浮层的上内边距',
+    default: 5,
+    isInt: true,
+  },
+
+  echarts_tooltip_padding_bottom: {
+    type: 'TextControl',
+    label: '下内边距',
+    description: '提示框浮层的下内边距',
+    default: 5,
+    isInt: true,
+  },
+
+  echarts_tooltip_padding_left: {
+    type: 'TextControl',
+    label: '左内边距',
+    description: '提示框浮层的左内边距',
+    default: 5,
+    isInt: true,
+  },
+
+  echarts_tooltip_padding_right: {
+    type: 'TextControl',
+    label: '右内边距',
+    description: '提示框浮层的右内边距',
+    default: 5,
+    isInt: true,
+  },
+
+  echarts_series_symbol: {
+    type: 'SelectControl',
+    label: '标记的图形',
+    default: 'emptyCircle',
+    choices: formatSelectOptions([
+      'emptyCircle',
+      'circle',
+      'rect',
+      'roundRect',
+      'triangle',
+      'diamond',
+      'pin',
+      'arrow',
+      'none',
+    ]),
+  },
+
+  echarts_series_symbol_size_width: {
+    type: 'TextControl',
+    label: '标记的大小(宽)',
+    default: 4,
+    isInt: true,
+  },
+
+  echarts_series_symbol_size_height: {
+    type: 'TextControl',
+    label: '标记的大小(高)',
+    default: 4,
+    isInt: true,
+  },
+
+  echarts_series_symbol_rotate: {
+    type: 'TextControl',
+    label: '标记的旋转角度',
+    default: 0,
+    isInt: true,
+  },
+
+  echarts_series_stack: {
+    type: 'CheckboxControl',
+    label: '数据堆叠',
+    default: false,
+  },
+
+  echarts_series_step: {
+    type: 'SelectControl',
+    label: '阶梯线图',
+    default: '',
+    choices: formatSelectOptions(['start', 'middle', 'end']),
+    description: '选择为空则不显示成阶梯线图，选项配置分别为在当前点，当前点与下个点的中间点，下个点拐弯',
+  },
+
+  echarts_series_line_style_width: {
+    type: 'TextControl',
+    label: '线宽',
+    default: 2,
+    isInt: true,
+  },
+
+  echarts_series_line_style_type: {
+    type: 'SelectControl',
+    label: '线的类型',
+    default: 'solid',
+    choices: formatSelectOptions(['solid', 'dashed', 'dotted']),
+  },
+
+  echarts_series_area_style_opacity: {
+    type: 'CheckboxControl',
+    label: '区域填充',
+    default: false,
+    description: '是否显示成区域面积图',
+  },
+
+  echarts_series_smooth: {
+    type: 'CheckboxControl',
+    label: '平滑曲线',
+    default: false,
+    description: '是否平滑曲线显示',
+  },
+
+  echarts_background_color: {
+    type: 'TextControl',
+    label: '背景色',
+    default: 'transparent',
+  },
+
   datasource: {
     type: 'DatasourceControl',
     label: t('Datasource'),

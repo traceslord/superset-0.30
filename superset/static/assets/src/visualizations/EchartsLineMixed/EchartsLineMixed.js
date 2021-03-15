@@ -5,7 +5,7 @@ const LineMixedFun = {
   formatName(name) {
     switch (name) {
       case 'remain_story_point':
-        return '主要故事点';
+        return '剩余故事点';
       case 'done_story_point':
         return '完成故事点';
       case 'added_story_point':

@@ -498,24 +498,24 @@ export const controls = {
   echarts_legend_item_gap: {
     type: 'TextControl',
     label: '图形间隔',
-    freeForm: true,
-    default: '10',
+    default: 10,
+    isInt: true,
     description: '图例每项之间的间隔',
   },
 
   echarts_legend_item_width: {
     type: 'TextControl',
     label: '图形宽度',
-    freeForm: true,
-    default: '25',
+    default: 25,
+    isInt: true,
     description: '图例标记的图形宽度',
   },
 
   echarts_legend_item_height: {
     type: 'TextControl',
     label: '图形高度',
-    freeForm: true,
-    default: '14',
+    default: 14,
+    isInt: true,
     description: '图例标记的图形高度',
   },
 
@@ -568,24 +568,20 @@ export const controls = {
   },
 
   echarts_grid_background_color: {
-    type: 'TextControl',
+    type: 'ColorPickerControl',
     label: '网格背景色',
-    freeForm: true,
-    default: 'transparent',
-    description: '颜色可以使用 RGB、RGBA 表示，也可以使用十六进制格式',
+    default: { r: 0, g: 0, b: 0, a: 0 },
   },
 
   echarts_grid_border_color: {
-    type: 'TextControl',
-    label: '网格的边框颜色',
-    freeForm: true,
-    default: '#ccc',
-    description: '颜色可以使用 RGB、RGBA 表示，也可以使用十六进制格式',
+    type: 'ColorPickerControl',
+    label: '网格边框颜色',
+    default: { r: 204, g: 204, b: 204, a: 1 },
   },
 
   echarts_grid_border_width: {
     type: 'TextControl',
-    label: '网格的边框线宽',
+    label: '网格边框线宽',
     freeForm: true,
     default: '1',
   },
@@ -747,17 +743,17 @@ export const controls = {
   },
 
   echarts_tooltip_background_color: {
-    type: 'TextControl',
+    type: 'ColorPickerControl',
     label: '背景色',
+    default: { r: 50, g: 50, b: 50, a: 0.7 },
     description: '提示框浮层的背景颜色',
-    default: 'rgba(50, 50, 50, 0.7)',
   },
 
   echarts_tooltip_border_color: {
-    type: 'TextControl',
+    type: 'ColorPickerControl',
     label: '边框色',
+    default: { r: 51, g: 51, b: 51, a: 1 },
     description: '提示框浮层的边框颜色',
-    default: '#333',
   },
 
   echarts_tooltip_border_width: {
@@ -881,9 +877,9 @@ export const controls = {
   },
 
   echarts_background_color: {
-    type: 'TextControl',
+    type: 'ColorPickerControl',
     label: '背景色',
-    default: 'transparent',
+    default: { r: 0, g: 0, b: 0, a: 0 },
   },
 
   datasource: {

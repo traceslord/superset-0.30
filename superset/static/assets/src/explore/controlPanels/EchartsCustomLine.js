@@ -35,8 +35,9 @@ export default {
       label: '网格组件',
       controlSetRows: [
         ['echarts_grid_width', 'echarts_grid_height'],
-        ['echarts_grid_background_color', 'echarts_grid_border_color', 'echarts_grid_border_width'],
         ['echarts_grid_top', 'echarts_grid_bottom', 'echarts_grid_left', 'echarts_grid_right'],
+        ['echarts_grid_border_width'],
+        ['echarts_grid_border_color', 'echarts_grid_background_color'],
         ['echarts_grid_contain_label'],
       ],
     },
@@ -64,13 +65,14 @@ export default {
       controlSetRows: [
         ['echarts_tooltip_show'],
         ['echarts_tooltip_formatter'],
-        ['echarts_tooltip_background_color', 'echarts_tooltip_border_color', 'echarts_tooltip_border_width'],
         [
           'echarts_tooltip_padding_top',
           'echarts_tooltip_padding_bottom',
           'echarts_tooltip_padding_left',
           'echarts_tooltip_padding_right',
         ],
+        ['echarts_tooltip_border_width'],
+        ['echarts_tooltip_border_color', 'echarts_tooltip_background_color'],
       ],
     },
     {

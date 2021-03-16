@@ -1,5 +1,6 @@
 import echartsVis from '../../utils/echarts';
 import { formatDate } from '../../utils/dates';
+import { formatColor } from '../../utils/colors';
 
 function drawChart(chart, propsData, teamData, teamIndex) {
   const chartData = teamData[teamIndex];
@@ -26,19 +27,20 @@ function drawChart(chart, propsData, teamData, teamIndex) {
       type: propsData.legend_type === '普通图例' ? 'plain' : 'scroll',
       data: propsData.indicators,
       icon: propsData.legend_icon,
-      itemGap: Number(propsData.legend_item_gap),
-      itemWidth: Number(propsData.legend_item_width),
-      itemHeight: Number(propsData.legend_item_height),
+      itemGap: propsData.legend_item_gap,
+      itemWidth: propsData.legend_item_width,
+      itemHeight: propsData.legend_item_height,
       top: propsData.legend_top,
       bottom: propsData.legend_bottom,
       left: propsData.legend_left,
       right: propsData.legend_right,
     },
     grid: {
+      show: true,
       width: propsData.grid_width,
       height: propsData.grid_height,
-      backgroundColor: propsData.grid_background_color,
-      borderColor: propsData.grid_border_color,
+      backgroundColor: formatColor(propsData.grid_background_color),
+      borderColor: formatColor(propsData.grid_border_color),
       borderWidth: propsData.grid_border_width,
       top: propsData.grid_top,
       bottom: propsData.grid_bottom,
@@ -82,8 +84,8 @@ function drawChart(chart, propsData, teamData, teamIndex) {
         type: 'cross',
       },
       formatter: new Function('return ' + propsData.tooltip_formatter)(),
-      backgroundColor: propsData.tooltip_background_color,
-      borderColor: propsData.tooltip_border_color,
+      backgroundColor: formatColor(propsData.tooltip_background_color),
+      borderColor: formatColor(propsData.tooltip_border_color),
       borderWidth: propsData.tooltip_border_width,
       padding: [
         propsData.tooltip_padding_top,
@@ -103,7 +105,7 @@ function drawChart(chart, propsData, teamData, teamIndex) {
       },
     },
     series,
-    backgroundColor: propsData.background_color,
+    backgroundColor: formatColor(propsData.background_color),
   });
 }
 

@@ -37,11 +37,6 @@ export default {
     },
   ],
   controlOverrides: {
-    echarts_select: {
-      mapStateToProps: state => ({
-        choices: (state.datasource) ? state.datasource.filterable_cols : [],
-      }),
-    },
     x_axis_label: {
       renderTrigger: false,
     },

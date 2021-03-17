@@ -9,6 +9,7 @@ export default {
         ['x_axis'],
         ['echarts_indicators'],
         ['echarts_select'],
+        ['echarts_groupby', 'echarts_groupby_aggregate'],
         ['adhoc_filters'],
         ['echarts_background_color'],
       ],
@@ -93,11 +94,6 @@ export default {
     echarts_indicators: {
       label: 'Y 轴',
       description: 'Y 轴要显示的列',
-    },
-    echarts_select: {
-      mapStateToProps: state => ({
-        choices: (state.datasource) ? state.datasource.filterable_cols : [],
-      }),
     },
     echarts_legend_item_gap: {
       default: '25',

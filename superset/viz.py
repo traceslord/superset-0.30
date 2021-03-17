@@ -513,7 +513,7 @@ class EchartsBarDatasetViz(BaseViz):
             raise Exception('请选配要显示的指标～')
 
         d['columns'] = [fd.get('echarts_name')] + fd.get('echarts_indicators')
-        if fd.get('echarts_select'):
+        if fd.get('echarts_select') and fd.get('echarts_select') not in d['columns']:
             d['columns'].append(fd.get('echarts_select'))
         return d
 
@@ -657,7 +657,7 @@ class EchartsCumulativeFlowViz(BaseViz):
             raise Exception('请选配要显示的指标～')
 
         d['columns'] = [fd.get('x_axis')] + fd.get('echarts_indicators')
-        if fd.get('echarts_select'):
+        if fd.get('echarts_select') and fd.get('echarts_select') not in d['columns']:
             d['columns'].append(fd.get('echarts_select'))
         return d
 
@@ -692,7 +692,7 @@ class EchartsCustomGraphicViz(BaseViz):
             raise Exception('请选择 Y 轴～')
 
         d['columns'] = [fd.get('x_axis')] + fd.get('echarts_indicators')
-        if fd.get('echarts_select'):
+        if fd.get('echarts_select') and fd.get('echarts_select') not in d['columns']:
             d['columns'].append(fd.get('echarts_select'))
         return d
 
@@ -732,10 +732,14 @@ class EchartsCustomLineViz(BaseViz):
             raise Exception('请选择 X 轴～')
         if not fd.get('echarts_indicators'):
             raise Exception('请选择 Y 轴～')
+        if fd.get('echarts_groupby') and not fd.get('echarts_groupby_aggregate'):
+            raise Exception('请选择分组的聚合方法～')
 
         d['columns'] = [fd.get('x_axis')] + fd.get('echarts_indicators')
-        if fd.get('echarts_select'):
+        if fd.get('echarts_select') and fd.get('echarts_select') not in d['columns']:
             d['columns'].append(fd.get('echarts_select'))
+        if fd.get('echarts_groupby') and fd.get('echarts_groupby') not in d['columns']:
+            d['columns'].append(fd.get('echarts_groupby'))
         return d
 
     def get_data(self, df):
@@ -744,6 +748,8 @@ class EchartsCustomLineViz(BaseViz):
             'x_axis': fd['x_axis'],
             'indicators': fd['echarts_indicators'],
             'echarts_select': fd['echarts_select'],
+            'echarts_groupby': fd['echarts_groupby'],
+            'groupby_aggregate': fd['echarts_groupby_aggregate'],
             'legend_type': fd['echarts_legend_type'],
             'legend_icon': fd['echarts_legend_icon'],
             'legend_item_gap': fd['echarts_legend_item_gap'],
@@ -875,7 +881,7 @@ class EchartsHeatmapCartesianViz(BaseViz):
             raise Exception('请选配要显示的指标～')
 
         d['columns'] = [fd.get('x_axis')] + [fd.get('y_axis_left')] + [fd.get('echarts_indicator')]
-        if fd.get('echarts_select'):
+        if fd.get('echarts_select') and fd.get('echarts_select') not in d['columns']:
             d['columns'].append(fd.get('echarts_select'))
         return d
 
@@ -928,7 +934,7 @@ class EchartsLineMixedViz(BaseViz):
             raise Exception('请选配左侧 Y 轴～')
 
         d['columns'] = [fd.get('x_axis')] + [fd.get('y_axis_left')] + fd.get('y_axis_right')
-        if fd.get('echarts_select'):
+        if fd.get('echarts_select') and fd.get('echarts_select') not in d['columns']:
             d['columns'].append(fd.get('echarts_select'))
         return d
 

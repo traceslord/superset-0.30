@@ -1,9 +1,19 @@
 import echartsVis from '../../utils/echarts';
 import { formatDate } from '../../utils/dates';
 import { formatColor } from '../../utils/colors';
+import { groupby } from '../../utils/groupby';
 
 function drawChart(chart, propsData, teamData, teamIndex) {
-  const chartData = teamData[teamIndex];
+  let chartData = teamData[teamIndex];
+  if (propsData.echarts_groupby) {
+    chartData = groupby(
+      chartData,
+      propsData.echarts_groupby,
+      propsData.groupby_aggregate,
+      propsData.x_axis,
+      propsData.echarts_select,
+    );
+  }
   const series = propsData.indicators.map(item => ({
       type: 'line',
       name: item,

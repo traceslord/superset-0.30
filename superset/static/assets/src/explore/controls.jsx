@@ -308,16 +308,6 @@ export const controls = {
     }),
   },
 
-  echarts_select: {
-    type: 'SelectControl',
-    label: '选择器',
-    default: null,
-    description: '根据其可筛选对应数据',
-    mapStateToProps: state => ({
-      choices: (state.datasource) ? state.datasource.all_cols : [],
-    }),
-  },
-
   echarts_rotate: {
     type: 'TextControl',
     label: 'X 轴标签旋转角度',
@@ -880,6 +870,32 @@ export const controls = {
     type: 'ColorPickerControl',
     label: '背景色',
     default: { r: 0, g: 0, b: 0, a: 0 },
+  },
+
+  echarts_select: {
+    type: 'SelectControl',
+    label: '选择器',
+    default: null,
+    description: '根据其可筛选对应数据',
+    mapStateToProps: state => ({
+      choices: (state.datasource) ? state.datasource.filterable_cols : [],
+    }),
+  },
+
+  echarts_groupby: {
+    type: 'SelectControl',
+    label: '分组',
+    default: null,
+    mapStateToProps: state => ({
+      choices: (state.datasource) ? state.datasource.all_cols : [],
+    }),
+  },
+
+  echarts_groupby_aggregate: {
+    type: 'SelectControl',
+    label: '聚合',
+    default: 'SUM',
+    choices: formatSelectOptions(['AVG', 'COUNT', 'COUNT_DISTINCT', 'MAX', 'MIN', 'SUM']),
   },
 
   datasource: {

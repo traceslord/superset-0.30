@@ -866,6 +866,49 @@ export const controls = {
     description: '是否平滑曲线显示',
   },
 
+  echarts_series_bar_width: {
+    type: 'TextControl',
+    label: '柱条宽度',
+    default: '',
+    description: '柱条的宽度，不设时自适应。可以是绝对值例如 40 或者百分数例如 60%',
+  },
+
+  echarts_series_bar_max_width: {
+    type: 'TextControl',
+    label: '柱条最大宽度',
+    default: '',
+    description: '柱条的最大宽度，比柱条宽度优先级高。可以是绝对值例如 40 或者百分数例如 60%',
+  },
+
+  echarts_series_bar_min_width: {
+    type: 'TextControl',
+    label: '柱条最小宽度',
+    default: '1',
+    description: '柱条的最小宽度，比柱条宽度优先级高。可以是绝对值例如 40 或者百分数例如 60%',
+  },
+
+  echarts_series_bar_min_height: {
+    type: 'TextControl',
+    label: '柱条最小高度',
+    default: null,
+    isInt: true,
+    description: '柱条的最小高度，可用于防止某数据项的值过小而影响交互',
+  },
+
+  echarts_series_bar_gap: {
+    type: 'TextControl',
+    label: '柱间距离（不同系列）',
+    default: '30%',
+    description: '不同系列的柱间距离，为百分比（如 30%，表示柱子宽度的 30%）',
+  },
+
+  echarts_series_bar_category_gap: {
+    type: 'TextControl',
+    label: '柱间距离（同一系列）',
+    default: '20%',
+    description: '同一系列的柱间距离，默认为类目间距的 20%，可设固定值',
+  },
+
   echarts_background_color: {
     type: 'ColorPickerControl',
     label: '背景色',

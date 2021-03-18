@@ -15,13 +15,12 @@ export default {
       ],
     },
     {
-      label: '折线图配置',
+      label: '柱状图配置',
       controlSetRows: [
-        ['echarts_series_symbol', 'echarts_series_symbol_rotate'],
-        ['echarts_series_symbol_size_width', 'echarts_series_symbol_size_height'],
-        ['echarts_series_step'],
-        ['echarts_series_line_style_width', 'echarts_series_line_style_type'],
-        ['echarts_series_stack', 'echarts_series_area_style_opacity', 'echarts_series_smooth'],
+        ['echarts_series_bar_width', 'echarts_series_bar_min_height'],
+        ['echarts_series_bar_max_width', 'echarts_series_bar_min_width'],
+        ['echarts_series_bar_category_gap', 'echarts_series_bar_gap'],
+        ['echarts_series_stack'],
       ],
     },
     {
@@ -114,7 +113,7 @@ export default {
       default: '70',
     },
     echarts_grid_bottom: {
-      default: '50',
+      default: '80',
     },
     echarts_grid_left: {
       default: '3%',

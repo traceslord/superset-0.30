@@ -11,6 +11,7 @@ import EchartsBarPlusminusChartPlugin from '../EchartsBarPlusminus/EchartsBarPlu
 import EchartsBarStackedChartPlugin from '../EchartsBarStacked/EchartsBarStackedChartPlugin';
 import EchartsBarStacked2ChartPlugin from '../EchartsBarStacked2/EchartsBarStacked2ChartPlugin';
 import EchartsCumulativeFlowChartPlugin from '../EchartsCumulativeFlow/EchartsCumulativeFlowChartPlugin';
+import EchartsCustomBarChartPlugin from '../EchartsCustomBar/EchartsCustomBarChartPlugin';
 import EchartsCustomGraphicChartPlugin from '../EchartsCustomGraphic/EchartsCustomGraphicChartPlugin';
 import EchartsCustomLineChartPlugin from '../EchartsCustomLine/EchartsCustomLineChartPlugin';
 import EchartsFunnelChartPlugin from '../EchartsFunnel/EchartsFunnelChartPlugin';
@@ -45,6 +46,7 @@ export default class CommonChartPreset extends Preset {
         new EchartsBarStackedChartPlugin().configure({ key: 'echarts_bar_stacked' }),
         new EchartsBarStacked2ChartPlugin().configure({ key: 'echarts_bar_stacked_2' }),
         new EchartsCumulativeFlowChartPlugin().configure({ key: 'echarts_cumulative_flow' }),
+        new EchartsCustomBarChartPlugin().configure({ key: 'echarts_custom_bar' }),
         new EchartsCustomGraphicChartPlugin().configure({ key: 'echarts_custom_graphic' }),
         new EchartsCustomLineChartPlugin().configure({ key: 'echarts_custom_line' }),
         new EchartsFunnelChartPlugin().configure({ key: 'echarts_funnel' }),

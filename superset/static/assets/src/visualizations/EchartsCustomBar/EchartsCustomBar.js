@@ -15,21 +15,15 @@ function drawChart(chart, propsData, teamData, teamIndex) {
     );
   }
   const series = propsData.indicators.map(item => ({
-    type: 'line',
+    type: 'bar',
     name: item,
-    symbol: propsData.series_symbol,
-    symbolSize: [propsData.series_symbol_size_width, propsData.series_symbol_size_height],
-    symbolRotate: propsData.series_symbol_rotate,
     stack: propsData.series_stack,
-    step: propsData.series_step,
-    lineStyle: {
-      width: propsData.series_line_style_width,
-      type: propsData.series_line_style_type,
-    },
-    areaStyle: {
-      opacity: propsData.series_area_style_opacity ? 0.6 : 0,
-    },
-    smooth: propsData.series_smooth,
+    barWidth: propsData.series_bar_width,
+    barMaxWidth: propsData.series_bar_max_width,
+    barMinWidth: propsData.series_bar_min_width,
+    barMinHeight: propsData.series_bar_min_height,
+    barGap: propsData.series_bar_gap,
+    barCategoryGap: propsData.series_bar_category_gap,
     data: chartData.map(data => data[item]),
   }));
   chart.setOption({
@@ -65,7 +59,6 @@ function drawChart(chart, propsData, teamData, teamIndex) {
       nameGap: propsData.x_axis_name_gap,
       nameRotate: propsData.x_axis_name_rotate,
       inverse: propsData.y_axis_inverse,
-      boundaryGap: false,
       axisLabel: {
         interval: 0,
         rotate: propsData.x_axis_label_rotate,
@@ -91,7 +84,7 @@ function drawChart(chart, propsData, teamData, teamIndex) {
       show: propsData.tooltip_show,
       trigger: 'axis',
       axisPointer: {
-        type: 'cross',
+        type: 'shadow',
       },
       formatter: new Function('return ' + propsData.tooltip_formatter)(),
       backgroundColor: formatColor(propsData.tooltip_background_color),
@@ -119,8 +112,8 @@ function drawChart(chart, propsData, teamData, teamIndex) {
   });
 }
 
-function echartsCustomLineVis(element, props) {
+function echartsCustomBarVis(element, props) {
   echartsVis(element, props, drawChart);
 }
 
-export default echartsCustomLineVis;
+export default echartsCustomBarVis;

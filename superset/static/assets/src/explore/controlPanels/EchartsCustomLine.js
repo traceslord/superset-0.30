@@ -8,6 +8,7 @@ export default {
       controlSetRows: [
         ['x_axis'],
         ['echarts_indicators'],
+        ['y_axis_right'],
         ['echarts_select'],
         ['echarts_groupby', 'echarts_groupby_aggregate'],
         ['adhoc_filters'],
@@ -15,13 +16,23 @@ export default {
       ],
     },
     {
-      label: '折线图配置',
+      label: '折线图配置（左 Y 轴）',
       controlSetRows: [
         ['echarts_series_symbol', 'echarts_series_symbol_rotate'],
         ['echarts_series_symbol_size_width', 'echarts_series_symbol_size_height'],
         ['echarts_series_step'],
         ['echarts_series_line_style_width', 'echarts_series_line_style_type'],
         ['echarts_series_stack', 'echarts_series_area_style_opacity', 'echarts_series_smooth'],
+      ],
+    },
+    {
+      label: '折线图配置（右 Y 轴）',
+      controlSetRows: [
+        ['echarts_series_2_symbol', 'echarts_series_2_symbol_rotate'],
+        ['echarts_series_2_symbol_size_width', 'echarts_series_2_symbol_size_height'],
+        ['echarts_series_2_step'],
+        ['echarts_series_2_line_style_width', 'echarts_series_2_line_style_type'],
+        ['echarts_series_2_stack', 'echarts_series_2_area_style_opacity', 'echarts_series_2_smooth'],
       ],
     },
     {
@@ -53,12 +64,21 @@ export default {
       ],
     },
     {
-      label: 'Y 轴',
+      label: 'Y 轴（左）',
       controlSetRows: [
         ['echarts_y_axis_name'],
         ['echarts_y_axis_name_location', 'echarts_y_axis_name_gap'],
         ['echarts_y_axis_name_rotate', 'echarts_y_axis_label_rotate'],
         ['echarts_y_axis_inverse'],
+      ],
+    },
+    {
+      label: 'Y 轴（右）',
+      controlSetRows: [
+        ['echarts_y_axis_2_name'],
+        ['echarts_y_axis_2_name_location', 'echarts_y_axis_2_name_gap'],
+        ['echarts_y_axis_2_name_rotate', 'echarts_y_axis_2_label_rotate'],
+        ['echarts_y_axis_2_inverse'],
       ],
     },
     {
@@ -92,8 +112,12 @@ export default {
   ],
   controlOverrides: {
     echarts_indicators: {
-      label: 'Y 轴',
-      description: 'Y 轴要显示的列',
+      label: 'Y 轴（左）',
+      description: '左 Y 轴要显示的列',
+    },
+    y_axis_right: {
+      label: 'Y 轴（右）',
+      description: '右 Y 轴要显示的列',
     },
     echarts_legend_item_gap: {
       default: 25,

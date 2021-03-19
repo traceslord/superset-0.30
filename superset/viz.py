@@ -823,7 +823,7 @@ class EchartsCustomLineViz(BaseViz):
         if fd.get('echarts_groupby') and not fd.get('echarts_groupby_aggregate'):
             raise Exception('请选择分组的聚合方法～')
 
-        d['columns'] = [fd.get('x_axis')] + fd.get('echarts_indicators')
+        d['columns'] = [fd.get('x_axis')] + fd.get('echarts_indicators') + fd.get('y_axis_right')
         if fd.get('echarts_select') and fd.get('echarts_select') not in d['columns']:
             d['columns'].append(fd.get('echarts_select'))
         if fd.get('echarts_groupby') and fd.get('echarts_groupby') not in d['columns']:
@@ -835,6 +835,7 @@ class EchartsCustomLineViz(BaseViz):
         return {
             'x_axis': fd['x_axis'],
             'indicators': fd['echarts_indicators'],
+            'indicators_2': fd['y_axis_right'],
             'echarts_select': fd['echarts_select'],
             'echarts_groupby': fd['echarts_groupby'],
             'groupby_aggregate': fd['echarts_groupby_aggregate'],
@@ -870,6 +871,12 @@ class EchartsCustomLineViz(BaseViz):
             'y_axis_name_gap': fd['echarts_y_axis_name_gap'],
             'y_axis_inverse': fd['echarts_y_axis_inverse'],
             'y_axis_label_rotate': fd['echarts_y_axis_label_rotate'],
+            'y_axis_2_name': fd['echarts_y_axis_2_name'],
+            'y_axis_2_name_rotate': fd['echarts_y_axis_2_name_rotate'],
+            'y_axis_2_name_location': fd['echarts_y_axis_2_name_location'],
+            'y_axis_2_name_gap': fd['echarts_y_axis_2_name_gap'],
+            'y_axis_2_inverse': fd['echarts_y_axis_2_inverse'],
+            'y_axis_2_label_rotate': fd['echarts_y_axis_2_label_rotate'],
             'tooltip_show': fd['echarts_tooltip_show'],
             'tooltip_formatter': fd['echarts_tooltip_formatter'],
             'tooltip_background_color': fd['echarts_tooltip_background_color'],
@@ -891,6 +898,16 @@ class EchartsCustomLineViz(BaseViz):
             'series_line_style_type': fd['echarts_series_line_style_type'],
             'series_area_style_opacity': fd['echarts_series_area_style_opacity'],
             'series_smooth': fd['echarts_series_smooth'],
+            'series_2_symbol': fd['echarts_series_2_symbol'],
+            'series_2_symbol_size_width': fd['echarts_series_2_symbol_size_width'],
+            'series_2_symbol_size_height': fd['echarts_series_2_symbol_size_height'],
+            'series_2_symbol_rotate': fd['echarts_series_2_symbol_rotate'],
+            'series_2_stack': fd['echarts_series_2_stack'],
+            'series_2_step': fd['echarts_series_2_step'],
+            'series_2_line_style_width': fd['echarts_series_2_line_style_width'],
+            'series_2_line_style_type': fd['echarts_series_2_line_style_type'],
+            'series_2_area_style_opacity': fd['echarts_series_2_area_style_opacity'],
+            'series_2_smooth': fd['echarts_series_2_smooth'],
             'background_color': fd['echarts_background_color'],
             'data': df.to_dict(orient='records'),
         }

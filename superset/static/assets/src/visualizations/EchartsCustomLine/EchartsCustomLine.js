@@ -31,11 +31,29 @@ function drawChart(chart, propsData, teamData, teamIndex) {
     },
     smooth: propsData.series_smooth,
     data: chartData.map(data => data[item]),
-  }));
+  })).concat(propsData.indicators_2.map(item => ({
+    type: 'line',
+    name: item,
+    yAxisIndex: 1,
+    symbol: propsData.series_2_symbol,
+    symbolSize: [propsData.series_2_symbol_size_width, propsData.series_2_symbol_size_height],
+    symbolRotate: propsData.series_2_symbol_rotate,
+    stack: propsData.series_2_stack,
+    step: propsData.series_2_step,
+    lineStyle: {
+      width: propsData.series_2_line_style_width,
+      type: propsData.series_2_line_style_type,
+    },
+    areaStyle: {
+      opacity: propsData.series_2_area_style_opacity ? 0.6 : 0,
+    },
+    smooth: propsData.series_2_smooth,
+    data: chartData.map(data => data[item]),
+  })));
   chart.setOption({
     legend: {
       type: propsData.legend_type === '普通图例' ? 'plain' : 'scroll',
-      data: propsData.indicators,
+      data: propsData.indicators.concat(propsData.indicators_2),
       icon: propsData.legend_icon,
       itemGap: propsData.legend_item_gap,
       itemWidth: propsData.legend_item_width,
@@ -75,18 +93,32 @@ function drawChart(chart, propsData, teamData, teamIndex) {
         return data[propsData.x_axis];
       }),
     },
-    yAxis: {
-      type: 'value',
-      name: propsData.y_axis_name,
-      nameLocation: propsData.y_axis_name_location,
-      nameGap: propsData.y_axis_name_gap,
-      nameRotate: propsData.y_axis_name_rotate,
-      inverse: propsData.y_axis_inverse,
-      axisLabel: {
-        interval: 0,
-        rotate: propsData.y_axis_label_rotate,
+    yAxis: [
+      {
+        type: 'value',
+        name: propsData.y_axis_name,
+        nameLocation: propsData.y_axis_name_location,
+        nameGap: propsData.y_axis_name_gap,
+        nameRotate: propsData.y_axis_name_rotate,
+        inverse: propsData.y_axis_inverse,
+        axisLabel: {
+          interval: 0,
+          rotate: propsData.y_axis_label_rotate,
+        },
       },
-    },
+      {
+        type: 'value',
+        name: propsData.y_axis_2_name,
+        nameLocation: propsData.y_axis_2_name_location,
+        nameGap: propsData.y_axis_2_name_gap,
+        nameRotate: propsData.y_axis_2_name_rotate,
+        inverse: propsData.y_axis_2_inverse,
+        axisLabel: {
+          interval: 0,
+          rotate: propsData.y_axis_2_label_rotate,
+        },
+      },
+    ],
     tooltip: {
       show: propsData.tooltip_show,
       trigger: 'axis',

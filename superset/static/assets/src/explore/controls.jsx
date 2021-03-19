@@ -679,7 +679,22 @@ export const controls = {
     default: '',
   },
 
+  echarts_y_axis_2_name: {
+    type: 'TextControl',
+    label: '坐标轴名称',
+    freeForm: true,
+    default: '',
+  },
+
   echarts_y_axis_name_rotate: {
+    type: 'TextControl',
+    label: '坐标轴名字旋转的角度',
+    default: 0,
+    isInt: true,
+    description: '坐标轴名字旋转，角度值',
+  },
+
+  echarts_y_axis_2_name_rotate: {
     type: 'TextControl',
     label: '坐标轴名字旋转的角度',
     default: 0,
@@ -697,7 +712,25 @@ export const controls = {
     description: '坐标轴名称显示的位置',
   },
 
+  echarts_y_axis_2_name_location: {
+    type: 'SelectControl',
+    freeForm: true,
+    label: '名称显示位置',
+    default: 'end',
+    choices: formatSelectOptions(['start', 'center', 'end']),
+    clearable: false,
+    description: '坐标轴名称显示的位置',
+  },
+
   echarts_y_axis_name_gap: {
+    type: 'TextControl',
+    label: '名称与轴线的间距',
+    default: 15,
+    isInt: true,
+    description: '坐标轴名称与轴线之间的距离',
+  },
+
+  echarts_y_axis_2_name_gap: {
     type: 'TextControl',
     label: '名称与轴线的间距',
     default: 15,
@@ -711,7 +744,21 @@ export const controls = {
     default: false,
   },
 
+  echarts_y_axis_2_inverse: {
+    type: 'CheckboxControl',
+    label: '是否是反向坐标轴',
+    default: false,
+  },
+
   echarts_y_axis_label_rotate: {
+    type: 'TextControl',
+    label: '刻度标签旋转的角度',
+    default: 0,
+    isInt: true,
+    description: '旋转的角度从 -90 度到 90 度',
+  },
+
+  echarts_y_axis_2_label_rotate: {
     type: 'TextControl',
     label: '刻度标签旋转的角度',
     default: 0,
@@ -811,7 +858,32 @@ export const controls = {
     clearable: false,
   },
 
+  echarts_series_2_symbol: {
+    type: 'SelectControl',
+    label: '标记的图形',
+    default: 'emptyCircle',
+    choices: formatSelectOptions([
+      'emptyCircle',
+      'circle',
+      'rect',
+      'roundRect',
+      'triangle',
+      'diamond',
+      'pin',
+      'arrow',
+      'none',
+    ]),
+    clearable: false,
+  },
+
   echarts_series_symbol_size_width: {
+    type: 'TextControl',
+    label: '标记的大小(宽)',
+    default: 4,
+    isInt: true,
+  },
+
+  echarts_series_2_symbol_size_width: {
     type: 'TextControl',
     label: '标记的大小(宽)',
     default: 4,
@@ -825,7 +897,21 @@ export const controls = {
     isInt: true,
   },
 
+  echarts_series_2_symbol_size_height: {
+    type: 'TextControl',
+    label: '标记的大小(高)',
+    default: 4,
+    isInt: true,
+  },
+
   echarts_series_symbol_rotate: {
+    type: 'TextControl',
+    label: '标记的旋转角度',
+    default: 0,
+    isInt: true,
+  },
+
+  echarts_series_2_symbol_rotate: {
     type: 'TextControl',
     label: '标记的旋转角度',
     default: 0,
@@ -838,7 +924,21 @@ export const controls = {
     default: false,
   },
 
+  echarts_series_2_stack: {
+    type: 'CheckboxControl',
+    label: '数据堆叠',
+    default: false,
+  },
+
   echarts_series_step: {
+    type: 'SelectControl',
+    label: '阶梯线图',
+    default: '',
+    choices: formatSelectOptions(['start', 'middle', 'end']),
+    description: '选择为空则不显示成阶梯线图，选项配置分别为在当前点，当前点与下个点的中间点，下个点拐弯',
+  },
+
+  echarts_series_2_step: {
     type: 'SelectControl',
     label: '阶梯线图',
     default: '',
@@ -853,7 +953,22 @@ export const controls = {
     isInt: true,
   },
 
+  echarts_series_2_line_style_width: {
+    type: 'TextControl',
+    label: '线宽',
+    default: 2,
+    isInt: true,
+  },
+
   echarts_series_line_style_type: {
+    type: 'SelectControl',
+    label: '线的类型',
+    default: 'solid',
+    choices: formatSelectOptions(['solid', 'dashed', 'dotted']),
+    clearable: false,
+  },
+
+  echarts_series_2_line_style_type: {
     type: 'SelectControl',
     label: '线的类型',
     default: 'solid',
@@ -868,7 +983,21 @@ export const controls = {
     description: '是否显示成区域面积图',
   },
 
+  echarts_series_2_area_style_opacity: {
+    type: 'CheckboxControl',
+    label: '区域填充',
+    default: false,
+    description: '是否显示成区域面积图',
+  },
+
   echarts_series_smooth: {
+    type: 'CheckboxControl',
+    label: '平滑曲线',
+    default: false,
+    description: '是否平滑曲线显示',
+  },
+
+  echarts_series_2_smooth: {
     type: 'CheckboxControl',
     label: '平滑曲线',
     default: false,

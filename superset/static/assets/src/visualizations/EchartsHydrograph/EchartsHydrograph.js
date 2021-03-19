@@ -8,13 +8,24 @@ function echartsHydrographVis(element, props) {
   const dangerThreshold = Number(props.config.echarts_hydrograph_danger_threshold);
   let color = props.config.echarts_hydrograph_theme_color;
   let gradientColor = props.config.echarts_hydrograph_theme_color_gradient;
-  if (warningThreshold && props.data < warningThreshold) {
-    color = props.config.echarts_hydrograph_warning_color;
-    gradientColor = props.config.echarts_hydrograph_warning_color_gradient;
-  }
-  if (dangerThreshold && props.data < dangerThreshold) {
-    color = props.config.echarts_hydrograph_danger_color;
-    gradientColor = props.config.echarts_hydrograph_danger_color_gradient;
+  if (props.config.echarts_hydrograph_threshold_sort === '升序') {
+    if (warningThreshold && warningThreshold > props.data) {
+      color = props.config.echarts_hydrograph_warning_color;
+      gradientColor = props.config.echarts_hydrograph_warning_color_gradient;
+    }
+    if (dangerThreshold && dangerThreshold > props.data) {
+      color = props.config.echarts_hydrograph_danger_color;
+      gradientColor = props.config.echarts_hydrograph_danger_color_gradient;
+    }
+  } else {
+    if (warningThreshold && warningThreshold < props.data) {
+      color = props.config.echarts_hydrograph_warning_color;
+      gradientColor = props.config.echarts_hydrograph_warning_color_gradient;
+    }
+    if (dangerThreshold && dangerThreshold < props.data) {
+      color = props.config.echarts_hydrograph_danger_color;
+      gradientColor = props.config.echarts_hydrograph_danger_color_gradient;
+    }
   }
   const div = d3.select(element);
   const randomNumber = Math.round(Math.random() * 1000000000000000);

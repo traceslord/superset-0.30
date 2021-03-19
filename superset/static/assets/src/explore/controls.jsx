@@ -351,6 +351,7 @@ export const controls = {
     label: '图形上文本标签位置',
     default: 'insideLeft',
     choices: formatSelectOptions(ECHARTS_POSITIONS),
+    clearable: false,
     description: '图形上文本标签的位置',
   },
 
@@ -369,6 +370,7 @@ export const controls = {
     label: '图表混合类型',
     default: '混合曲线填充图',
     choices: formatSelectOptions(['混合曲线填充图', '混合多柱状图', '混合堆叠柱状图']),
+    clearable: false,
     description: '展示的图表类型',
   },
 
@@ -378,6 +380,7 @@ export const controls = {
     label: '图表类型',
     default: '折线图',
     choices: formatSelectOptions(['折线图', '柱状图']),
+    clearable: false,
     description: '展示的图表类型',
   },
 
@@ -473,6 +476,7 @@ export const controls = {
     label: '图例类型',
     default: '普通图例',
     choices: formatSelectOptions(['普通图例', '可滚动翻页的图例']),
+    clearable: false,
     description: '图例的类型',
   },
 
@@ -482,6 +486,7 @@ export const controls = {
     label: 'Icon',
     default: 'roundRect',
     choices: formatSelectOptions(['circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow', 'none']),
+    clearable: false,
     description: '图例项的 icon',
   },
 
@@ -635,6 +640,7 @@ export const controls = {
     label: '名称显示位置',
     default: 'end',
     choices: formatSelectOptions(['start', 'center', 'end']),
+    clearable: false,
     description: '坐标轴名称显示的位置',
   },
 
@@ -687,6 +693,7 @@ export const controls = {
     label: '名称显示位置',
     default: 'end',
     choices: formatSelectOptions(['start', 'center', 'end']),
+    clearable: false,
     description: '坐标轴名称显示的位置',
   },
 
@@ -801,6 +808,7 @@ export const controls = {
       'arrow',
       'none',
     ]),
+    clearable: false,
   },
 
   echarts_series_symbol_size_width: {
@@ -850,6 +858,7 @@ export const controls = {
     label: '线的类型',
     default: 'solid',
     choices: formatSelectOptions(['solid', 'dashed', 'dotted']),
+    clearable: false,
   },
 
   echarts_series_area_style_opacity: {
@@ -914,6 +923,7 @@ export const controls = {
     label: '形状',
     default: 'circle',
     choices: formatSelectOptions(['circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow']),
+    clearable: false,
   },
 
   echarts_hydrograph_background_color: {
@@ -926,6 +936,7 @@ export const controls = {
     type: 'TextControl',
     label: '字体大小',
     default: 36,
+    isInt: true,
   },
 
   echarts_hydrograph_font_weight: {
@@ -933,6 +944,7 @@ export const controls = {
     label: '字体粗细',
     default: 'bold',
     choices: formatSelectOptions(['lighter', 'normal', 'bold']),
+    clearable: false,
   },
 
   echarts_hydrograph_inside_color: {
@@ -953,6 +965,14 @@ export const controls = {
     label: '危险阈值',
     default: null,
     description: '设置后当水位值低于该值，水位的颜色为危险色，优先级比警告阈值高（取值范围：0～1）',
+  },
+
+  echarts_hydrograph_threshold_sort: {
+    type: 'SelectControl',
+    label: '阈值排序',
+    default: '升序',
+    choices: formatSelectOptions(['升序', '降序']),
+    clearable: false,
   },
 
   echarts_hydrograph_theme_color: {
@@ -1041,6 +1061,7 @@ export const controls = {
     label: '聚合',
     default: 'SUM',
     choices: formatSelectOptions(['AVG', 'COUNT', 'COUNT_DISTINCT', 'MAX', 'MIN', 'SUM']),
+    clearable: false,
   },
 
   datasource: {

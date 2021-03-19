@@ -5,6 +5,7 @@ export default function transformProps(chartProps) {
   return {
     width,
     height,
+    config: payload.form_data,
     data: payload.data[0][metricName],
   };
 }

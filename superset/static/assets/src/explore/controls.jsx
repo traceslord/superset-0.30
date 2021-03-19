@@ -909,6 +909,108 @@ export const controls = {
     description: '同一系列的柱间距离，默认为类目间距的 20%，可设固定值',
   },
 
+  echarts_hydrograph_shape: {
+    type: 'SelectControl',
+    label: '形状',
+    default: 'circle',
+    choices: formatSelectOptions(['circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow']),
+  },
+
+  echarts_hydrograph_background_color: {
+    type: 'ColorPickerControl',
+    label: '背景色',
+    default: { r: 227, g: 247, b: 255, a: 1 },
+  },
+
+  echarts_hydrograph_font_size: {
+    type: 'TextControl',
+    label: '字体大小',
+    default: 36,
+  },
+
+  echarts_hydrograph_font_weight: {
+    type: 'SelectControl',
+    label: '字体粗细',
+    default: 'bold',
+    choices: formatSelectOptions(['lighter', 'normal', 'bold']),
+  },
+
+  echarts_hydrograph_inside_color: {
+    type: 'ColorPickerControl',
+    label: '字体被水位渗透时的颜色',
+    default: { r: 255, g: 255, b: 255, a: 0.9 },
+  },
+
+  echarts_hydrograph_warning_threshold: {
+    type: 'TextControl',
+    label: '警告阈值',
+    default: null,
+    description: '设置后当水位值低于该值，水位的颜色为警告色（取值范围：0～1）',
+  },
+
+  echarts_hydrograph_danger_threshold: {
+    type: 'TextControl',
+    label: '危险阈值',
+    default: null,
+    description: '设置后当水位值低于该值，水位的颜色为危险色，优先级比警告阈值高（取值范围：0～1）',
+  },
+
+  echarts_hydrograph_theme_color: {
+    type: 'ColorPickerControl',
+    label: '主题色',
+    default: { r: 64, g: 158, b: 255, a: 1 },
+  },
+
+  echarts_hydrograph_warning_color: {
+    type: 'ColorPickerControl',
+    label: '警告色',
+    default: { r: 230, g: 162, b: 60, a: 1 },
+  },
+
+  echarts_hydrograph_danger_color: {
+    type: 'ColorPickerControl',
+    label: '危险色',
+    default: { r: 245, g: 108, b: 108, a: 1 },
+  },
+
+  echarts_hydrograph_theme_color_gradient: {
+    type: 'ColorPickerControl',
+    label: '主题色（渐变）',
+    default: { r: 236, g: 245, b: 255, a: 1 },
+  },
+
+  echarts_hydrograph_warning_color_gradient: {
+    type: 'ColorPickerControl',
+    label: '警告色（渐变）',
+    default: { r: 253, g: 246, b: 236, a: 1 },
+  },
+
+  echarts_hydrograph_danger_color_gradient: {
+    type: 'ColorPickerControl',
+    label: '危险色（渐变）',
+    default: { r: 254, g: 240, b: 240, a: 1 },
+  },
+
+  echarts_hydrograph_outline_show: {
+    type: 'CheckboxControl',
+    label: '是否展示轮廓边框',
+    default: false,
+  },
+
+  echarts_hydrograph_outline_border_distance: {
+    type: 'TextControl',
+    label: '边框间隔',
+    default: 3,
+    isInt: true,
+  },
+
+  echarts_hydrograph_outline_border_width: {
+    type: 'TextControl',
+    label: '边框宽',
+    default: 5,
+    isInt: true,
+  },
+
   echarts_background_color: {
     type: 'ColorPickerControl',
     label: '背景色',

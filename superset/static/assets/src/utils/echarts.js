@@ -55,7 +55,7 @@ function echartsVis(element, props, drawChart) {
   const teamData = teams.map(t => propsData.data.filter(d => d[propsData.echarts_select] === t));
 
   const div = d3.select(element);
-  const randomNumber = Math.round(Math.random() * 10000000000000000);
+  const randomNumber = Math.round(Math.random() * 1000000000000000);
   const selectItem = teams.map((data, index) => `<div class="echarts-select-dropdown-item ${index === 0 ? 'selected' : ''}" data-index="${index}">${data}</div>`).join('');
   const selectHtml = propsData.echarts_select ? `
     <div class="echarts-select">

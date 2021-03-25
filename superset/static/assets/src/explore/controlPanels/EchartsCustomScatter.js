@@ -7,41 +7,19 @@ export default {
       expanded: true,
       controlSetRows: [
         ['x_axis'],
-        ['echarts_indicators'],
-        ['y_axis_right'],
+        ['echarts_indicator'],
+        ['echarts_name'],
         ['echarts_select'],
         ['echarts_groupby', 'echarts_groupby_aggregate'],
-        ['echarts_sort'],
         ['adhoc_filters'],
         ['echarts_background_color'],
       ],
     },
     {
-      label: '折线图配置（左 Y 轴）',
+      label: '散点图配置',
       controlSetRows: [
-        ['echarts_series_symbol', 'echarts_series_symbol_rotate'],
-        ['echarts_series_symbol_size_width', 'echarts_series_symbol_size_height'],
-        ['echarts_series_step'],
-        ['echarts_series_line_style_width', 'echarts_series_line_style_type'],
-        ['echarts_series_stack', 'echarts_series_area_style_opacity', 'echarts_series_smooth'],
-      ],
-    },
-    {
-      label: '折线图配置（右 Y 轴）',
-      controlSetRows: [
-        ['echarts_series_2_symbol', 'echarts_series_2_symbol_rotate'],
-        ['echarts_series_2_symbol_size_width', 'echarts_series_2_symbol_size_height'],
-        ['echarts_series_2_step'],
-        ['echarts_series_2_line_style_width', 'echarts_series_2_line_style_type'],
-        ['echarts_series_2_stack', 'echarts_series_2_area_style_opacity', 'echarts_series_2_smooth'],
-      ],
-    },
-    {
-      label: '图例组件',
-      controlSetRows: [
-        ['echarts_legend_type', 'echarts_legend_icon'],
-        ['echarts_legend_item_gap', 'echarts_legend_item_width', 'echarts_legend_item_height'],
-        ['echarts_legend_top', 'echarts_legend_bottom', 'echarts_legend_left', 'echarts_legend_right'],
+        ['echarts_radius'],
+        ['echarts_regression_type'],
       ],
     },
     {
@@ -61,25 +39,15 @@ export default {
         ['echarts_x_axis_name_location', 'echarts_x_axis_name_gap'],
         ['echarts_x_axis_name_rotate', 'echarts_x_axis_label_rotate'],
         ['echarts_x_axis_inverse'],
-        ['echarts_x_axis_data_format'],
       ],
     },
     {
-      label: 'Y 轴（左）',
+      label: 'Y 轴',
       controlSetRows: [
         ['echarts_y_axis_name'],
         ['echarts_y_axis_name_location', 'echarts_y_axis_name_gap'],
         ['echarts_y_axis_name_rotate', 'echarts_y_axis_label_rotate'],
         ['echarts_y_axis_inverse'],
-      ],
-    },
-    {
-      label: 'Y 轴（右）',
-      controlSetRows: [
-        ['echarts_y_axis_2_name'],
-        ['echarts_y_axis_2_name_location', 'echarts_y_axis_2_name_gap'],
-        ['echarts_y_axis_2_name_rotate', 'echarts_y_axis_2_label_rotate'],
-        ['echarts_y_axis_2_inverse'],
       ],
     },
     {
@@ -112,28 +80,9 @@ export default {
     },
   ],
   controlOverrides: {
-    echarts_indicators: {
-      label: 'Y 轴（左）',
-      description: '左 Y 轴要显示的列',
-    },
-    y_axis_right: {
-      label: 'Y 轴（右）',
-      description: '右 Y 轴要显示的列',
-    },
-    echarts_legend_item_gap: {
-      default: 25,
-    },
-    echarts_legend_item_width: {
-      default: 15,
-    },
-    echarts_legend_item_height: {
-      default: 15,
-    },
-    echarts_legend_top: {
-      default: '35',
-    },
-    echarts_legend_right: {
-      default: '4%',
+    echarts_indicator: {
+      label: 'Y 轴',
+      description: 'Y 轴要显示的列',
     },
     echarts_grid_top: {
       default: '70',
@@ -145,7 +94,13 @@ export default {
       default: '3%',
     },
     echarts_grid_right: {
-      default: '4%',
+      default: '8%',
+    },
+    echarts_grid_border_width: {
+      default: 0,
+    },
+    echarts_tooltip_formatter: {
+      default: 'params => { if (params.seriesType !== "scatter") return ""; return `${params.value[2]}：<br />故事点：${params.value[1]}<br />工时：${params.value[0]} 小时` };',
     },
   },
 };

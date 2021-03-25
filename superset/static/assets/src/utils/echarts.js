@@ -39,11 +39,11 @@ import 'echarts/theme/vintage';
 import './echartsSelect.css';
 
 function echartsVis(element, props, drawChart) {
-  const propsData = props.data;
+  const propsConfig = props.config || {};
   const teams = [];
-  propsData.data.forEach((data) => {
-    if (teams.indexOf(data[propsData.echarts_select]) === -1) {
-      teams.push(data[propsData.echarts_select]);
+  props.data.forEach((data) => {
+    if (teams.indexOf(data[propsConfig.echarts_select]) === -1) {
+      teams.push(data[propsConfig.echarts_select]);
     }
   });
   teams.forEach((data, index, self) => {
@@ -51,13 +51,17 @@ function echartsVis(element, props, drawChart) {
       self.splice(index, 1);
       self.push(data);
     }
+    if (data === 'ALL') {
+      self.splice(index, 1);
+      self.unshift(data);
+    }
   });
-  const teamData = teams.map(t => propsData.data.filter(d => d[propsData.echarts_select] === t));
+  const teamData = teams.map(t => props.data.filter(d => d[propsConfig.echarts_select] === t));
 
   const div = d3.select(element);
   const randomNumber = Math.round(Math.random() * 1000000000000000);
   const selectItem = teams.map((data, index) => `<div class="echarts-select-dropdown-item ${index === 0 ? 'selected' : ''}" data-index="${index}">${data}</div>`).join('');
-  const selectHtml = propsData.echarts_select ? `
+  const selectHtml = propsConfig.echarts_select ? `
     <div class="echarts-select">
       <div class="echarts-select-content">
         <input class="echarts-select-content-input" id="echarts-select-input-${randomNumber}" type="text" readonly="readonly" autocomplete="off" placeholder="请选择小队" />
@@ -78,7 +82,7 @@ function echartsVis(element, props, drawChart) {
   div.html(html);
   const chart = echarts.init(document.getElementById(`echarts-${randomNumber}`), props.theme);
 
-  if (propsData.echarts_select) {
+  if (propsConfig.echarts_select) {
     const echartsSelect = document.getElementById(`echarts-select-input-${randomNumber}`);
     const selectItemArr = document.getElementById(`echarts-select-dropdown-${randomNumber}`).children;
     echartsSelect.addEventListener('click', function (e) {
@@ -92,7 +96,7 @@ function echartsVis(element, props, drawChart) {
     for (let i = 0; i < selectItemArr.length; i++) {
       selectItemArr[i].addEventListener('click', function (e) {
         const currentIndex = Number(e.target.dataset.index);
-        drawChart(chart, propsData, teamData, currentIndex);
+        drawChart(chart, propsConfig, teamData, currentIndex);
         echartsSelect.value = teams[currentIndex];
         const children = e.target.parentNode.children;
         for (let j = 0; j < children.length; j++) {
@@ -108,10 +112,10 @@ function echartsVis(element, props, drawChart) {
       }
     });
 
-    drawChart(chart, propsData, teamData, 0);
+    drawChart(chart, propsConfig, teamData, 0);
     echartsSelect.value = teams[0];
   } else {
-    drawChart(chart, propsData, teamData, 0);
+    drawChart(chart, propsConfig, teamData, 0);
   }
 }
 

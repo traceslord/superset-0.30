@@ -24,9 +24,9 @@ const CumulativeFlowFun = {
         return name;
     }
   },
-  drawChart(chart, propsData, teamData, teamIndex) {
+  drawChart(chart, propsConfig, teamData, teamIndex) {
     const chartData = teamData[teamIndex];
-    const series = propsData.echarts_indicators.map(item => ({
+    const series = propsConfig.echarts_indicators.map(item => ({
       name: CumulativeFlowFun.formatName(item),
       type: 'line',
       stack: 'stack',
@@ -50,15 +50,15 @@ const CumulativeFlowFun = {
             yAxisIndex: false,
           },
           dataView: {
-            show: propsData.data_view,
+            show: propsConfig.echarts_data_view,
           },
           saveAsImage: {
-            show: propsData.save_as_image,
+            show: propsConfig.echarts_save_as_image,
           },
         },
       },
       legend: {
-        data: propsData.echarts_indicators.map(data => CumulativeFlowFun.formatName(data)),
+        data: propsConfig.echarts_indicators.map(data => CumulativeFlowFun.formatName(data)),
         icon: 'roundRect',
         itemGap: 25,
         itemWidth: 15,
@@ -76,15 +76,15 @@ const CumulativeFlowFun = {
       xAxis: [
         {
           type: 'category',
-          name: propsData.x_axis_label,
+          name: propsConfig.x_axis_label,
           boundaryGap: false,
-          data: chartData.map(data => formatDate.formateDay(data[propsData.x_axis])),
+          data: chartData.map(data => formatDate.formateDay(data[propsConfig.x_axis])),
         },
       ],
       yAxis: [
         {
           type: 'value',
-          name: propsData.y_axis_label,
+          name: propsConfig.y_axis_label,
         },
       ],
       dataZoom: [

@@ -1,26 +1,26 @@
 import echartsVis from '../../utils/echarts';
 import { formatDate } from '../../utils/dates';
 
-function drawChart(chart, propsData, teamData, teamIndex) {
+function drawChart(chart, propsConfig, teamData, teamIndex) {
   const chartData = teamData[teamIndex];
-  const series = propsData.indicators.map((item) => {
-    if (propsData.type === '柱状图') {
+  const series = propsConfig.echarts_indicators.map((item) => {
+    if (propsConfig.echarts_graphic_type === '柱状图') {
       return {
         type: 'bar',
         name: item,
-        stack: propsData.stack,
-        barWidth: propsData.bar_width,
+        stack: propsConfig.echarts_stack,
+        barWidth: propsConfig.echarts_bar_width,
         data: chartData.map(data => data[item]),
       };
     }
       return {
         type: 'line',
         name: item,
-        stack: propsData.stack,
+        stack: propsConfig.echarts_stack,
         areaStyle: {
-          opacity: propsData.area ? 0.6 : 0,
+          opacity: propsConfig.echarts_area ? 0.6 : 0,
         },
-        smooth: propsData.smooth,
+        smooth: propsConfig.echarts_smooth,
         data: chartData.map(data => data[item]),
       };
   });
@@ -28,21 +28,21 @@ function drawChart(chart, propsData, teamData, teamIndex) {
     tooltip: {
       trigger: 'axis',
       axisPointer: {
-        type: propsData.type === '折线图' ? 'line' : 'shadow',
+        type: propsConfig.echarts_graphic_type === '折线图' ? 'line' : 'shadow',
       },
     },
     toolbox: {
       feature: {
         dataView: {
-          show: propsData.data_view,
+          show: propsConfig.echarts_data_view,
         },
         saveAsImage: {
-          show: propsData.save_as_image,
+          show: propsConfig.echarts_save_as_image,
         },
       },
     },
     legend: {
-      data: propsData.indicators,
+      data: propsConfig.echarts_indicators,
       icon: 'roundRect',
       itemGap: 25,
       itemWidth: 15,
@@ -59,20 +59,20 @@ function drawChart(chart, propsData, teamData, teamIndex) {
     },
     xAxis: {
       type: 'category',
-      name: propsData.x_axis_label,
-      boundaryGap: propsData.type !== '折线图',
+      name: propsConfig.x_axis_label,
+      boundaryGap: propsConfig.echarts_graphic_type !== '折线图',
       axisLabel: {
         interval: 0,
-        rotate: propsData.rotate,
+        rotate: propsConfig.echarts_rotate,
       },
       data: chartData.map((data) => {
-        if (propsData.formate_day) return formatDate.formateDay(data[propsData.x_axis]);
-        return data[propsData.x_axis];
+        if (propsConfig.echarts_checkbox) return formatDate.formateDay(data[propsConfig.x_axis]);
+        return data[propsConfig.x_axis];
       }),
     },
     yAxis: {
       type: 'value',
-      name: propsData.y_axis_label,
+      name: propsConfig.y_axis_label,
     },
     series,
   });

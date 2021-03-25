@@ -1,5 +1,5 @@
+import ecStat from 'echarts-stat';
 import echartsVis from '../../utils/echarts';
-import { formatDate } from '../../utils/dates';
 import { formatColor } from '../../utils/colors';
 import { groupby } from '../../utils/groupby';
 
@@ -10,38 +10,80 @@ function drawChart(chart, propsConfig, teamData, teamIndex) {
       chartData,
       propsConfig.echarts_groupby,
       propsConfig.echarts_groupby_aggregate,
-      propsConfig.x_axis,
       propsConfig.echarts_select,
     );
   }
-  if (propsConfig.echarts_sort) {
-    chartData.sort((a, b) => a[propsConfig.echarts_sort] - b[propsConfig.echarts_sort]);
-  }
-  const series = propsConfig.echarts_indicators.map(item => ({
-    type: 'bar',
-    name: item,
-    stack: propsConfig.echarts_series_stack,
-    barWidth: propsConfig.echarts_series_bar_width,
-    barMaxWidth: propsConfig.echarts_series_bar_max_width,
-    barMinWidth: propsConfig.echarts_series_bar_min_width,
-    barMinHeight: propsConfig.echarts_series_bar_min_height,
-    barGap: propsConfig.echarts_series_bar_gap,
-    barCategoryGap: propsConfig.echarts_series_bar_category_gap,
-    data: chartData.map(data => data[item]),
-  }));
-  chart.setOption({
-    legend: {
-      type: propsConfig.echarts_legend_type === '普通图例' ? 'plain' : 'scroll',
-      data: propsConfig.echarts_indicators,
-      icon: propsConfig.echarts_legend_icon,
-      itemGap: propsConfig.echarts_legend_item_gap,
-      itemWidth: propsConfig.echarts_legend_item_width,
-      itemHeight: propsConfig.echarts_legend_item_height,
-      top: propsConfig.echarts_legend_top,
-      bottom: propsConfig.echarts_legend_bottom,
-      left: propsConfig.echarts_legend_left,
-      right: propsConfig.echarts_legend_right,
+  const x = propsConfig.x_axis;
+  const y = propsConfig.echarts_indicator;
+  const data = chartData.map(item => [
+    item[x],
+    item[y],
+    item[propsConfig.echarts_name],
+    item[y] / item[x] * propsConfig.echarts_radius,
+  ]);
+  const series = [{
+    type: 'scatter',
+    name: 'scatter',
+    symbolSize: params => params[3],
+    label: {
+      show: true,
+      position: 'top',
+      formatter: params => params.data[2],
     },
+    itemStyle: {
+      shadowBlur: 10,
+      shadowColor: 'rgba(0, 0, 0, 0.4)',
+      shadowOffsetY: 5,
+    },
+    data,
+    markLine: {
+      lineStyle: {
+        normal: {
+          color: '#909399',
+          type: 'dashed',
+        },
+      },
+      data: [
+        { type: 'average', name: '平均值' },
+        { type: 'average', valueDim: 'x' },
+      ],
+    },
+  }];
+  if (propsConfig.echarts_regression_type) {
+    const lineData = chartData.map(item => [
+      item[x],
+      item[y],
+    ]);
+    const myRegression = ecStat.regression(propsConfig.echarts_regression_type, lineData);
+    myRegression.points.sort((a, b) => a[0] - b[0]);
+    series.push({
+      type: 'line',
+      name: 'line',
+      showSymbol: false,
+      lineStyle: {
+        color: '#2f4554',
+      },
+      data: myRegression.points,
+      markPoint: {
+        label: {
+          show: true,
+          position: 'left',
+          formatter: myRegression.expression,
+          color: '#333',
+          fontSize: 14,
+        },
+        itemStyle: {
+          color: 'transparent',
+        },
+        data: [
+          {
+            coord: myRegression.points[myRegression.points.length - 1],
+          },
+        ],
+      },
+    });
+  }
+  chart.setOption({
     grid: {
       show: true,
       width: propsConfig.echarts_grid_width,
@@ -56,22 +98,20 @@ function drawChart(chart, propsConfig, teamData, teamIndex) {
       containLabel: propsConfig.echarts_grid_contain_label,
     },
     xAxis: {
-      type: 'category',
+      type: 'value',
       name: propsConfig.echarts_x_axis_name,
       nameLocation: propsConfig.echarts_x_axis_name_location,
       nameGap: propsConfig.echarts_x_axis_name_gap,
       nameRotate: propsConfig.echarts_x_axis_name_rotate,
       inverse: propsConfig.echarts_x_axis_inverse,
+      scale: true,
       axisLabel: {
         interval: 0,
         rotate: propsConfig.echarts_x_axis_label_rotate,
       },
-      data: chartData.map((data) => {
-        if (propsConfig.echarts_x_axis_data_format) {
-          return formatDate.formateDay(data[propsConfig.x_axis]);
-        }
-        return data[propsConfig.x_axis];
-      }),
+      splitLine: {
+        show: false,
+      },
     },
     yAxis: {
       type: 'value',
@@ -80,16 +120,20 @@ function drawChart(chart, propsConfig, teamData, teamIndex) {
       nameGap: propsConfig.echarts_y_axis_name_gap,
       nameRotate: propsConfig.echarts_y_axis_name_rotate,
       inverse: propsConfig.echarts_y_axis_inverse,
+      scale: true,
       axisLabel: {
         interval: 0,
         rotate: propsConfig.echarts_y_axis_label_rotate,
       },
+      splitLine: {
+        show: false,
+      },
     },
     tooltip: {
       show: propsConfig.echarts_tooltip_show,
-      trigger: 'axis',
+      trigger: 'item',
       axisPointer: {
-        type: 'shadow',
+        type: 'cross',
       },
       formatter: new Function('return ' + propsConfig.echarts_tooltip_formatter)(),
       backgroundColor: formatColor(propsConfig.echarts_tooltip_background_color),
@@ -117,8 +161,8 @@ function drawChart(chart, propsConfig, teamData, teamIndex) {
   });
 }
 
-function echartsCustomBarVis(element, props) {
+function echartsCustomScatterVis(element, props) {
   echartsVis(element, props, drawChart);
 }
 
-export default echartsCustomBarVis;
+export default echartsCustomScatterVis;

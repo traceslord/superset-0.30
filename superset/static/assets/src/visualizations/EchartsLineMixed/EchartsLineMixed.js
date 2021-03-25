@@ -18,17 +18,17 @@ const LineMixedFun = {
         return name;
     }
   },
-  drawChart(chart, propsData, teamData, teamIndex) {
+  drawChart(chart, propsConfig, teamData, teamIndex) {
     const chartData = teamData[teamIndex];
-    const legendData = [propsData.y_axis_left].concat(propsData.y_axis_right);
+    const legendData = [propsConfig.y_axis_left].concat(propsConfig.y_axis_right);
     const series = [
       {
-        name: LineMixedFun.formatName(propsData.y_axis_left),
+        name: LineMixedFun.formatName(propsConfig.y_axis_left),
         type: 'line',
-        data: chartData.map(data => data[propsData.y_axis_left]),
+        data: chartData.map(data => data[propsConfig.y_axis_left]),
       },
-    ].concat(propsData.y_axis_right.map((item) => {
-      if (propsData.type === '混合堆叠柱状图') {
+    ].concat(propsConfig.y_axis_right.map((item) => {
+      if (propsConfig.echarts_mixed_type === '混合堆叠柱状图') {
         return {
           name: LineMixedFun.formatName(item),
           type: 'bar',
@@ -36,7 +36,7 @@ const LineMixedFun = {
           yAxisIndex: 1,
           data: chartData.map(data => data[item]),
         };
-      } else if (propsData.type === '混合多柱状图') {
+      } else if (propsConfig.echarts_mixed_type === '混合多柱状图') {
         return {
           name: LineMixedFun.formatName(item),
           type: 'bar',
@@ -64,16 +64,16 @@ const LineMixedFun = {
       tooltip: {
         trigger: 'axis',
         axisPointer: {
-          type: propsData.type === '混合曲线填充图' ? 'line' : 'shadow',
+          type: propsConfig.echarts_mixed_type === '混合曲线填充图' ? 'line' : 'shadow',
         },
       },
       toolbox: {
         feature: {
           dataView: {
-            show: propsData.data_view,
+            show: propsConfig.echarts_data_view,
           },
           saveAsImage: {
-            show: propsData.save_as_image,
+            show: propsConfig.echarts_save_as_image,
           },
         },
       },
@@ -96,26 +96,28 @@ const LineMixedFun = {
       xAxis: [
         {
           type: 'category',
-          name: propsData.x_axis_label,
-          boundaryGap: propsData.type !== '混合曲线填充图',
+          name: propsConfig.x_axis_label,
+          boundaryGap: propsConfig.echarts_mixed_type !== '混合曲线填充图',
           axisLabel: {
             interval: 0,
-            rotate: propsData.rotate,
+            rotate: propsConfig.echarts_rotate,
           },
           data: chartData.map((data) => {
-            if (propsData.formate_day) return formatDate.formateDay(data[propsData.x_axis]);
-            return data[propsData.x_axis];
+            if (propsConfig.echarts_checkbox) {
+              return formatDate.formateDay(data[propsConfig.x_axis]);
+            }
+            return data[propsConfig.x_axis];
           }),
         },
       ],
       yAxis: [
         {
           type: 'value',
-          name: propsData.y_axis_left_label,
+          name: propsConfig.y_axis_left_label,
         },
         {
           type: 'value',
-          name: propsData.y_axis_right_label,
+          name: propsConfig.y_axis_right_label,
         },
       ],
       series,

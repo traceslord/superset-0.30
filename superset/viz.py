@@ -517,21 +517,6 @@ class EchartsBarDatasetViz(BaseViz):
             d['columns'].append(fd.get('echarts_select'))
         return d
 
-    def get_data(self, df):
-        fd = self.form_data
-        return {
-            'echarts_name': fd['echarts_name'],
-            'echarts_indicators': fd['echarts_indicators'],
-            'echarts_select': fd['echarts_select'],
-            'x_axis_label': fd['x_axis_label'],
-            'y_axis_label': fd['y_axis_label'],
-            'rotate': fd['echarts_rotate'],
-            'bar_width': fd['echarts_bar_width'],
-            'data_view': fd['echarts_data_view'],
-            'save_as_image': fd['echarts_save_as_image'],
-            'data': df.to_dict(orient='records'),
-        }
-
 
 class EchartsBarPlusminusViz(BaseViz):
 
@@ -661,19 +646,6 @@ class EchartsCumulativeFlowViz(BaseViz):
             d['columns'].append(fd.get('echarts_select'))
         return d
 
-    def get_data(self, df):
-        fd = self.form_data
-        return {
-            'x_axis': fd['x_axis'],
-            'echarts_indicators': fd['echarts_indicators'],
-            'echarts_select': fd['echarts_select'],
-            'x_axis_label': fd['x_axis_label'],
-            'y_axis_label': fd['y_axis_label'],
-            'data_view': fd['echarts_data_view'],
-            'save_as_image': fd['echarts_save_as_image'],
-            'data': df.to_dict(orient='records'),
-        }
-
 
 class EchartsCustomBarViz(BaseViz):
 
@@ -698,69 +670,9 @@ class EchartsCustomBarViz(BaseViz):
             d['columns'].append(fd.get('echarts_select'))
         if fd.get('echarts_groupby') and fd.get('echarts_groupby') not in d['columns']:
             d['columns'].append(fd.get('echarts_groupby'))
+        if fd.get('echarts_sort') and fd.get('echarts_sort') not in d['columns']:
+            d['columns'].append(fd.get('echarts_sort'))
         return d
-
-    def get_data(self, df):
-        fd = self.form_data
-        return {
-            'x_axis': fd['x_axis'],
-            'indicators': fd['echarts_indicators'],
-            'echarts_select': fd['echarts_select'],
-            'echarts_groupby': fd['echarts_groupby'],
-            'groupby_aggregate': fd['echarts_groupby_aggregate'],
-            'legend_type': fd['echarts_legend_type'],
-            'legend_icon': fd['echarts_legend_icon'],
-            'legend_item_gap': fd['echarts_legend_item_gap'],
-            'legend_item_width': fd['echarts_legend_item_width'],
-            'legend_item_height': fd['echarts_legend_item_height'],
-            'legend_top': fd['echarts_legend_top'],
-            'legend_bottom': fd['echarts_legend_bottom'],
-            'legend_left': fd['echarts_legend_left'],
-            'legend_right': fd['echarts_legend_right'],
-            'grid_width': fd['echarts_grid_width'],
-            'grid_height': fd['echarts_grid_height'],
-            'grid_background_color': fd['echarts_grid_background_color'],
-            'grid_border_color': fd['echarts_grid_border_color'],
-            'grid_border_width': fd['echarts_grid_border_width'],
-            'grid_top': fd['echarts_grid_top'],
-            'grid_bottom': fd['echarts_grid_bottom'],
-            'grid_left': fd['echarts_grid_left'],
-            'grid_right': fd['echarts_grid_right'],
-            'grid_contain_label': fd['echarts_grid_contain_label'],
-            'x_axis_name': fd['echarts_x_axis_name'],
-            'x_axis_name_rotate': fd['echarts_x_axis_name_rotate'],
-            'x_axis_name_location': fd['echarts_x_axis_name_location'],
-            'x_axis_name_gap': fd['echarts_x_axis_name_gap'],
-            'x_axis_inverse': fd['echarts_x_axis_inverse'],
-            'x_axis_label_rotate': fd['echarts_x_axis_label_rotate'],
-            'x_axis_data_format': fd['echarts_x_axis_data_format'],
-            'y_axis_name': fd['echarts_y_axis_name'],
-            'y_axis_name_rotate': fd['echarts_y_axis_name_rotate'],
-            'y_axis_name_location': fd['echarts_y_axis_name_location'],
-            'y_axis_name_gap': fd['echarts_y_axis_name_gap'],
-            'y_axis_inverse': fd['echarts_y_axis_inverse'],
-            'y_axis_label_rotate': fd['echarts_y_axis_label_rotate'],
-            'tooltip_show': fd['echarts_tooltip_show'],
-            'tooltip_formatter': fd['echarts_tooltip_formatter'],
-            'tooltip_background_color': fd['echarts_tooltip_background_color'],
-            'tooltip_border_color': fd['echarts_tooltip_border_color'],
-            'tooltip_border_width': fd['echarts_tooltip_border_width'],
-            'tooltip_padding_top': fd['echarts_tooltip_padding_top'],
-            'tooltip_padding_bottom': fd['echarts_tooltip_padding_bottom'],
-            'tooltip_padding_left': fd['echarts_tooltip_padding_left'],
-            'tooltip_padding_right': fd['echarts_tooltip_padding_right'],
-            'data_view': fd['echarts_data_view'],
-            'save_as_image': fd['echarts_save_as_image'],
-            'series_stack': fd['echarts_series_stack'],
-            'series_bar_width': fd['echarts_series_bar_width'],
-            'series_bar_max_width': fd['echarts_series_bar_max_width'],
-            'series_bar_min_width': fd['echarts_series_bar_min_width'],
-            'series_bar_min_height': fd['echarts_series_bar_min_height'],
-            'series_bar_gap': fd['echarts_series_bar_gap'],
-            'series_bar_category_gap': fd['echarts_series_bar_category_gap'],
-            'background_color': fd['echarts_background_color'],
-            'data': df.to_dict(orient='records'),
-        }
 
 
 class EchartsCustomGraphicViz(BaseViz):
@@ -783,26 +695,6 @@ class EchartsCustomGraphicViz(BaseViz):
         if fd.get('echarts_select') and fd.get('echarts_select') not in d['columns']:
             d['columns'].append(fd.get('echarts_select'))
         return d
-
-    def get_data(self, df):
-        fd = self.form_data
-        return {
-            'x_axis': fd['x_axis'],
-            'indicators': fd['echarts_indicators'],
-            'echarts_select': fd['echarts_select'],
-            'type': fd['echarts_graphic_type'],
-            'x_axis_label': fd['x_axis_label'],
-            'y_axis_label': fd['y_axis_label'],
-            'rotate': fd['echarts_rotate'],
-            'formate_day': fd['echarts_checkbox'],
-            'stack': fd['echarts_stack'],
-            'area': fd['echarts_area'],
-            'smooth': fd['echarts_smooth'],
-            'bar_width': fd['echarts_bar_width'],
-            'data_view': fd['echarts_data_view'],
-            'save_as_image': fd['echarts_save_as_image'],
-            'data': df.to_dict(orient='records'),
-        }
 
 
 class EchartsCustomLineViz(BaseViz):
@@ -828,89 +720,35 @@ class EchartsCustomLineViz(BaseViz):
             d['columns'].append(fd.get('echarts_select'))
         if fd.get('echarts_groupby') and fd.get('echarts_groupby') not in d['columns']:
             d['columns'].append(fd.get('echarts_groupby'))
+        if fd.get('echarts_sort') and fd.get('echarts_sort') not in d['columns']:
+            d['columns'].append(fd.get('echarts_sort'))
         return d
 
-    def get_data(self, df):
+
+class EchartsCustomScatterViz(BaseViz):
+
+    viz_type = 'echarts_custom_scatter'
+    verbose_name = _('Echarts Custom Scatter')
+    sort_series = False
+    is_timeseries = False
+
+    def query_obj(self):
+        d = super(EchartsCustomScatterViz, self).query_obj()
         fd = self.form_data
-        return {
-            'x_axis': fd['x_axis'],
-            'indicators': fd['echarts_indicators'],
-            'indicators_2': fd['y_axis_right'],
-            'echarts_select': fd['echarts_select'],
-            'echarts_groupby': fd['echarts_groupby'],
-            'groupby_aggregate': fd['echarts_groupby_aggregate'],
-            'legend_type': fd['echarts_legend_type'],
-            'legend_icon': fd['echarts_legend_icon'],
-            'legend_item_gap': fd['echarts_legend_item_gap'],
-            'legend_item_width': fd['echarts_legend_item_width'],
-            'legend_item_height': fd['echarts_legend_item_height'],
-            'legend_top': fd['echarts_legend_top'],
-            'legend_bottom': fd['echarts_legend_bottom'],
-            'legend_left': fd['echarts_legend_left'],
-            'legend_right': fd['echarts_legend_right'],
-            'grid_width': fd['echarts_grid_width'],
-            'grid_height': fd['echarts_grid_height'],
-            'grid_background_color': fd['echarts_grid_background_color'],
-            'grid_border_color': fd['echarts_grid_border_color'],
-            'grid_border_width': fd['echarts_grid_border_width'],
-            'grid_top': fd['echarts_grid_top'],
-            'grid_bottom': fd['echarts_grid_bottom'],
-            'grid_left': fd['echarts_grid_left'],
-            'grid_right': fd['echarts_grid_right'],
-            'grid_contain_label': fd['echarts_grid_contain_label'],
-            'x_axis_name': fd['echarts_x_axis_name'],
-            'x_axis_name_rotate': fd['echarts_x_axis_name_rotate'],
-            'x_axis_name_location': fd['echarts_x_axis_name_location'],
-            'x_axis_name_gap': fd['echarts_x_axis_name_gap'],
-            'x_axis_inverse': fd['echarts_x_axis_inverse'],
-            'x_axis_label_rotate': fd['echarts_x_axis_label_rotate'],
-            'x_axis_data_format': fd['echarts_x_axis_data_format'],
-            'y_axis_name': fd['echarts_y_axis_name'],
-            'y_axis_name_rotate': fd['echarts_y_axis_name_rotate'],
-            'y_axis_name_location': fd['echarts_y_axis_name_location'],
-            'y_axis_name_gap': fd['echarts_y_axis_name_gap'],
-            'y_axis_inverse': fd['echarts_y_axis_inverse'],
-            'y_axis_label_rotate': fd['echarts_y_axis_label_rotate'],
-            'y_axis_2_name': fd['echarts_y_axis_2_name'],
-            'y_axis_2_name_rotate': fd['echarts_y_axis_2_name_rotate'],
-            'y_axis_2_name_location': fd['echarts_y_axis_2_name_location'],
-            'y_axis_2_name_gap': fd['echarts_y_axis_2_name_gap'],
-            'y_axis_2_inverse': fd['echarts_y_axis_2_inverse'],
-            'y_axis_2_label_rotate': fd['echarts_y_axis_2_label_rotate'],
-            'tooltip_show': fd['echarts_tooltip_show'],
-            'tooltip_formatter': fd['echarts_tooltip_formatter'],
-            'tooltip_background_color': fd['echarts_tooltip_background_color'],
-            'tooltip_border_color': fd['echarts_tooltip_border_color'],
-            'tooltip_border_width': fd['echarts_tooltip_border_width'],
-            'tooltip_padding_top': fd['echarts_tooltip_padding_top'],
-            'tooltip_padding_bottom': fd['echarts_tooltip_padding_bottom'],
-            'tooltip_padding_left': fd['echarts_tooltip_padding_left'],
-            'tooltip_padding_right': fd['echarts_tooltip_padding_right'],
-            'data_view': fd['echarts_data_view'],
-            'save_as_image': fd['echarts_save_as_image'],
-            'series_symbol': fd['echarts_series_symbol'],
-            'series_symbol_size_width': fd['echarts_series_symbol_size_width'],
-            'series_symbol_size_height': fd['echarts_series_symbol_size_height'],
-            'series_symbol_rotate': fd['echarts_series_symbol_rotate'],
-            'series_stack': fd['echarts_series_stack'],
-            'series_step': fd['echarts_series_step'],
-            'series_line_style_width': fd['echarts_series_line_style_width'],
-            'series_line_style_type': fd['echarts_series_line_style_type'],
-            'series_area_style_opacity': fd['echarts_series_area_style_opacity'],
-            'series_smooth': fd['echarts_series_smooth'],
-            'series_2_symbol': fd['echarts_series_2_symbol'],
-            'series_2_symbol_size_width': fd['echarts_series_2_symbol_size_width'],
-            'series_2_symbol_size_height': fd['echarts_series_2_symbol_size_height'],
-            'series_2_symbol_rotate': fd['echarts_series_2_symbol_rotate'],
-            'series_2_stack': fd['echarts_series_2_stack'],
-            'series_2_step': fd['echarts_series_2_step'],
-            'series_2_line_style_width': fd['echarts_series_2_line_style_width'],
-            'series_2_line_style_type': fd['echarts_series_2_line_style_type'],
-            'series_2_area_style_opacity': fd['echarts_series_2_area_style_opacity'],
-            'series_2_smooth': fd['echarts_series_2_smooth'],
-            'background_color': fd['echarts_background_color'],
-            'data': df.to_dict(orient='records'),
-        }
+
+        if not fd.get('x_axis'):
+            raise Exception('请选择 X 轴～')
+        if not fd.get('echarts_indicator'):
+            raise Exception('请选择 Y 轴～')
+        if fd.get('echarts_groupby') and not fd.get('echarts_groupby_aggregate'):
+            raise Exception('请选择分组的聚合方法～')
+
+        d['columns'] = [fd.get('x_axis')] + [fd.get('echarts_indicator')] + [fd.get('echarts_name')]
+        if fd.get('echarts_select') and fd.get('echarts_select') not in d['columns']:
+            d['columns'].append(fd.get('echarts_select'))
+        if fd.get('echarts_groupby') and fd.get('echarts_groupby') not in d['columns']:
+            d['columns'].append(fd.get('echarts_groupby'))
+        return d
 
 
 class EchartsFunnelViz(BaseViz):
@@ -990,19 +828,6 @@ class EchartsHeatmapCartesianViz(BaseViz):
             d['columns'].append(fd.get('echarts_select'))
         return d
 
-    def get_data(self, df):
-        fd = self.form_data
-        return {
-            'x_axis': fd['x_axis'],
-            'y_axis_left': fd['y_axis_left'],
-            'echarts_indicator': fd['echarts_indicator'],
-            'echarts_select': fd['echarts_select'],
-            'rotate': fd['echarts_rotate'],
-            'format_time': fd['echarts_checkbox'],
-            'save_as_image': fd['echarts_save_as_image'],
-            'data': df.to_dict(orient='records'),
-        }
-
 
 class EchartsHydrographViz(BaseViz):
 
@@ -1042,24 +867,6 @@ class EchartsLineMixedViz(BaseViz):
         if fd.get('echarts_select') and fd.get('echarts_select') not in d['columns']:
             d['columns'].append(fd.get('echarts_select'))
         return d
-
-    def get_data(self, df):
-        fd = self.form_data
-        return {
-            'echarts_select': fd['echarts_select'],
-            'type': fd['echarts_mixed_type'],
-            'rotate': fd['echarts_rotate'],
-            'formate_day': fd['echarts_checkbox'],
-            'x_axis': fd['x_axis'],
-            'y_axis_left': fd['y_axis_left'],
-            'y_axis_right': fd['y_axis_right'],
-            'x_axis_label': fd['x_axis_label'],
-            'y_axis_left_label': fd['y_axis_left_label'],
-            'y_axis_right_label': fd['y_axis_right_label'],
-            'data_view': fd['echarts_data_view'],
-            'save_as_image': fd['echarts_save_as_image'],
-            'data': df.to_dict(orient='records'),
-        }
 
 
 class EchartsScatterBubbleViz(BaseViz):

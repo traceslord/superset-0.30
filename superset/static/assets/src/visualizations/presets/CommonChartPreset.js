@@ -14,6 +14,7 @@ import EchartsCumulativeFlowChartPlugin from '../EchartsCumulativeFlow/EchartsCu
 import EchartsCustomBarChartPlugin from '../EchartsCustomBar/EchartsCustomBarChartPlugin';
 import EchartsCustomGraphicChartPlugin from '../EchartsCustomGraphic/EchartsCustomGraphicChartPlugin';
 import EchartsCustomLineChartPlugin from '../EchartsCustomLine/EchartsCustomLineChartPlugin';
+import EchartsCustomScatterChartPlugin from '../EchartsCustomScatter/EchartsCustomScatterChartPlugin';
 import EchartsFunnelChartPlugin from '../EchartsFunnel/EchartsFunnelChartPlugin';
 import EchartsGanttTimeChartPlugin from '../EchartsGanttTime/EchartsGanttTimeChartPlugin';
 import EchartsHeatmapCartesianChartPlugin from '../EchartsHeatmapCartesian/EchartsHeatmapCartesianChartPlugin';
@@ -49,6 +50,7 @@ export default class CommonChartPreset extends Preset {
         new EchartsCustomBarChartPlugin().configure({ key: 'echarts_custom_bar' }),
         new EchartsCustomGraphicChartPlugin().configure({ key: 'echarts_custom_graphic' }),
         new EchartsCustomLineChartPlugin().configure({ key: 'echarts_custom_line' }),
+        new EchartsCustomScatterChartPlugin().configure({ key: 'echarts_custom_scatter' }),
         new EchartsFunnelChartPlugin().configure({ key: 'echarts_funnel' }),
         new EchartsGanttTimeChartPlugin().configure({ key: 'echarts_gantt_time' }),
         new EchartsHeatmapCartesianChartPlugin().configure({ key: 'echarts_heatmap_cartesian' }),

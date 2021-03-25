@@ -23,7 +23,7 @@ const aggregateMethod = (aggregate, arr) => {
   }
 };
 
-export const groupby = (arr, gId, aggregate, xId, sId) => {
+export const groupby = (arr, gId, aggregate, id1, id2) => {
   const gIdList = [];
   arr.forEach((data) => {
     if (gIdList.indexOf(data[gId]) === -1) {
@@ -38,7 +38,7 @@ export const groupby = (arr, gId, aggregate, xId, sId) => {
 
   const aggregateList = [];
   Object.keys(arr[0]).forEach((data) => {
-    if (data !== gId && data !== xId && data !== sId) aggregateList.push(data);
+    if (data !== gId && data !== id1 && data !== id2) aggregateList.push(data);
   });
 
   groupbyList.forEach((data) => {

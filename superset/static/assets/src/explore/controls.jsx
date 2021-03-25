@@ -340,8 +340,8 @@ export const controls = {
   echarts_radius: {
     type: 'TextControl',
     label: '半径系数（半径：Y 轴 / X 轴 * 系数）',
-    freeForm: true,
-    default: '1',
+    default: 1,
+    isInt: true,
     description: '气泡半径尺寸的系数',
   },
 
@@ -577,8 +577,8 @@ export const controls = {
   echarts_grid_border_width: {
     type: 'TextControl',
     label: '网格边框线宽',
-    freeForm: true,
-    default: '1',
+    default: 1,
+    isInt: true,
   },
 
   echarts_grid_top: {
@@ -1191,6 +1191,16 @@ export const controls = {
     default: 'SUM',
     choices: formatSelectOptions(['AVG', 'COUNT', 'COUNT_DISTINCT', 'MAX', 'MIN', 'SUM']),
     clearable: false,
+  },
+
+  echarts_sort: {
+    type: 'SelectControl',
+    label: '排序',
+    default: null,
+    description: '设置后根据此字段进行升序',
+    mapStateToProps: state => ({
+      choices: (state.datasource) ? state.datasource.all_cols : [],
+    }),
   },
 
   datasource: {

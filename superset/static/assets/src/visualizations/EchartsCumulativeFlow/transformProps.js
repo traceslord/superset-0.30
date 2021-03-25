@@ -4,6 +4,7 @@ export default function transformProps(chartProps) {
     width,
     height,
     data: payload.data,
+    config: payload.form_data,
     theme: payload.form_data.echarts_theme,
   };
 }

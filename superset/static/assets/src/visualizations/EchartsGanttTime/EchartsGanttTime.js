@@ -162,11 +162,11 @@ function echartsGanttTimeVis(element, props) {
         itemStyle: {
           normal: {
             color: '#cbdff6',
-            barBorderColor: '#f0f2f5',
+            barBorderColor: '#fff',
           },
           emphasis: {
             color: '#cbdff6',
-            barBorderColor: '#f0f2f5',
+            barBorderColor: '#fff',
           },
         },
         barWidth: 15,
@@ -190,11 +190,11 @@ function echartsGanttTimeVis(element, props) {
         itemStyle: {
           normal: {
             color: '#1890ff',
-            barBorderColor: '#f0f2f5',
+            barBorderColor: '#fff',
           },
           emphasis: {
             color: '#1890ff',
-            barBorderColor: '#f0f2f5',
+            barBorderColor: '#fff',
           },
         },
         barWidth: 15,
@@ -208,12 +208,12 @@ function echartsGanttTimeVis(element, props) {
         stack: 'time',
         itemStyle: {
           normal: {
-            color: '#f0f2f5',
-            barBorderColor: '#f0f2f5',
+            color: '#fff',
+            barBorderColor: '#fff',
           },
           emphasis: {
-            color: '#f0f2f5',
-            barBorderColor: '#f0f2f5',
+            color: '#fff',
+            barBorderColor: '#fff',
           },
         },
         barWidth: 15,

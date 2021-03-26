@@ -1,4 +1,4 @@
-import { t } from '@superset-ui/translation';
+import { formatDate } from '../../utils/dates';
 
 export default {
   controlPanelSections: [
@@ -6,21 +6,20 @@ export default {
       label: '配置选项',
       expanded: true,
       controlSetRows: [
-        ['x_axis'],
         ['echarts_indicator'],
-        ['echarts_name'],
+        ['echarts_start_time'],
+        ['echarts_end_time'],
+        ['x_axis'],
         ['echarts_select'],
         ['echarts_groupby', 'echarts_groupby_aggregate'],
+        ['echarts_sort'],
         ['adhoc_filters'],
         ['echarts_background_color'],
       ],
     },
     {
-      label: '散点图配置',
-      controlSetRows: [
-        ['echarts_radius'],
-        ['echarts_regression_type'],
-      ],
+      label: '甘特图配置',
+      controlSetRows: [],
     },
     {
       label: '网格组件',
@@ -72,37 +71,41 @@ export default {
         ['echarts_save_as_image'],
       ],
     },
-    {
-      label: t('Theme'),
-      controlSetRows: [
-        ['echarts_theme'],
-      ],
-    },
   ],
   controlOverrides: {
     echarts_indicator: {
       label: 'Y 轴',
       description: 'Y 轴要显示的列',
     },
+    x_axis: {
+      label: '当前进度',
+      description: '计划当前的进度',
+    },
     echarts_grid_top: {
-      default: '70',
+      default: '60',
     },
     echarts_grid_bottom: {
-      default: '50',
+      default: '3%',
     },
     echarts_grid_left: {
       default: '3%',
     },
     echarts_grid_right: {
-      default: '8%',
-    },
-    echarts_grid_border_width: {
-      default: 0,
+      default: '4%',
     },
     echarts_tooltip_formatter: {
       default: `params => {
-  if (params.seriesType !== 'scatter') return '';
-  return params.value[2] + '：<br />故事点：' + params.value[1] + '<br />工时：' + params.value[0] + ' 小时';
+  const formatNumber = (num) => {
+    const n = num.toString();
+    return n[1] ? n : '0' + n;
+  };
+  const formateDay = ${formatDate.formateDay};
+  const progress = ((params[1].value - params[2].value) / (params[0].value - params[2].value)) * 100;
+  let res = params[0].name + '：<br />';
+  res += '计划开始时间：' + formateDay(params[2].value) + '<br />';
+  res += '计划结束时间：' + formateDay(params[0].value) + '<br />';
+  res += params[1].seriesName + '：' + progress;
+  return res;
 };`,
     },
   },

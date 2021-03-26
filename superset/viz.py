@@ -675,6 +675,38 @@ class EchartsCustomBarViz(BaseViz):
         return d
 
 
+class EchartsCustomGanttViz(BaseViz):
+
+    viz_type = 'echarts_custom_gantt'
+    verbose_name = _('Echarts Custom Gantt')
+    sort_series = False
+    is_timeseries = False
+
+    def query_obj(self):
+        d = super(EchartsCustomGanttViz, self).query_obj()
+        fd = self.form_data
+
+        if not fd.get('echarts_indicator'):
+            raise Exception('请选配 Y 轴要显示的列～')
+        if not fd.get('echarts_start_time'):
+            raise Exception('请选配计划开始时间～')
+        if not fd.get('echarts_end_time'):
+            raise Exception('请选配计划结束时间～')
+        if not fd.get('x_axis'):
+            raise Exception('请选配计划当前进度～')
+        if fd.get('echarts_groupby') and not fd.get('echarts_groupby_aggregate'):
+            raise Exception('请选择分组的聚合方法～')
+
+        d['columns'] = [fd.get('echarts_indicator')] + [fd.get('echarts_start_time')] + [fd.get('echarts_end_time')] + [fd.get('x_axis')]
+        if fd.get('echarts_select') and fd.get('echarts_select') not in d['columns']:
+            d['columns'].append(fd.get('echarts_select'))
+        if fd.get('echarts_groupby') and fd.get('echarts_groupby') not in d['columns']:
+            d['columns'].append(fd.get('echarts_groupby'))
+        if fd.get('echarts_sort') and fd.get('echarts_sort') not in d['columns']:
+            d['columns'].append(fd.get('echarts_sort'))
+        return d
+
+
 class EchartsCustomGraphicViz(BaseViz):
 
     viz_type = 'echarts_custom_graphic'

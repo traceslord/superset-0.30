@@ -1160,6 +1160,27 @@ export const controls = {
     isInt: true,
   },
 
+  echarts_gantt_progress: {
+    type: 'ColorPickerControl',
+    label: '进度色',
+    default: { r: 24, g: 144, b: 255, a: 1 },
+    description: '计划进度的颜色',
+  },
+
+  echarts_gantt_period: {
+    type: 'ColorPickerControl',
+    label: '周期色',
+    default: { r: 203, g: 223, b: 246, a: 1 },
+    description: '计划周期的颜色',
+  },
+
+  echarts_gantt_hidden: {
+    type: 'ColorPickerControl',
+    label: '隐藏色',
+    default: { r: 255, g: 255, b: 255, a: 1 },
+    description: '应与底层背景色保持一致',
+  },
+
   echarts_background_color: {
     type: 'ColorPickerControl',
     label: '背景色',

@@ -20,7 +20,9 @@ export default {
     },
     {
       label: '甘特图配置',
-      controlSetRows: [],
+      controlSetRows: [
+        ['echarts_gantt_progress', 'echarts_gantt_period', 'echarts_gantt_hidden'],
+      ],
     },
     {
       label: '网格组件',

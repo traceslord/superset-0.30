@@ -163,12 +163,12 @@ function drawChart(chart, propsConfig, teamData, teamIndex) {
         stack: 'time',
         itemStyle: {
           normal: {
-            color: '#cbdff6',
-            barBorderColor: '#fff',
+            color: formatColor(propsConfig.echarts_gantt_period),
+            barBorderColor: formatColor(propsConfig.echarts_gantt_hidden),
           },
           emphasis: {
-            color: '#cbdff6',
-            barBorderColor: '#fff',
+            color: formatColor(propsConfig.echarts_gantt_period),
+            barBorderColor: formatColor(propsConfig.echarts_gantt_hidden),
           },
         },
         barWidth: 15,
@@ -191,12 +191,12 @@ function drawChart(chart, propsConfig, teamData, teamIndex) {
         stack: 'time',
         itemStyle: {
           normal: {
-            color: '#1890ff',
-            barBorderColor: '#fff',
+            color: formatColor(propsConfig.echarts_gantt_progress),
+            barBorderColor: formatColor(propsConfig.echarts_gantt_hidden),
           },
           emphasis: {
-            color: '#1890ff',
-            barBorderColor: '#fff',
+            color: formatColor(propsConfig.echarts_gantt_progress),
+            barBorderColor: formatColor(propsConfig.echarts_gantt_hidden),
           },
         },
         barWidth: 15,
@@ -210,12 +210,12 @@ function drawChart(chart, propsConfig, teamData, teamIndex) {
         stack: 'time',
         itemStyle: {
           normal: {
-            color: '#fff',
-            barBorderColor: '#fff',
+            color: formatColor(propsConfig.echarts_gantt_hidden),
+            barBorderColor: formatColor(propsConfig.echarts_gantt_hidden),
           },
           emphasis: {
-            color: '#fff',
-            barBorderColor: '#fff',
+            color: formatColor(propsConfig.echarts_gantt_hidden),
+            barBorderColor: formatColor(propsConfig.echarts_gantt_hidden),
           },
         },
         barWidth: 15,

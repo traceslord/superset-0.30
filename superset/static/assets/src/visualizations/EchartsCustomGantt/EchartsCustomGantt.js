@@ -31,6 +31,13 @@ function drawChart(chart, propsConfig, teamData, teamIndex) {
     ((data.endTime - data.startTime) * data.progress) / 100 +
     data.startTime
   ));
+  const otherData = chartData.map((item) => {
+    const obj = {};
+    propsConfig.echarts_indicators.forEach((data) => {
+      obj[data] = item[data];
+    });
+    return obj;
+  });
   chart.setOption({
     grid: {
       show: true,
@@ -215,6 +222,11 @@ function drawChart(chart, propsConfig, teamData, teamIndex) {
         zlevel: -1,
         z: 3,
         data: planData.map(item => item.startTime),
+      },
+      {
+        type: 'bar',
+        name: '其他指标',
+        data: otherData,
       },
     ],
     backgroundColor: formatColor(propsConfig.echarts_background_color),

@@ -10,6 +10,7 @@ export default {
         ['echarts_start_time'],
         ['echarts_end_time'],
         ['x_axis'],
+        ['echarts_indicators'],
         ['echarts_select'],
         ['echarts_groupby', 'echarts_groupby_aggregate'],
         ['echarts_sort'],
@@ -81,6 +82,10 @@ export default {
       label: '当前进度',
       description: '计划当前的进度',
     },
+    echarts_indicators: {
+      label: '其他指标',
+      description: '提示框要显示的其他指标',
+    },
     echarts_grid_top: {
       default: '60',
     },
@@ -101,10 +106,14 @@ export default {
   };
   const formateDay = ${formatDate.formateDay};
   const progress = ((params[1].value - params[2].value) / (params[0].value - params[2].value)) * 100;
+  const otherData = Object.keys(params[3].data).map((data, index) => {
+    return data + '：' + Object.values(params[3].data)[index] + '<br />';
+  }).join("");
   let res = params[0].name + '：<br />';
   res += '计划开始时间：' + formateDay(params[2].value) + '<br />';
   res += '计划结束时间：' + formateDay(params[0].value) + '<br />';
-  res += params[1].seriesName + '：' + progress;
+  res += params[1].seriesName + '：' + progress + '<br />';
+  res += otherData;
   return res;
 };`,
     },

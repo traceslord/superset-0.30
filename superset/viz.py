@@ -697,7 +697,7 @@ class EchartsCustomGanttViz(BaseViz):
         if fd.get('echarts_groupby') and not fd.get('echarts_groupby_aggregate'):
             raise Exception('请选择分组的聚合方法～')
 
-        d['columns'] = [fd.get('echarts_indicator')] + [fd.get('echarts_start_time')] + [fd.get('echarts_end_time')] + [fd.get('x_axis')]
+        d['columns'] = [fd.get('echarts_indicator')] + [fd.get('echarts_start_time')] + [fd.get('echarts_end_time')] + [fd.get('x_axis')] + fd.get('echarts_indicators')
         if fd.get('echarts_select') and fd.get('echarts_select') not in d['columns']:
             d['columns'].append(fd.get('echarts_select'))
         if fd.get('echarts_groupby') and fd.get('echarts_groupby') not in d['columns']:

@@ -79,6 +79,16 @@ function echartsBarStacked2Vis(element, props) {
       axisPointer: {
         type: 'shadow',
       },
+      formatter: (params) => {
+        let sum = 0;
+        let res = params[0].name + '：<br />';
+        res += params.map((data) => {
+          sum += data.value;
+          return data.seriesName + '：' + data.value + '<br />';
+        }).join('');
+        res += '总数：' + sum;
+        return res;
+      },
     },
     toolbox: {
       feature: {

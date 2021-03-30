@@ -110,7 +110,7 @@ export default {
   const progress = ((params[1].value - params[2].value) / (params[0].value - params[2].value)) * 100;
   const otherData = Object.keys(params[3].data).map((data, index) => {
     return data + '：' + Object.values(params[3].data)[index] + '<br />';
-  }).join("");
+  }).join('');
   let res = params[0].name + '：<br />';
   res += '计划开始时间：' + formateDay(params[2].value) + '<br />';
   res += '计划结束时间：' + formateDay(params[0].value) + '<br />';

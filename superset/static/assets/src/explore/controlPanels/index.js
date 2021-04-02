@@ -23,6 +23,7 @@ import EchartsBarDataset from './EchartsBarDataset';
 import EchartsBarPlusminus from './EchartsBarPlusminus';
 import EchartsBarStacked from './EchartsBarStacked';
 import EchartsBarStacked2 from './EchartsBarStacked2';
+import EchartsBoxplot from './EchartsBoxplot';
 import EchartsCumulativeFlow from './EchartsCumulativeFlow';
 import EchartsCustomBar from './EchartsCustomBar';
 import EchartsCustomGantt from './EchartsCustomGantt';
@@ -89,6 +90,7 @@ export const controlPanelConfigs = {
   echarts_bar_plusminus: EchartsBarPlusminus,
   echarts_bar_stacked: EchartsBarStacked,
   echarts_bar_stacked_2: EchartsBarStacked2,
+  echarts_boxplot: EchartsBoxplot,
   echarts_cumulative_flow: EchartsCumulativeFlow,
   echarts_custom_bar: EchartsCustomBar,
   echarts_custom_gantt: EchartsCustomGantt,

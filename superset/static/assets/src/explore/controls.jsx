@@ -456,6 +456,13 @@ export const controls = {
     default: '',
   },
 
+  echarts_data_zoom: {
+    type: 'CheckboxControl',
+    label: '数据区域缩放',
+    description: '目前只支持直角坐标系的缩放',
+    default: false,
+  },
+
   echarts_data_view: {
     type: 'CheckboxControl',
     label: '数据视图',
@@ -1047,6 +1054,20 @@ export const controls = {
     description: '同一系列的柱间距离，默认为类目间距的 20%，可设固定值',
   },
 
+  echarts_series_box_min_width: {
+    type: 'TextControl',
+    label: 'box 的最小宽度',
+    default: '7',
+    description: '可以是绝对值例如 7 或者百分数例如 40%，百分比的意思是，最大可能宽度（bandWidth）的百分之多少',
+  },
+
+  echarts_series_box_max_width: {
+    type: 'TextControl',
+    label: 'box 的最大宽度',
+    default: '50',
+    description: '可以是绝对值例如 50 或者百分数例如 90%，百分比的意思是，最大可能宽度（bandWidth）的百分之多少',
+  },
+
   echarts_hydrograph_shape: {
     type: 'SelectControl',
     label: '形状',
@@ -1179,6 +1200,51 @@ export const controls = {
     label: '隐藏色',
     default: { r: 255, g: 255, b: 255, a: 1 },
     description: '应与底层背景色保持一致',
+  },
+
+  echarts_boxplot_min: {
+    type: 'SelectControl',
+    label: 'min',
+    default: null,
+    mapStateToProps: state => ({
+      choices: (state.datasource) ? state.datasource.all_cols : [],
+    }),
+  },
+
+  echarts_boxplot_q1: {
+    type: 'SelectControl',
+    label: 'q1',
+    default: null,
+    mapStateToProps: state => ({
+      choices: (state.datasource) ? state.datasource.all_cols : [],
+    }),
+  },
+
+  echarts_boxplot_q2: {
+    type: 'SelectControl',
+    label: 'median',
+    default: null,
+    mapStateToProps: state => ({
+      choices: (state.datasource) ? state.datasource.all_cols : [],
+    }),
+  },
+
+  echarts_boxplot_q3: {
+    type: 'SelectControl',
+    label: 'q3',
+    default: null,
+    mapStateToProps: state => ({
+      choices: (state.datasource) ? state.datasource.all_cols : [],
+    }),
+  },
+
+  echarts_boxplot_max: {
+    type: 'SelectControl',
+    label: 'max',
+    default: null,
+    mapStateToProps: state => ({
+      choices: (state.datasource) ? state.datasource.all_cols : [],
+    }),
   },
 
   echarts_background_color: {

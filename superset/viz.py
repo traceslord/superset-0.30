@@ -625,6 +625,42 @@ class EchartsBarStacked2Viz(BaseViz):
         }
 
 
+class EchartsBoxplotViz(BaseViz):
+
+    viz_type = 'echarts_boxplot'
+    verbose_name = _('Echarts Boxplot')
+    sort_series = False
+    is_timeseries = False
+
+    def query_obj(self):
+        d = super(EchartsBoxplotViz, self).query_obj()
+        fd = self.form_data
+
+        if not fd.get('x_axis'):
+            raise Exception('请选择 X 轴～')
+        if not fd.get('echarts_boxplot_min'):
+            raise Exception('请选择量值 min～')
+        if not fd.get('echarts_boxplot_q1'):
+            raise Exception('请选择量值 q1～')
+        if not fd.get('echarts_boxplot_q2'):
+            raise Exception('请选择量值 q2～')
+        if not fd.get('echarts_boxplot_q3'):
+            raise Exception('请选择量值 q3～')
+        if not fd.get('echarts_boxplot_max'):
+            raise Exception('请选择量值 max～')
+        if fd.get('echarts_groupby') and not fd.get('echarts_groupby_aggregate'):
+            raise Exception('请选择分组的聚合方法～')
+
+        d['columns'] = [fd.get('x_axis')] + [fd.get('echarts_boxplot_min')] + [fd.get('echarts_boxplot_q1')] + [fd.get('echarts_boxplot_q2')] + [fd.get('echarts_boxplot_q3')] + [fd.get('echarts_boxplot_max')]
+        if fd.get('echarts_select') and fd.get('echarts_select') not in d['columns']:
+            d['columns'].append(fd.get('echarts_select'))
+        if fd.get('echarts_groupby') and fd.get('echarts_groupby') not in d['columns']:
+            d['columns'].append(fd.get('echarts_groupby'))
+        if fd.get('echarts_sort') and fd.get('echarts_sort') not in d['columns']:
+            d['columns'].append(fd.get('echarts_sort'))
+        return d
+
+
 class EchartsCumulativeFlowViz(BaseViz):
 
     viz_type = 'echarts_cumulative_flow'

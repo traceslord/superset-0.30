@@ -43,6 +43,7 @@ export const groupby = (arr, gId, aggregate, id1, id2) => {
 
   groupbyList.forEach((data) => {
     aggregateList.forEach((item) => {
+      // eslint-disable-next-line no-param-reassign
       data[item] = aggregateMethod(aggregate, data.list.map(d => d[item]));
     });
   });

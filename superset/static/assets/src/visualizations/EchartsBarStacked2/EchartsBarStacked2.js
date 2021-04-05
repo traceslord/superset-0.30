@@ -41,7 +41,9 @@ function echartsBarStacked2Vis(element, props) {
   const propsData = splitData.index.map(item => ({ name: item, sum: 0 }));
   splitData.columns.forEach((item, itemIndex) => {
     propsData.forEach((subitem, subIndex) => {
+      // eslint-disable-next-line no-param-reassign
       subitem[item[1]] = splitData.data[subIndex][itemIndex];
+      // eslint-disable-next-line no-param-reassign
       subitem.sum += subitem[item[1]];
     });
   });

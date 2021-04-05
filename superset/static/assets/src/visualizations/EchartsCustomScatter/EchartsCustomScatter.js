@@ -135,6 +135,7 @@ function drawChart(chart, propsConfig, teamData, teamIndex) {
       axisPointer: {
         type: 'cross',
       },
+      // eslint-disable-next-line no-new-func
       formatter: new Function('return ' + propsConfig.echarts_tooltip_formatter)(),
       backgroundColor: formatColor(propsConfig.echarts_tooltip_background_color),
       borderColor: formatColor(propsConfig.echarts_tooltip_border_color),

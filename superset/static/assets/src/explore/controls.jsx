@@ -773,6 +773,14 @@ export const controls = {
     description: '旋转的角度从 -90 度到 90 度',
   },
 
+  echarts_y_axis_label_formatter: {
+    type: 'TextAreaControl',
+    language: 'javascript',
+    label: '刻度标签内容格式器',
+    description: '支持字符串模板和回调函数两种形式',
+    default: '',
+  },
+
   echarts_y_axis_data_format: {
     type: 'CheckboxControl',
     label: '是否格式化刻度标签的时间格式',
@@ -1179,6 +1187,14 @@ export const controls = {
     label: '边框宽',
     default: 5,
     isInt: true,
+  },
+
+  echarts_gantt_plan_period: {
+    type: 'TextControl',
+    label: '计划周期（天）',
+    default: 100,
+    isInt: true,
+    description: '如果没有计划结束时间，则其值为计划开始时间 + 计划周期',
   },
 
   echarts_gantt_progress: {

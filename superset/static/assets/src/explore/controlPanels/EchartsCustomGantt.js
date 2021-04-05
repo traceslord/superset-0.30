@@ -1,5 +1,3 @@
-import { formatDate } from '../../utils/dates';
-
 export default {
   controlPanelSections: [
     {
@@ -8,7 +6,7 @@ export default {
       controlSetRows: [
         ['echarts_indicator'],
         ['echarts_start_time'],
-        ['echarts_end_time'],
+        ['echarts_end_time', 'echarts_gantt_plan_period'],
         ['x_axis'],
         ['echarts_indicators'],
         ['echarts_select'],
@@ -49,6 +47,7 @@ export default {
         ['echarts_y_axis_name'],
         ['echarts_y_axis_name_location', 'echarts_y_axis_name_gap'],
         ['echarts_y_axis_name_rotate', 'echarts_y_axis_label_rotate'],
+        ['echarts_y_axis_label_formatter'],
         ['echarts_y_axis_inverse'],
       ],
     },
@@ -100,13 +99,40 @@ export default {
     echarts_grid_right: {
       default: '4%',
     },
+    echarts_y_axis_label_formatter: {
+      default: `value => {
+  let newValue = '';
+  const num = 15;
+  const row = Math.ceil(value.length / num);
+  if (value.length > num) {
+    for (let i = 0; i < row; i++) {
+      let valueSlice = '';
+      if (i === row - 1) {
+        valueSlice = value.slice(num * i, value.length);
+      } else {
+        valueSlice = value.slice(num * i, num * (i + 1)) + '\\n';
+      }
+      newValue += valueSlice;
+    }
+  } else {
+    newValue = value;
+  }
+  return newValue;
+};`,
+    },
     echarts_tooltip_formatter: {
       default: `params => {
   const formatNumber = (num) => {
     const n = num.toString();
     return n[1] ? n : '0' + n;
   };
-  const formateDay = ${formatDate.formateDay};
+  const formateDay = (timestamp) => {
+    const date = new Date(timestamp);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    return [year, month, day].map(formatNumber).join('-');
+  };
   const progress = ((params[1].value - params[2].value) / (params[0].value - params[2].value)) * 100;
   const otherData = Object.keys(params[3].data).map((data, index) => {
     return data + '：' + Object.values(params[3].data)[index] + '<br />';

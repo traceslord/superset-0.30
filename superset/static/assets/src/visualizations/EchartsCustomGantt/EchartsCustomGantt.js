@@ -23,7 +23,9 @@ function drawChart(chart, propsConfig, teamData, teamIndex) {
     return {
       yAxis: item[propsConfig.echarts_indicator],
       startTime,
-      endTime: item[propsConfig.echarts_end_time] ? endTime : startTime + 86400000 * 100,
+      endTime: item[propsConfig.echarts_end_time]
+        ? endTime
+        : startTime + 86400000 * propsConfig.echarts_gantt_plan_period,
       progress: item[propsConfig.x_axis],
     };
   });
@@ -100,25 +102,8 @@ function drawChart(chart, propsConfig, teamData, teamIndex) {
       axisLabel: {
         interval: 0,
         rotate: propsConfig.echarts_y_axis_label_rotate,
-        formatter: (value) => {
-          let newValue = '';
-          const num = 15;
-          const row = Math.ceil(value.length / num);
-          if (value.length > num) {
-            for (let i = 0; i < row; i++) {
-              let valueSlice = '';
-              if (i === row - 1) {
-                valueSlice = value.slice(num * i, value.length);
-              } else {
-                valueSlice = value.slice(num * i, num * (i + 1)) + '\n';
-              }
-              newValue += valueSlice;
-            }
-          } else {
-            newValue = value;
-          }
-          return newValue;
-        },
+        // eslint-disable-next-line no-new-func
+        formatter: new Function('return ' + propsConfig.echarts_y_axis_label_formatter)(),
         color: '#303133',
       },
       splitLine: {

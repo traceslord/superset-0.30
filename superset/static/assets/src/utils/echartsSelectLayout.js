@@ -40,6 +40,7 @@ import './echartsSelect.css';
 
 function echartsVis(element, props, drawChart) {
   const propsConfig = props.config || {};
+  const propsLabel = props.label || {};
   const teams = [];
   props.data.forEach((data) => {
     if (teams.indexOf(data[propsConfig.echarts_select]) === -1) {
@@ -96,7 +97,7 @@ function echartsVis(element, props, drawChart) {
     for (let i = 0; i < selectItemArr.length; i++) {
       selectItemArr[i].addEventListener('click', function (e) {
         const currentIndex = Number(e.target.dataset.index);
-        drawChart(chart, propsConfig, teamData, currentIndex);
+        drawChart(chart, teamData, currentIndex, propsConfig, propsLabel);
         echartsSelect.value = teams[currentIndex];
         const children = e.target.parentNode.children;
         for (let j = 0; j < children.length; j++) {
@@ -112,10 +113,10 @@ function echartsVis(element, props, drawChart) {
       }
     });
 
-    drawChart(chart, propsConfig, teamData, 0);
+    drawChart(chart, teamData, 0, propsConfig, propsLabel);
     echartsSelect.value = teams[0];
   } else {
-    drawChart(chart, propsConfig, teamData, 0);
+    drawChart(chart, teamData, 0, propsConfig, propsLabel);
   }
 }
 

@@ -1,19 +1,8 @@
-import echartsVis from '../../utils/echarts';
+import echartsVis from '../../utils/echartsSelectLayout';
 
-function formatName(name) {
-  switch (name) {
-    case 'estimated_value':
-      return '预估';
-    case 'completed_value':
-      return '实际';
-    default:
-      return name;
-  }
-}
-
-function drawChart(chart, propsConfig, teamData, teamIndex) {
+function drawChart(chart, teamData, teamIndex, propsConfig, propsLabel) {
   const chartData = teamData[teamIndex];
-  const indicatorName = propsConfig.echarts_indicators.map(data => formatName(data));
+  const indicatorName = propsConfig.echarts_indicators.map(data => propsLabel[data]);
   const indicatorValue = chartData.map(item => ([
     item[propsConfig.echarts_name],
   ].concat(propsConfig.echarts_indicators.map(data => (item[data])))));

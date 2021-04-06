@@ -1,13 +1,13 @@
-import echartsVis from '../../utils/echarts';
+import echartsVis from '../../utils/echartsSelectLayout';
 import { formatDate } from '../../utils/dates';
 
-function drawChart(chart, propsConfig, teamData, teamIndex) {
+function drawChart(chart, teamData, teamIndex, propsConfig, propsLabel) {
   const chartData = teamData[teamIndex];
   const series = propsConfig.echarts_indicators.map((item) => {
     if (propsConfig.echarts_graphic_type === '柱状图') {
       return {
         type: 'bar',
-        name: item,
+        name: propsLabel[item],
         stack: propsConfig.echarts_stack,
         barWidth: propsConfig.echarts_bar_width,
         data: chartData.map(data => data[item]),
@@ -15,7 +15,7 @@ function drawChart(chart, propsConfig, teamData, teamIndex) {
     }
       return {
         type: 'line',
-        name: item,
+        name: propsLabel[item],
         stack: propsConfig.echarts_stack,
         areaStyle: {
           opacity: propsConfig.echarts_area ? 0.6 : 0,
@@ -42,7 +42,7 @@ function drawChart(chart, propsConfig, teamData, teamIndex) {
       },
     },
     legend: {
-      data: propsConfig.echarts_indicators,
+      data: propsConfig.echarts_indicators.map(data => propsLabel[data]),
       icon: 'roundRect',
       itemGap: 25,
       itemWidth: 15,

@@ -1,9 +1,9 @@
-import echartsVis from '../../utils/echarts';
+import echartsVis from '../../utils/echartsSelectLayout';
 import { formatDate } from '../../utils/dates';
 import { formatColor } from '../../utils/colors';
 import { groupby } from '../../utils/groupby';
 
-function drawChart(chart, propsConfig, teamData, teamIndex) {
+function drawChart(chart, teamData, teamIndex, propsConfig, propsLabel) {
   let chartData = teamData[teamIndex];
   if (propsConfig.echarts_groupby) {
     chartData = groupby(
@@ -40,6 +40,7 @@ function drawChart(chart, propsConfig, teamData, teamIndex) {
     });
     return obj;
   });
+  const labels = chartData.map(() => propsLabel);
   chart.setOption({
     grid: {
       show: true,
@@ -213,6 +214,11 @@ function drawChart(chart, propsConfig, teamData, teamIndex) {
         type: 'bar',
         name: '其他指标',
         data: otherData,
+      },
+      {
+        type: 'bar',
+        name: '指标标签',
+        data: labels,
       },
     ],
     backgroundColor: formatColor(propsConfig.echarts_background_color),

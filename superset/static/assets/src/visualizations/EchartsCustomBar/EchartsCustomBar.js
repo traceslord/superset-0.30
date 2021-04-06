@@ -1,9 +1,9 @@
-import echartsVis from '../../utils/echarts';
+import echartsVis from '../../utils/echartsSelectLayout';
 import { formatDate } from '../../utils/dates';
 import { formatColor } from '../../utils/colors';
 import { groupby } from '../../utils/groupby';
 
-function drawChart(chart, propsConfig, teamData, teamIndex) {
+function drawChart(chart, teamData, teamIndex, propsConfig, propsLabel) {
   let chartData = teamData[teamIndex];
   if (propsConfig.echarts_groupby) {
     chartData = groupby(
@@ -19,7 +19,7 @@ function drawChart(chart, propsConfig, teamData, teamIndex) {
   }
   const series = propsConfig.echarts_indicators.map(item => ({
     type: 'bar',
-    name: item,
+    name: propsLabel[item],
     stack: propsConfig.echarts_series_stack,
     barWidth: propsConfig.echarts_series_bar_width,
     barMaxWidth: propsConfig.echarts_series_bar_max_width,
@@ -32,7 +32,7 @@ function drawChart(chart, propsConfig, teamData, teamIndex) {
   chart.setOption({
     legend: {
       type: propsConfig.echarts_legend_type === '普通图例' ? 'plain' : 'scroll',
-      data: propsConfig.echarts_indicators,
+      data: propsConfig.echarts_indicators.map(data => propsLabel[data]),
       icon: propsConfig.echarts_legend_icon,
       itemGap: propsConfig.echarts_legend_item_gap,
       itemWidth: propsConfig.echarts_legend_item_width,

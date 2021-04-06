@@ -1,7 +1,7 @@
-import echartsVis from '../../utils/echarts';
+import echartsVis from '../../utils/echartsSelectLayout';
 import { formatDate } from '../../utils/dates';
 
-function drawChart(chart, propsConfig, teamData, teamIndex) {
+function drawChart(chart, teamData, teamIndex, propsConfig) {
   const rotate = propsConfig.echarts_rotate;
   const chartData = teamData[teamIndex];
   let xAxisData = [];

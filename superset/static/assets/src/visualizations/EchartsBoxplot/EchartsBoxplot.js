@@ -1,9 +1,9 @@
-import echartsVis from '../../utils/echarts';
+import echartsVis from '../../utils/echartsSelectLayout';
 import { formatDate } from '../../utils/dates';
 import { formatColor } from '../../utils/colors';
 import { groupby } from '../../utils/groupby';
 
-function drawChart(chart, propsConfig, teamData, teamIndex) {
+function drawChart(chart, teamData, teamIndex, propsConfig) {
   let chartData = teamData[teamIndex];
   if (propsConfig.echarts_groupby) {
     chartData = groupby(

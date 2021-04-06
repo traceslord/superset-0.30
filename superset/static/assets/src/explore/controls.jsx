@@ -1306,6 +1306,14 @@ export const controls = {
     }),
   },
 
+  echarts_order: {
+    type: 'SelectControl',
+    label: '排序顺序',
+    default: '升序',
+    choices: formatSelectOptions(['升序', '降序']),
+    clearable: false,
+  },
+
   datasource: {
     type: 'DatasourceControl',
     label: t('Datasource'),

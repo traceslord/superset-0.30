@@ -15,7 +15,11 @@ function drawChart(chart, teamData, teamIndex, propsConfig, propsLabel) {
     );
   }
   if (propsConfig.echarts_sort) {
-    chartData.sort((a, b) => a[propsConfig.echarts_sort] - b[propsConfig.echarts_sort]);
+    if (propsConfig.echarts_order === '升序') {
+      chartData.sort((a, b) => a[propsConfig.echarts_sort] - b[propsConfig.echarts_sort]);
+    } else {
+      chartData.sort((a, b) => b[propsConfig.echarts_sort] - a[propsConfig.echarts_sort]);
+    }
   }
   const legendData = propsConfig.echarts_indicators.concat(propsConfig.y_axis_right);
   const series = propsConfig.echarts_indicators.map(item => ({

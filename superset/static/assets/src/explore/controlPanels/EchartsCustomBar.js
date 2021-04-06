@@ -10,7 +10,7 @@ export default {
         ['echarts_indicators'],
         ['echarts_select'],
         ['echarts_groupby', 'echarts_groupby_aggregate'],
-        ['echarts_sort'],
+        ['echarts_sort', 'echarts_order'],
         ['adhoc_filters'],
         ['echarts_background_color'],
       ],

@@ -40,11 +40,84 @@ function drawChart(chart, teamData, teamIndex, propsConfig, propsLabel) {
   const otherData = chartData.map((item) => {
     const obj = {};
     propsConfig.echarts_indicators.forEach((data) => {
-      obj[data] = item[data];
+      obj[propsLabel[data]] = item[data];
     });
     return obj;
   });
-  const labels = chartData.map(() => propsLabel);
+  const series = [
+    {
+      type: 'bar',
+      name: '计划开始时间',
+      stack: 'time',
+      itemStyle: {
+        normal: {
+          color: formatColor(propsConfig.echarts_gantt_hidden),
+          barBorderColor: formatColor(propsConfig.echarts_gantt_hidden),
+        },
+        emphasis: {
+          color: formatColor(propsConfig.echarts_gantt_hidden),
+          barBorderColor: formatColor(propsConfig.echarts_gantt_hidden),
+        },
+      },
+      barWidth: 15,
+      zlevel: -1,
+      z: 4,
+      data: planData.map(item => item.startTime),
+    },
+    {
+      type: 'bar',
+      name: '计划结束时间',
+      stack: 'time',
+      itemStyle: {
+        normal: {
+          color: formatColor(propsConfig.echarts_gantt_period),
+          barBorderColor: formatColor(propsConfig.echarts_gantt_hidden),
+        },
+        emphasis: {
+          color: formatColor(propsConfig.echarts_gantt_period),
+          barBorderColor: formatColor(propsConfig.echarts_gantt_hidden),
+        },
+      },
+      barWidth: 15,
+      zlevel: -1,
+      z: 2,
+      data: planData.map(item => item.endTime),
+      markLine: {
+        symbol: ['none', 'none'],
+        label: {
+          formatter: params => '今天：' + formatDate.formateDay(params.value),
+        },
+        lineStyle: {
+          color: '#909399',
+        },
+        data: [{ xAxis: new Date() }],
+      },
+    },
+    {
+      type: 'bar',
+      name: '当前进度',
+      stack: 'time',
+      itemStyle: {
+        normal: {
+          color: formatColor(propsConfig.echarts_gantt_progress),
+          barBorderColor: formatColor(propsConfig.echarts_gantt_hidden),
+        },
+        emphasis: {
+          color: formatColor(propsConfig.echarts_gantt_progress),
+          barBorderColor: formatColor(propsConfig.echarts_gantt_hidden),
+        },
+      },
+      barWidth: 15,
+      zlevel: -1,
+      z: 3,
+      data: currentProgress,
+    },
+    {
+      type: 'bar',
+      name: '其他指标',
+      data: otherData,
+    },
+  ];
   chart.setOption({
     grid: {
       show: true,
@@ -117,7 +190,13 @@ function drawChart(chart, teamData, teamIndex, propsConfig, propsLabel) {
           color: '#eaeaea',
         },
       },
-      data: planData.map(item => item.yAxis),
+      data: chartData.map((item) => {
+        let str = '';
+        Object.keys(item).forEach((data) => {
+          str += propsLabel[data] + '：' + item[data] + '|||';
+        });
+        return str;
+      }),
     },
     tooltip: {
       show: propsConfig.echarts_tooltip_show,
@@ -147,84 +226,7 @@ function drawChart(chart, teamData, teamIndex, propsConfig, propsLabel) {
         },
       },
     },
-    series: [
-      {
-        type: 'bar',
-        name: '计划周期',
-        stack: 'time',
-        itemStyle: {
-          normal: {
-            color: formatColor(propsConfig.echarts_gantt_period),
-            barBorderColor: formatColor(propsConfig.echarts_gantt_hidden),
-          },
-          emphasis: {
-            color: formatColor(propsConfig.echarts_gantt_period),
-            barBorderColor: formatColor(propsConfig.echarts_gantt_hidden),
-          },
-        },
-        barWidth: 15,
-        zlevel: -1,
-        data: planData.map(item => item.endTime),
-        markLine: {
-          symbol: ['none', 'none'],
-          label: {
-            formatter: params => '今天：' + formatDate.formateDay(params.value),
-          },
-          lineStyle: {
-            color: '#909399',
-          },
-          data: [{ xAxis: new Date() }],
-        },
-      },
-      {
-        type: 'bar',
-        name: '当前进度',
-        stack: 'time',
-        itemStyle: {
-          normal: {
-            color: formatColor(propsConfig.echarts_gantt_progress),
-            barBorderColor: formatColor(propsConfig.echarts_gantt_hidden),
-          },
-          emphasis: {
-            color: formatColor(propsConfig.echarts_gantt_progress),
-            barBorderColor: formatColor(propsConfig.echarts_gantt_hidden),
-          },
-        },
-        barWidth: 15,
-        zlevel: -1,
-        z: 2,
-        data: currentProgress,
-      },
-      {
-        type: 'bar',
-        name: '隐藏',
-        stack: 'time',
-        itemStyle: {
-          normal: {
-            color: formatColor(propsConfig.echarts_gantt_hidden),
-            barBorderColor: formatColor(propsConfig.echarts_gantt_hidden),
-          },
-          emphasis: {
-            color: formatColor(propsConfig.echarts_gantt_hidden),
-            barBorderColor: formatColor(propsConfig.echarts_gantt_hidden),
-          },
-        },
-        barWidth: 15,
-        zlevel: -1,
-        z: 3,
-        data: planData.map(item => item.startTime),
-      },
-      {
-        type: 'bar',
-        name: '其他指标',
-        data: otherData,
-      },
-      {
-        type: 'bar',
-        name: '指标标签',
-        data: labels,
-      },
-    ],
+    series,
     backgroundColor: formatColor(propsConfig.echarts_background_color),
   });
 }

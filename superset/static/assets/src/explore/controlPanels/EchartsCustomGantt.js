@@ -100,7 +100,9 @@ export default {
       default: '4%',
     },
     echarts_y_axis_label_formatter: {
-      default: `value => {
+      default: `str => {
+  const arr = str.split('|||');
+  let value = arr[0].split('：')[1];
   let newValue = '';
   const num = 15;
   const row = Math.ceil(value.length / num);
@@ -133,14 +135,14 @@ export default {
     const day = date.getDate();
     return [year, month, day].map(formatNumber).join('-');
   };
-  const progress = ((params[1].value - params[2].value) / (params[0].value - params[2].value)) * 100;
+  const progress = ((params[2].value - params[0].value) / (params[1].value - params[0].value)) * 100;
   const otherData = Object.keys(params[3].data).map((data, index) => {
-    return params[4].data[data] + '：' + Object.values(params[3].data)[index] + '<br />';
+    return data + '：' + Object.values(params[3].data)[index] + '<br />';
   }).join('');
-  let res = params[0].name + '：<br />';
-  res += '计划开始时间：' + formateDay(params[2].value) + '<br />';
-  res += '计划结束时间：' + formateDay(params[0].value) + '<br />';
-  res += params[1].seriesName + '：' + progress + '<br />';
+  let res = params[0].name.split('|||')[0].split('：')[1] + '：<br />';
+  res += '计划开始时间：' + formateDay(params[0].value) + '<br />';
+  res += '计划结束时间：' + formateDay(params[1].value) + '<br />';
+  res += params[2].seriesName + '：' + progress + '<br />';
   res += otherData;
   return res;
 };`,

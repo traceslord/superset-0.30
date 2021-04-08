@@ -191,9 +191,17 @@ function drawChart(chart, teamData, teamIndex, propsConfig, propsLabel) {
         },
       },
       data: chartData.map((item) => {
+        const obj = JSON.parse(JSON.stringify(item));
+        const startTime = obj[propsConfig.echarts_start_time];
+        const endTime = obj[propsConfig.echarts_end_time];
+        obj[propsConfig.echarts_start_time] = formatDate.formateDay(startTime);
+        obj[propsConfig.echarts_end_time] = endTime
+          ? formatDate.formateDay(endTime)
+          : formatDate.formateDay(startTime + 86400000 * propsConfig.echarts_gantt_plan_period);
+        obj[propsConfig.x_axis] = Math.round(obj[propsConfig.x_axis] * 100) / 100;
         let str = '';
-        Object.keys(item).forEach((data) => {
-          str += propsLabel[data] + '：' + item[data] + '|||';
+        Object.keys(obj).forEach((data) => {
+          str += propsLabel[data] + '：' + obj[data] + '|||';
         });
         return str;
       }),

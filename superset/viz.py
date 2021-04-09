@@ -743,28 +743,6 @@ class EchartsCustomGanttViz(BaseViz):
         return d
 
 
-class EchartsCustomGraphicViz(BaseViz):
-
-    viz_type = 'echarts_custom_graphic'
-    verbose_name = _('Echarts Custom Graphic')
-    sort_series = False
-    is_timeseries = False
-
-    def query_obj(self):
-        d = super(EchartsCustomGraphicViz, self).query_obj()
-        fd = self.form_data
-
-        if not fd.get('x_axis'):
-            raise Exception('请选择 X 轴～')
-        if not fd.get('echarts_indicators'):
-            raise Exception('请选择 Y 轴～')
-
-        d['columns'] = [fd.get('x_axis')] + fd.get('echarts_indicators')
-        if fd.get('echarts_select') and fd.get('echarts_select') not in d['columns']:
-            d['columns'].append(fd.get('echarts_select'))
-        return d
-
-
 class EchartsCustomLineViz(BaseViz):
 
     viz_type = 'echarts_custom_line'
@@ -780,6 +758,32 @@ class EchartsCustomLineViz(BaseViz):
             raise Exception('请选择 X 轴～')
         if not fd.get('echarts_indicators'):
             raise Exception('请选择 Y 轴～')
+        if fd.get('echarts_groupby') and not fd.get('echarts_groupby_aggregate'):
+            raise Exception('请选择分组的聚合方法～')
+
+        d['columns'] = [fd.get('x_axis')] + fd.get('echarts_indicators') + fd.get('y_axis_right')
+        if fd.get('echarts_select') and fd.get('echarts_select') not in d['columns']:
+            d['columns'].append(fd.get('echarts_select'))
+        if fd.get('echarts_groupby') and fd.get('echarts_groupby') not in d['columns']:
+            d['columns'].append(fd.get('echarts_groupby'))
+        if fd.get('echarts_sort') and fd.get('echarts_sort') not in d['columns']:
+            d['columns'].append(fd.get('echarts_sort'))
+        return d
+
+
+class EchartsCustomLineBarViz(BaseViz):
+
+    viz_type = 'echarts_custom_line_bar'
+    verbose_name = _('Echarts Custom Line Bar')
+    sort_series = False
+    is_timeseries = False
+
+    def query_obj(self):
+        d = super(EchartsCustomLineBarViz, self).query_obj()
+        fd = self.form_data
+
+        if not fd.get('x_axis'):
+            raise Exception('请选择 X 轴～')
         if fd.get('echarts_groupby') and not fd.get('echarts_groupby_aggregate'):
             raise Exception('请选择分组的聚合方法～')
 

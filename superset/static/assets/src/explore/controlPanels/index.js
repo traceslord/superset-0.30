@@ -27,8 +27,8 @@ import EchartsBoxplot from './EchartsBoxplot';
 import EchartsCumulativeFlow from './EchartsCumulativeFlow';
 import EchartsCustomBar from './EchartsCustomBar';
 import EchartsCustomGantt from './EchartsCustomGantt';
-import EchartsCustomGraphic from './EchartsCustomGraphic';
 import EchartsCustomLine from './EchartsCustomLine';
+import EchartsCustomLineBar from './EchartsCustomLineBar';
 import EchartsCustomScatter from './EchartsCustomScatter';
 import EchartsFunnel from './EchartsFunnel';
 import EchartsGanttTime from './EchartsGanttTime';
@@ -94,8 +94,8 @@ export const controlPanelConfigs = {
   echarts_cumulative_flow: EchartsCumulativeFlow,
   echarts_custom_bar: EchartsCustomBar,
   echarts_custom_gantt: EchartsCustomGantt,
-  echarts_custom_graphic: EchartsCustomGraphic,
   echarts_custom_line: EchartsCustomLine,
+  echarts_custom_line_bar: EchartsCustomLineBar,
   echarts_custom_scatter: EchartsCustomScatter,
   echarts_funnel: EchartsFunnel,
   echarts_gantt_time: EchartsGanttTime,

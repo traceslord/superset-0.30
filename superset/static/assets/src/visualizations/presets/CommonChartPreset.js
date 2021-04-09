@@ -14,8 +14,8 @@ import EchartsBoxplotChartPlugin from '../EchartsBoxplot/EchartsBoxplotChartPlug
 import EchartsCumulativeFlowChartPlugin from '../EchartsCumulativeFlow/EchartsCumulativeFlowChartPlugin';
 import EchartsCustomBarChartPlugin from '../EchartsCustomBar/EchartsCustomBarChartPlugin';
 import EchartsCustomGanttChartPlugin from '../EchartsCustomGantt/EchartsCustomGanttChartPlugin';
-import EchartsCustomGraphicChartPlugin from '../EchartsCustomGraphic/EchartsCustomGraphicChartPlugin';
 import EchartsCustomLineChartPlugin from '../EchartsCustomLine/EchartsCustomLineChartPlugin';
+import EchartsCustomLineBarChartPlugin from '../EchartsCustomLineBar/EchartsCustomLineBarChartPlugin';
 import EchartsCustomScatterChartPlugin from '../EchartsCustomScatter/EchartsCustomScatterChartPlugin';
 import EchartsFunnelChartPlugin from '../EchartsFunnel/EchartsFunnelChartPlugin';
 import EchartsGanttTimeChartPlugin from '../EchartsGanttTime/EchartsGanttTimeChartPlugin';
@@ -52,8 +52,8 @@ export default class CommonChartPreset extends Preset {
         new EchartsCumulativeFlowChartPlugin().configure({ key: 'echarts_cumulative_flow' }),
         new EchartsCustomBarChartPlugin().configure({ key: 'echarts_custom_bar' }),
         new EchartsCustomGanttChartPlugin().configure({ key: 'echarts_custom_gantt' }),
-        new EchartsCustomGraphicChartPlugin().configure({ key: 'echarts_custom_graphic' }),
         new EchartsCustomLineChartPlugin().configure({ key: 'echarts_custom_line' }),
+        new EchartsCustomLineBarChartPlugin().configure({ key: 'echarts_custom_line_bar' }),
         new EchartsCustomScatterChartPlugin().configure({ key: 'echarts_custom_scatter' }),
         new EchartsFunnelChartPlugin().configure({ key: 'echarts_funnel' }),
         new EchartsGanttTimeChartPlugin().configure({ key: 'echarts_gantt_time' }),

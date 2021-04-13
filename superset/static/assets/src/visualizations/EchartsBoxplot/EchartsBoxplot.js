@@ -2,6 +2,7 @@ import echartsVis from '../../utils/echartsSelectLayout';
 import { formatDate } from '../../utils/dates';
 import { formatColor } from '../../utils/colors';
 import { groupby } from '../../utils/groupby';
+import { sort } from '../../utils/sort';
 
 function drawChart(chart, teamData, teamIndex, propsConfig) {
   let chartData = teamData[teamIndex];
@@ -15,11 +16,7 @@ function drawChart(chart, teamData, teamIndex, propsConfig) {
     );
   }
   if (propsConfig.echarts_sort) {
-    if (propsConfig.echarts_order === '升序') {
-      chartData.sort((a, b) => a[propsConfig.echarts_sort] - b[propsConfig.echarts_sort]);
-    } else {
-      chartData.sort((a, b) => b[propsConfig.echarts_sort] - a[propsConfig.echarts_sort]);
-    }
+    sort(chartData, propsConfig.echarts_sort, propsConfig.echarts_order);
   }
   const series = [
     {

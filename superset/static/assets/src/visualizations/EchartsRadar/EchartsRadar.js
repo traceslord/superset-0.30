@@ -1,6 +1,7 @@
 import echartsVis from '../../utils/echartsSelectLayout';
 import { formatColor } from '../../utils/colors';
 import { groupby } from '../../utils/groupby';
+import { sort } from '../../utils/sort';
 
 function drawChart(chart, teamData, teamIndex, propsConfig, propsLabel) {
   let chartData = teamData[teamIndex];
@@ -14,11 +15,7 @@ function drawChart(chart, teamData, teamIndex, propsConfig, propsLabel) {
     );
   }
   if (propsConfig.echarts_sort) {
-    if (propsConfig.echarts_order === '升序') {
-      chartData.sort((a, b) => a[propsConfig.echarts_sort] - b[propsConfig.echarts_sort]);
-    } else {
-      chartData.sort((a, b) => b[propsConfig.echarts_sort] - a[propsConfig.echarts_sort]);
-    }
+    sort(chartData, propsConfig.echarts_sort, propsConfig.echarts_order);
   }
   const radarIndicatorMax = propsConfig.y_axis_right.map(data => chartData[0][data]);
   const legendData = [];

@@ -877,6 +877,24 @@ class EchartsGanttTimeViz(BaseViz):
         }
 
 
+class EchartsGaugeViz(BaseViz):
+
+    viz_type = 'echarts_gauge'
+    verbose_name = _('Echarts Gauge')
+    sort_series = False
+    is_timeseries = False
+
+    def query_obj(self):
+        d = super(EchartsGaugeViz, self).query_obj()
+        fd = self.form_data
+
+        if not fd.get('metric'):
+            raise Exception('请选配要显示的指标～')
+
+        d['metrics'] = [fd.get('metric')]
+        return d
+
+
 class EchartsHeatmapCartesianViz(BaseViz):
 
     viz_type = 'echarts_heatmap_cartesian'

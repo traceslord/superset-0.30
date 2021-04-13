@@ -855,6 +855,13 @@ export const controls = {
     isInt: true,
   },
 
+  echarts_series_name: {
+    type: 'TextControl',
+    label: '系列名称',
+    default: '',
+    description: '用于提示框的显示',
+  },
+
   echarts_series_symbol: {
     type: 'SelectControl',
     label: '标记的图形',
@@ -1276,6 +1283,58 @@ export const controls = {
     mapStateToProps: state => ({
       choices: (state.datasource) ? state.datasource.all_cols : [],
     }),
+  },
+
+  echarts_gauge_radius: {
+    type: 'TextControl',
+    label: '半径',
+    default: '75%',
+    description: '仪表盘半径，可以是相对于容器高宽中较小的一项的一半的百分比，也可以是绝对的数值',
+  },
+
+  echarts_gauge_start_angle: {
+    type: 'TextControl',
+    label: '起始角度',
+    default: 225,
+    isInt: true,
+    description: '仪表盘起始角度（圆心 正右手侧为0度，正上方为90度，正左手侧为180度）',
+  },
+
+  echarts_gauge_end_angle: {
+    type: 'TextControl',
+    label: '结束角度',
+    default: -45,
+    isInt: true,
+    description: '仪表盘结束角度',
+  },
+
+  echarts_gauge_clockwise: {
+    type: 'CheckboxControl',
+    label: '顺时针增长',
+    default: true,
+    description: '仪表盘刻度是否是顺时针增长',
+  },
+
+  echarts_gauge_min: {
+    type: 'TextControl',
+    label: '最小的数据值',
+    default: 0,
+    isInt: true,
+  },
+
+  echarts_gauge_max: {
+    type: 'TextControl',
+    label: '最大的数据值',
+    default: 100,
+    isInt: true,
+  },
+
+  echarts_gauge_split_number: {
+    type: 'TextControl',
+    label: '分割段数',
+    default: 10,
+    isInt: true,
+    description: '仪表盘刻度的分割段数',
   },
 
   echarts_background_color: {

@@ -19,6 +19,7 @@ import EchartsCustomLineBarChartPlugin from '../EchartsCustomLineBar/EchartsCust
 import EchartsCustomScatterChartPlugin from '../EchartsCustomScatter/EchartsCustomScatterChartPlugin';
 import EchartsFunnelChartPlugin from '../EchartsFunnel/EchartsFunnelChartPlugin';
 import EchartsGanttTimeChartPlugin from '../EchartsGanttTime/EchartsGanttTimeChartPlugin';
+import EchartsGaugeChartPlugin from '../EchartsGauge/EchartsGaugeChartPlugin';
 import EchartsHeatmapCartesianChartPlugin from '../EchartsHeatmapCartesian/EchartsHeatmapCartesianChartPlugin';
 import EchartsHydrographChartPlugin from '../EchartsHydrograph/EchartsHydrographChartPlugin';
 import EchartsLineMixedChartPlugin from '../EchartsLineMixed/EchartsLineMixedChartPlugin';
@@ -58,6 +59,7 @@ export default class CommonChartPreset extends Preset {
         new EchartsCustomScatterChartPlugin().configure({ key: 'echarts_custom_scatter' }),
         new EchartsFunnelChartPlugin().configure({ key: 'echarts_funnel' }),
         new EchartsGanttTimeChartPlugin().configure({ key: 'echarts_gantt_time' }),
+        new EchartsGaugeChartPlugin().configure({ key: 'echarts_gauge' }),
         new EchartsHeatmapCartesianChartPlugin().configure({ key: 'echarts_heatmap_cartesian' }),
         new EchartsHydrographChartPlugin().configure({ key: 'echarts_hydrograph' }),
         new EchartsLineMixedChartPlugin().configure({ key: 'echarts_line_mixed' }),

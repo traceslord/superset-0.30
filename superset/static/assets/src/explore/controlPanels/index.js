@@ -32,6 +32,7 @@ import EchartsCustomLineBar from './EchartsCustomLineBar';
 import EchartsCustomScatter from './EchartsCustomScatter';
 import EchartsFunnel from './EchartsFunnel';
 import EchartsGanttTime from './EchartsGanttTime';
+import EchartsGauge from './EchartsGauge';
 import EchartsHeatmapCartesian from './EchartsHeatmapCartesian';
 import EchartsHydrograph from './EchartsHydrograph';
 import EchartsLineMixed from './EchartsLineMixed';
@@ -100,6 +101,7 @@ export const controlPanelConfigs = {
   echarts_custom_scatter: EchartsCustomScatter,
   echarts_funnel: EchartsFunnel,
   echarts_gantt_time: EchartsGanttTime,
+  echarts_gauge: EchartsGauge,
   echarts_heatmap_cartesian: EchartsHeatmapCartesian,
   echarts_hydrograph: EchartsHydrograph,
   echarts_line_mixed: EchartsLineMixed,

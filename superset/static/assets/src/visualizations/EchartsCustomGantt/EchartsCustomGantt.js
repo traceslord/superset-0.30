@@ -82,12 +82,16 @@ function drawChart(chart, teamData, teamIndex, propsConfig, propsLabel) {
       markLine: {
         symbol: ['none', 'none'],
         label: {
-          formatter: params => '今天：' + formatDate.formateDay(params.value),
+          formatter: params => propsConfig.echarts_series_mark_line_formatter_prefix +
+          formatDate.formateDay(params.value),
         },
         lineStyle: {
           color: '#909399',
         },
-        data: [{ xAxis: new Date() }],
+        data: [{
+          xAxis: new Date().getTime() +
+          propsConfig.echarts_series_mark_line_formatter_num * 86400000,
+        }],
       },
     },
     {

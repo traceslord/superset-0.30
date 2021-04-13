@@ -1076,6 +1076,21 @@ export const controls = {
     description: '可以是绝对值例如 50 或者百分数例如 90%，百分比的意思是，最大可能宽度（bandWidth）的百分之多少',
   },
 
+  echarts_series_mark_line_formatter_prefix: {
+    type: 'TextControl',
+    label: '图表标线内容前缀',
+    default: '今天：',
+    description: '图表标线内容的前缀',
+  },
+
+  echarts_series_mark_line_formatter_num: {
+    type: 'TextControl',
+    label: '图表标线日期差值（天）',
+    default: 0,
+    isInt: true,
+    description: '图表标线内容的日期差值（展示日期 = 当地日期 - 差值）',
+  },
+
   echarts_hydrograph_shape: {
     type: 'SelectControl',
     label: '形状',

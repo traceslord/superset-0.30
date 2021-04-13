@@ -35,6 +35,7 @@ import EchartsGanttTime from './EchartsGanttTime';
 import EchartsHeatmapCartesian from './EchartsHeatmapCartesian';
 import EchartsHydrograph from './EchartsHydrograph';
 import EchartsLineMixed from './EchartsLineMixed';
+import EchartsRadar from './EchartsRadar';
 import EchartsScatterBubble from './EchartsScatterBubble';
 import EventFlow from './EventFlow';
 import FilterBox from './FilterBox';
@@ -102,6 +103,7 @@ export const controlPanelConfigs = {
   echarts_heatmap_cartesian: EchartsHeatmapCartesian,
   echarts_hydrograph: EchartsHydrograph,
   echarts_line_mixed: EchartsLineMixed,
+  echarts_radar: EchartsRadar,
   echarts_scatter_bubble: EchartsScatterBubble,
   event_flow: EventFlow,
   filter_box: FilterBox,

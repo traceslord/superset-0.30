@@ -941,6 +941,36 @@ class EchartsLineMixedViz(BaseViz):
         return d
 
 
+class EchartsRadarViz(BaseViz):
+
+    viz_type = 'echarts_radar'
+    verbose_name = _('Echarts Radar')
+    sort_series = False
+    is_timeseries = False
+
+    def query_obj(self):
+        d = super(EchartsRadarViz, self).query_obj()
+        fd = self.form_data
+
+        if not fd.get('x_axis'):
+            raise Exception('请选择分类～')
+        if not fd.get('echarts_indicators'):
+            raise Exception('请选配要显示的指标～')
+        if not fd.get('y_axis_right'):
+            raise Exception('请选配指标的最大值～')
+        if fd.get('echarts_groupby') and not fd.get('echarts_groupby_aggregate'):
+            raise Exception('请选择分组的聚合方法～')
+
+        d['columns'] = [fd.get('x_axis')] + fd.get('echarts_indicators') + fd.get('y_axis_right')
+        if fd.get('echarts_select') and fd.get('echarts_select') not in d['columns']:
+            d['columns'].append(fd.get('echarts_select'))
+        if fd.get('echarts_groupby') and fd.get('echarts_groupby') not in d['columns']:
+            d['columns'].append(fd.get('echarts_groupby'))
+        if fd.get('echarts_sort') and fd.get('echarts_sort') not in d['columns']:
+            d['columns'].append(fd.get('echarts_sort'))
+        return d
+
+
 class EchartsScatterBubbleViz(BaseViz):
 
     viz_type = 'echarts_scatter_bubble'

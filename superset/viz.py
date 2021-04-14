@@ -827,19 +827,26 @@ class EchartsFunnelViz(BaseViz):
 
     viz_type = 'echarts_funnel'
     verbose_name = _('Echarts Funnel')
+    sort_series = False
     is_timeseries = False
 
-    def get_data(self, df):
+    def query_obj(self):
+        d = super(EchartsFunnelViz, self).query_obj()
         fd = self.form_data
-        metric = self.metric_labels[0]
-        df = df.pivot_table(
-            index=self.groupby,
-            values=[metric]
-        )
-        df.sort_values(by=metric, ascending=False, inplace=True)
-        df = df.reset_index()
-        df.columns = ['name', 'value']
-        return df.to_dict(orient='records')
+
+        if not fd.get('echarts_indicators'):
+            raise Exception('请选配要显示的指标～')
+        if fd.get('echarts_groupby') and not fd.get('echarts_groupby_aggregate'):
+            raise Exception('请选择分组的聚合方法～')
+
+        d['columns'] = fd.get('echarts_indicators')
+        if fd.get('echarts_select') and fd.get('echarts_select') not in d['columns']:
+            d['columns'].append(fd.get('echarts_select'))
+        if fd.get('echarts_groupby') and fd.get('echarts_groupby') not in d['columns']:
+            d['columns'].append(fd.get('echarts_groupby'))
+        if fd.get('echarts_sort') and fd.get('echarts_sort') not in d['columns']:
+            d['columns'].append(fd.get('echarts_sort'))
+        return d
 
 
 class EchartsGanttTimeViz(BaseViz):

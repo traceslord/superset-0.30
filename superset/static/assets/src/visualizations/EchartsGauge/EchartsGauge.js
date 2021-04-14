@@ -18,8 +18,8 @@ function echartsGaugeVis(element, props) {
       endAngle: props.config.echarts_gauge_end_angle,
       clockwise: props.config.echarts_gauge_clockwise,
       data: [props.data],
-      min: props.config.echarts_gauge_min,
-      max: props.config.echarts_gauge_max,
+      min: props.config.echarts_series_min,
+      max: props.config.echarts_series_max,
       splitNumber: props.config.echarts_gauge_split_number,
     }],
   });

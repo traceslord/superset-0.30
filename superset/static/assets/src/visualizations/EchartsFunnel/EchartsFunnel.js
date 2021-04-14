@@ -1,150 +1,91 @@
-import d3 from 'd3';
-import echarts from 'echarts';
+import echartsVis from '../../utils/echartsSelectLayout';
+import { formatColor } from '../../utils/colors';
+import { groupby } from '../../utils/groupby';
+import { sort } from '../../utils/sort';
 
-import 'echarts/theme/azul';
-import 'echarts/theme/bee-inspired';
-import 'echarts/theme/blue';
-import 'echarts/theme/caravan';
-import 'echarts/theme/carp';
-import 'echarts/theme/cool';
-import 'echarts/theme/dark';
-import 'echarts/theme/dark-blue';
-import 'echarts/theme/dark-bold';
-import 'echarts/theme/dark-digerati';
-import 'echarts/theme/dark-fresh-cut';
-import 'echarts/theme/dark-mushroom';
-import 'echarts/theme/eduardo';
-import 'echarts/theme/fresh-cut';
-import 'echarts/theme/fruit';
-import 'echarts/theme/forest';
-import 'echarts/theme/gray';
-import 'echarts/theme/green';
-import 'echarts/theme/helianthus';
-import 'echarts/theme/infographic';
-import 'echarts/theme/inspired';
-import 'echarts/theme/jazz';
-import 'echarts/theme/london';
-import 'echarts/theme/macarons';
-import 'echarts/theme/macarons2';
-import 'echarts/theme/mint';
-import 'echarts/theme/red';
-import 'echarts/theme/red-velvet';
-import 'echarts/theme/roma';
-import 'echarts/theme/royal';
-import 'echarts/theme/sakura';
-import 'echarts/theme/shine';
-import 'echarts/theme/tech-blue';
-import 'echarts/theme/vintage';
-
-function echartsFunnelVis(element, props) {
-  const div = d3.select(element);
-  const randomNumber = Math.round(Math.random() * 1000000000000000);
-  const html = `<div
-    id="echarts-funnel-${randomNumber}"
-    style="width: ${props.width}px; height: ${props.height}px"
-  ></div>`;
-  div.html(html);
-  const myChart = echarts.init(document.getElementById(`echarts-funnel-${randomNumber}`), props.theme);
-  const option = {
-    title: {
-      text: '',
-      subtext: '纯属虚构',
-      left: 'left',
-      top: 'bottom',
+function drawChart(chart, teamData, teamIndex, propsConfig, propsLabel) {
+  let chartData = teamData[teamIndex];
+  if (propsConfig.echarts_groupby) {
+    chartData = groupby(
+      chartData,
+      propsConfig.echarts_groupby,
+      propsConfig.echarts_groupby_aggregate,
+      propsConfig.echarts_select,
+    );
+  }
+  if (propsConfig.echarts_sort) {
+    sort(chartData, propsConfig.echarts_sort, propsConfig.echarts_order);
+  }
+  const seriesValues = propsConfig.echarts_indicators.map(data => chartData[0][data]);
+  const series = [{
+    type: 'funnel',
+    min: propsConfig.echarts_series_min,
+    max: propsConfig.echarts_series_max,
+    minSize: propsConfig.echarts_funnel_min_size,
+    maxSize: propsConfig.echarts_funnel_max_size,
+    orient: propsConfig.echarts_funnel_orient,
+    gap: propsConfig.echarts_funnel_gap,
+    funnelAlign: propsConfig.echarts_funnel_align,
+    top: propsConfig.echarts_funnel_top,
+    bottom: propsConfig.echarts_funnel_bottom,
+    left: propsConfig.echarts_funnel_left,
+    right: propsConfig.echarts_funnel_right,
+    width: propsConfig.echarts_funnel_width,
+    height: propsConfig.echarts_funnel_height,
+    label: {
+      show: propsConfig.echarts_funnel_label_show,
+      position: propsConfig.echarts_funnel_label_position,
+    },
+    data: propsConfig.echarts_indicators.map((data, index) => ({
+      name: propsLabel[data],
+      value: seriesValues[index],
+    })),
+  }];
+  if (propsConfig.echarts_series_name) series[0].name = propsConfig.echarts_series_name;
+  chart.setOption({
+    legend: {
+      type: propsConfig.echarts_legend_type === '普通图例' ? 'plain' : 'scroll',
+      data: propsConfig.echarts_indicators.map(data => propsLabel[data]),
+      icon: propsConfig.echarts_legend_icon,
+      itemGap: propsConfig.echarts_legend_item_gap,
+      itemWidth: propsConfig.echarts_legend_item_width,
+      itemHeight: propsConfig.echarts_legend_item_height,
+      top: propsConfig.echarts_legend_top,
+      bottom: propsConfig.echarts_legend_bottom,
+      left: propsConfig.echarts_legend_left,
+      right: propsConfig.echarts_legend_right,
     },
     tooltip: {
-      trigger: 'item',
-      formatter: '{a} <br/>{b} : {c}%',
+      show: propsConfig.echarts_tooltip_show,
+      // eslint-disable-next-line no-new-func
+      formatter: new Function('return ' + propsConfig.echarts_tooltip_formatter)(),
+      backgroundColor: formatColor(propsConfig.echarts_tooltip_background_color),
+      borderColor: formatColor(propsConfig.echarts_tooltip_border_color),
+      borderWidth: propsConfig.echarts_tooltip_border_width,
+      padding: [
+        propsConfig.echarts_tooltip_padding_top,
+        propsConfig.echarts_tooltip_padding_right,
+        propsConfig.echarts_tooltip_padding_bottom,
+        propsConfig.echarts_tooltip_padding_left,
+      ],
     },
     toolbox: {
-      show: true,
-      orient: 'vertical',
-      top: 'center',
       feature: {
-        dataView: { readOnly: false },
-        restore: {},
-        saveAsImage: {},
+        dataView: {
+          show: propsConfig.echarts_data_view,
+        },
+        saveAsImage: {
+          show: propsConfig.echarts_save_as_image,
+        },
       },
     },
-    legend: {
-      orient: 'vertical',
-      left: 'left',
-      data: [],
-    },
-    calculable: true,
-    series: [
-      {
-        name: '漏斗图',
-        type: 'funnel',
-        width: '40%',
-        height: '45%',
-        left: '5%',
-        top: '50%',
-        funnelAlign: 'right',
-        center: ['25%', '25%'],
-        data: [],
-      },
-      {
-        name: '金字塔',
-        type: 'funnel',
-        width: '40%',
-        height: '45%',
-        left: '5%',
-        top: '5%',
-        sort: 'ascending',
-        funnelAlign: 'right',
-        center: ['25%', '75%'],
-        data: [],
-      },
-      {
-        name: '漏斗图',
-        type: 'funnel',
-        width: '40%',
-        height: '45%',
-        left: '55%',
-        top: '5%',
-        funnelAlign: 'left',
-        center: ['75%', '25%'],
-        data: [],
-      },
-      {
-        name: '金字塔',
-        type: 'funnel',
-        width: '40%',
-        height: '45%',
-        left: '55%',
-        top: '50%',
-        sort: 'ascending',
-        funnelAlign: 'left',
-        center: ['75%', '75%'],
-        data: [],
-      },
-    ],
-  };
-  myChart.setOption(option);
-
-  const json = props.data;
-  const dataName = [];
-  let maxValue = 0;
-  const data = json;
-  data.forEach(function (item) {
-    dataName.push(item.name);
-    if (item.value > maxValue) {
-      maxValue = item.value;
-    }
+    series,
+    backgroundColor: formatColor(propsConfig.echarts_background_color),
   });
-  const tmpSeries = [];
-  for (let i = 1; i < 5; i++) {
-    tmpSeries.push({
-      data,
-    });
-  }
-  const option2 = {
-    legend: { data: dataName },
-    series: tmpSeries,
-  };
+}
 
-  myChart.setOption(option2);
+function echartsFunnelVis(element, props) {
+  echartsVis(element, props, drawChart);
 }
 
 export default echartsFunnelVis;

@@ -1098,6 +1098,20 @@ export const controls = {
     description: '图表标线内容的日期差值（展示日期 = 当地日期 - 差值）',
   },
 
+  echarts_series_min: {
+    type: 'TextControl',
+    label: '最小值',
+    default: 0,
+    isInt: true,
+  },
+
+  echarts_series_max: {
+    type: 'TextControl',
+    label: '最大值',
+    default: 100,
+    isInt: true,
+  },
+
   echarts_hydrograph_shape: {
     type: 'SelectControl',
     label: '形状',
@@ -1315,26 +1329,123 @@ export const controls = {
     description: '仪表盘刻度是否是顺时针增长',
   },
 
-  echarts_gauge_min: {
-    type: 'TextControl',
-    label: '最小的数据值',
-    default: 0,
-    isInt: true,
-  },
-
-  echarts_gauge_max: {
-    type: 'TextControl',
-    label: '最大的数据值',
-    default: 100,
-    isInt: true,
-  },
-
   echarts_gauge_split_number: {
     type: 'TextControl',
     label: '分割段数',
     default: 10,
     isInt: true,
     description: '仪表盘刻度的分割段数',
+  },
+
+  echarts_funnel_min_size: {
+    type: 'TextControl',
+    label: '最小值映射的宽度',
+    default: '0%',
+    description: '可以是绝对的像素大小，也可以是相对布局宽度的百分比（如果需要最小值的图形并不是尖端三角，可通过设置该属性实现）',
+  },
+
+  echarts_funnel_max_size: {
+    type: 'TextControl',
+    label: '最大值映射的宽度',
+    default: '100%',
+    description: '可以是绝对的像素大小，也可以是相对布局宽度的百分比',
+  },
+
+  echarts_funnel_orient: {
+    type: 'SelectControl',
+    label: '朝向',
+    default: 'vertical',
+    choices: formatSelectOptions(['vertical', 'horizontal']),
+    clearable: false,
+    description: '漏斗图朝向',
+  },
+
+  echarts_funnel_gap: {
+    type: 'TextControl',
+    label: '图形间距',
+    default: 0,
+    isInt: true,
+    description: '数据图形间距',
+  },
+
+  echarts_funnel_align: {
+    type: 'SelectControl',
+    label: '水平对齐',
+    default: 'center',
+    choices: formatSelectOptions(['left', 'center', 'right']),
+    clearable: false,
+    description: '水平方向对齐布局类型',
+  },
+
+  echarts_funnel_top: {
+    type: 'TextControl',
+    label: '上',
+    default: 60,
+    description: '漏斗图组件离容器上侧的距离',
+  },
+
+  echarts_funnel_bottom: {
+    type: 'TextControl',
+    label: '下',
+    default: 60,
+    description: '漏斗图组件离容器下侧的距离',
+  },
+
+  echarts_funnel_left: {
+    type: 'TextControl',
+    label: '左',
+    default: 80,
+    description: '漏斗图组件离容器左侧的距离',
+  },
+
+  echarts_funnel_right: {
+    type: 'TextControl',
+    label: '右',
+    default: 80,
+    description: '漏斗图组件离容器右侧的距离',
+  },
+
+  echarts_funnel_width: {
+    type: 'TextControl',
+    label: '宽度',
+    default: 'auto',
+    description: '漏斗图组件的宽度',
+  },
+
+  echarts_funnel_height: {
+    type: 'TextControl',
+    label: '高度',
+    default: 'auto',
+    description: '漏斗图组件的高度',
+  },
+
+  echarts_funnel_label_show: {
+    type: 'CheckboxControl',
+    label: '是否展示文本标签',
+    default: true,
+    description: '漏斗图图形上的文本标签，可用于说明图形的一些数据信息，比如值，名称等',
+  },
+
+  echarts_funnel_label_position: {
+    type: 'SelectControl',
+    label: '标签位置',
+    default: 'outside',
+    choices: formatSelectOptions([
+      'top',
+      'bottom',
+      'left',
+      'right',
+      'outside',
+      'inside',
+      'insideLeft',
+      'insideRight',
+      'leftTop',
+      'leftBottom',
+      'rightTop',
+      'rightBottom',
+    ]),
+    clearable: false,
+    description: '标签的位置（注：top 和 bottom 仅在朝向为 horizontal 时有效，left 和 right 仅在朝向为 vertical 时有效）',
   },
 
   echarts_background_color: {

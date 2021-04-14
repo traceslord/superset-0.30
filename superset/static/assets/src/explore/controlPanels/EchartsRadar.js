@@ -29,16 +29,6 @@ export default {
       ],
     },
     {
-      label: '网格组件',
-      controlSetRows: [
-        ['echarts_grid_width', 'echarts_grid_height'],
-        ['echarts_grid_top', 'echarts_grid_bottom', 'echarts_grid_left', 'echarts_grid_right'],
-        ['echarts_grid_border_width'],
-        ['echarts_grid_border_color', 'echarts_grid_background_color'],
-        ['echarts_grid_contain_label'],
-      ],
-    },
-    {
       label: '提示框组件',
       controlSetRows: [
         ['echarts_tooltip_show'],
@@ -90,9 +80,6 @@ export default {
     },
     echarts_legend_left: {
       default: 'center',
-    },
-    echarts_grid_border_width: {
-      default: 0,
     },
   },
 };

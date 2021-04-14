@@ -1,16 +1,10 @@
-import { t } from '@superset-ui/translation';
 import { ChartMetadata, ChartPlugin } from '@superset-ui/chart';
 import transformProps from './transformProps';
 import thumbnail from './images/thumbnail.png';
-import { ANNOTATION_TYPES } from '../../modules/AnnotationTypes';
 
 const metadata = new ChartMetadata({
-  name: t('Echarts Funnel'),
+  name: 'Echarts 漏斗图',
   description: '',
-  canBeAnnotationTypes: [
-    ANNOTATION_TYPES.EVENT,
-    ANNOTATION_TYPES.INTERVAL,
-  ],
   thumbnail,
 });
 

@@ -39,8 +39,8 @@ function drawChart(chart, teamData, teamIndex, propsConfig, propsLabel) {
       show: propsConfig.echarts_pie_label_show,
       position: propsConfig.echarts_pie_label_position,
     },
-    center: [propsConfig.echarts_pie_center_1, propsConfig.echarts_pie_center_2],
-    radius: [propsConfig.echarts_pie_radius_1, propsConfig.echarts_pie_radius_2],
+    center: [propsConfig.echarts_series_center_1, propsConfig.echarts_series_center_2],
+    radius: [propsConfig.echarts_series_radius_1, propsConfig.echarts_series_radius_2],
     data: propsConfig.echarts_indicators.map((data, index) => ({
       name: propsLabel[data],
       value: seriesValues[index],

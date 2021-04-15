@@ -30,8 +30,8 @@ function drawChart(chart, teamData, teamIndex, propsConfig, propsLabel) {
       data: data.map(subdata => propsConfig.echarts_indicators.map(item => subdata[item])),
     }));
   const radar = {
-    center: [propsConfig.echarts_radar_center_1, propsConfig.echarts_radar_center_2],
-    radius: [propsConfig.echarts_radar_radius_1, propsConfig.echarts_radar_radius_2],
+    center: [propsConfig.echarts_series_center_1, propsConfig.echarts_series_center_2],
+    radius: [propsConfig.echarts_series_radius_1, propsConfig.echarts_series_radius_2],
     startAngle: propsConfig.echarts_radar_start_angle,
     nameGap: propsConfig.echarts_radar_name_gap,
     splitNumber: propsConfig.echarts_radar_split_number,

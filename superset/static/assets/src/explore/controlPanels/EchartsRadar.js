@@ -28,8 +28,8 @@ export default {
     {
       label: '雷达图坐标系组件',
       controlSetRows: [
-        ['echarts_radar_center_1', 'echarts_radar_center_2'],
-        ['echarts_radar_radius_1', 'echarts_radar_radius_2'],
+        ['echarts_series_center_1', 'echarts_series_center_2'],
+        ['echarts_series_radius_1', 'echarts_series_radius_2'],
         ['echarts_radar_start_angle', 'echarts_radar_name_gap'],
         ['echarts_radar_split_number', 'echarts_radar_shape'],
         ['echarts_radar_split_line_show', 'echarts_radar_split_area_show'],

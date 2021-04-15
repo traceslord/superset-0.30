@@ -1161,6 +1161,34 @@ export const controls = {
     isInt: true,
   },
 
+  echarts_series_center_1: {
+    type: 'TextControl',
+    label: '圆心横坐标',
+    default: '50%',
+    description: '可设置成绝对的像素值或相对的百分比，设置成百分比时是相对于容器宽度',
+  },
+
+  echarts_series_center_2: {
+    type: 'TextControl',
+    label: '圆心纵坐标',
+    default: '50%',
+    description: '可设置成绝对的像素值或相对的百分比，设置成百分比时是相对于容器高度',
+  },
+
+  echarts_series_radius_1: {
+    type: 'TextControl',
+    label: '图形的内半径',
+    default: 0,
+    description: '可设置成绝对值或相对的百分比',
+  },
+
+  echarts_series_radius_2: {
+    type: 'TextControl',
+    label: '图形的外半径',
+    default: '75%',
+    description: '可设置成绝对值或相对的百分比',
+  },
+
   echarts_hydrograph_shape: {
     type: 'SelectControl',
     label: '形状',
@@ -1606,62 +1634,6 @@ export const controls = {
     choices: formatSelectOptions(['outside', 'inside', 'center']),
     clearable: false,
     description: 'outside —— 饼图扇区外侧，通过视觉引导线连到相应的扇区；inside —— 饼图扇区内部；center —— 在饼图中心位置。',
-  },
-
-  echarts_pie_center_1: {
-    type: 'TextControl',
-    label: '圆心横坐标',
-    default: '50%',
-    description: '可设置成绝对的像素值或相对的百分比，设置成百分比时是相对于容器宽度',
-  },
-
-  echarts_pie_center_2: {
-    type: 'TextControl',
-    label: '圆心纵坐标',
-    default: '50%',
-    description: '可设置成绝对的像素值或相对的百分比，设置成百分比时是相对于容器高度',
-  },
-
-  echarts_pie_radius_1: {
-    type: 'TextControl',
-    label: '饼图的内半径',
-    default: 0,
-    description: '可设置成绝对值或相对的百分比',
-  },
-
-  echarts_pie_radius_2: {
-    type: 'TextControl',
-    label: '饼图的外半径',
-    default: '75%',
-    description: '可设置成绝对值或相对的百分比',
-  },
-
-  echarts_radar_center_1: {
-    type: 'TextControl',
-    label: '圆心横坐标',
-    default: '50%',
-    description: '可设置成绝对的像素值或相对的百分比，设置成百分比时是相对于容器宽度',
-  },
-
-  echarts_radar_center_2: {
-    type: 'TextControl',
-    label: '圆心纵坐标',
-    default: '50%',
-    description: '可设置成绝对的像素值或相对的百分比，设置成百分比时是相对于容器高度',
-  },
-
-  echarts_radar_radius_1: {
-    type: 'TextControl',
-    label: '雷达图的内半径',
-    default: 0,
-    description: '可设置成绝对值或相对的百分比',
-  },
-
-  echarts_radar_radius_2: {
-    type: 'TextControl',
-    label: '雷达图的外半径',
-    default: '75%',
-    description: '可设置成绝对值或相对的百分比',
   },
 
   echarts_radar_start_angle: {

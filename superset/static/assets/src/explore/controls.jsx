@@ -862,6 +862,25 @@ export const controls = {
     description: '用于提示框的显示',
   },
 
+  echarts_series_legend_hover_link: {
+    type: 'CheckboxControl',
+    label: '是否启用图例 hover 时的联动高亮',
+    default: true,
+  },
+
+  echarts_series_hover_animation: {
+    type: 'CheckboxControl',
+    label: '是否开启 hover 的动画效果',
+    default: true,
+  },
+
+  echarts_series_hover_offset: {
+    type: 'TextControl',
+    label: '高亮扇区的偏移距离',
+    default: 10,
+    isInt: true,
+  },
+
   echarts_series_symbol: {
     type: 'SelectControl',
     label: '标记的图形',
@@ -1446,6 +1465,145 @@ export const controls = {
     ]),
     clearable: false,
     description: '标签的位置（注：top 和 bottom 仅在朝向为 horizontal 时有效，left 和 right 仅在朝向为 vertical 时有效）',
+  },
+
+  echarts_pie_clockwise: {
+    type: 'CheckboxControl',
+    label: '是否顺时针排布',
+    default: true,
+    description: '饼图的扇区是否是顺时针排布',
+  },
+
+  echarts_pie_start_angle: {
+    type: 'TextControl',
+    label: '起始角度',
+    default: 90,
+    isInt: true,
+    description: '起始角度，支持范围[0, 360]',
+  },
+
+  echarts_pie_min_angle: {
+    type: 'TextControl',
+    label: '最小角度',
+    default: 0,
+    isInt: true,
+    description: '最小的扇区角度（0 ~ 360），用于防止某个值过小导致扇区太小影响交互',
+  },
+
+  echarts_pie_min_show_label_angle: {
+    type: 'TextControl',
+    label: '最小显示标签角度',
+    default: 0,
+    isInt: true,
+    description: '小于这个角度（0 ~ 360）的扇区，不显示标签',
+  },
+
+  echarts_pie_rose_type: {
+    type: 'SelectControl',
+    label: '南丁格尔图',
+    default: null,
+    choices: formatSelectOptions(['radius', 'area']),
+    description: '通过半径区分数据大小，模式：radius —— 扇区圆心角展现数据的百分比，半径展现数据的大小；area ——  所有扇区圆心角相同，仅通过半径展现数据大小。',
+  },
+
+  echarts_pie_avoid_label_overlap: {
+    type: 'CheckboxControl',
+    label: '是否启用防止标签重叠策略',
+    default: true,
+    description: '在标签拥挤重叠的情况下会挪动各个标签的位置，防止标签间的重叠',
+  },
+
+  echarts_pie_still_show_zero_sum: {
+    type: 'CheckboxControl',
+    label: '是否在数据和为0的时候不显示扇区',
+    default: true,
+    description: '一般情况下所有数据为0',
+  },
+
+  echarts_pie_top: {
+    type: 'TextControl',
+    label: '上',
+    default: 0,
+    description: '组件离容器左侧的距离',
+  },
+
+  echarts_pie_bottom: {
+    type: 'TextControl',
+    label: '下',
+    default: 0,
+    description: '组件离容器下侧的距离',
+  },
+
+  echarts_pie_left: {
+    type: 'TextControl',
+    label: '左',
+    default: 0,
+    description: '组件离容器左侧的距离',
+  },
+
+  echarts_pie_right: {
+    type: 'TextControl',
+    label: '右',
+    default: 0,
+    description: '组件离容器右侧的距离',
+  },
+
+  echarts_pie_width: {
+    type: 'TextControl',
+    label: '宽度',
+    default: 'auto',
+    description: '组件的宽度',
+  },
+
+  echarts_pie_height: {
+    type: 'TextControl',
+    label: '高度',
+    default: 'auto',
+    description: '组件的高度',
+  },
+
+  echarts_pie_label_show: {
+    type: 'CheckboxControl',
+    label: '是否展示文本标签',
+    default: true,
+    description: '饼图图形上的文本标签，可用于说明图形的一些数据信息，比如值，名称等',
+  },
+
+  echarts_pie_label_position: {
+    type: 'SelectControl',
+    label: '标签位置',
+    default: 'outside',
+    choices: formatSelectOptions(['outside', 'inside', 'center']),
+    clearable: false,
+    description: 'outside —— 饼图扇区外侧，通过视觉引导线连到相应的扇区；inside —— 饼图扇区内部；center —— 在饼图中心位置。',
+  },
+
+  echarts_pie_center_1: {
+    type: 'TextControl',
+    label: '圆心横坐标',
+    default: '50%',
+    description: '可设置成绝对的像素值或相对的百分比，设置成百分比时是相对于容器宽度',
+  },
+
+  echarts_pie_center_2: {
+    type: 'TextControl',
+    label: '圆心纵坐标',
+    default: '50%',
+    description: '可设置成绝对的像素值或相对的百分比，设置成百分比时是相对于容器高度',
+  },
+
+  echarts_pie_radius_1: {
+    type: 'TextControl',
+    label: '饼图的内半径',
+    default: 0,
+    description: '可设置成绝对值或相对的百分比',
+  },
+
+  echarts_pie_radius_2: {
+    type: 'TextControl',
+    label: '饼图的外半径',
+    default: '75%',
+    description: '可设置成绝对值或相对的百分比',
   },
 
   echarts_background_color: {

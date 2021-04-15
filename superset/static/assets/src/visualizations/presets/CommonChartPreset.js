@@ -23,6 +23,7 @@ import EchartsGaugeChartPlugin from '../EchartsGauge/EchartsGaugeChartPlugin';
 import EchartsHeatmapCartesianChartPlugin from '../EchartsHeatmapCartesian/EchartsHeatmapCartesianChartPlugin';
 import EchartsHydrographChartPlugin from '../EchartsHydrograph/EchartsHydrographChartPlugin';
 import EchartsLineMixedChartPlugin from '../EchartsLineMixed/EchartsLineMixedChartPlugin';
+import EchartsPieChartPlugin from '../EchartsPie/EchartsPieChartPlugin';
 import EchartsRadarChartPlugin from '../EchartsRadar/EchartsRadarChartPlugin';
 import EchartsScatterBubbleChartPlugin from '../EchartsScatterBubble/EchartsScatterBubbleChartPlugin';
 import FilterBoxChartPlugin from '../FilterBox/FilterBoxChartPlugin';
@@ -63,6 +64,7 @@ export default class CommonChartPreset extends Preset {
         new EchartsHeatmapCartesianChartPlugin().configure({ key: 'echarts_heatmap_cartesian' }),
         new EchartsHydrographChartPlugin().configure({ key: 'echarts_hydrograph' }),
         new EchartsLineMixedChartPlugin().configure({ key: 'echarts_line_mixed' }),
+        new EchartsPieChartPlugin().configure({ key: 'echarts_pie' }),
         new EchartsRadarChartPlugin().configure({ key: 'echarts_radar' }),
         new EchartsScatterBubbleChartPlugin().configure({ key: 'echarts_scatter_bubble' }),
         new FilterBoxChartPlugin().configure({ key: 'filter_box' }),

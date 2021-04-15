@@ -18,7 +18,22 @@ export default {
     },
     {
       label: '雷达图配置',
-      controlSetRows: [],
+      controlSetRows: [
+        ['echarts_series_symbol', 'echarts_series_symbol_rotate'],
+        ['echarts_series_symbol_size_width', 'echarts_series_symbol_size_height'],
+        ['echarts_series_line_style_width', 'echarts_series_line_style_type'],
+        ['echarts_series_line_style_opacity', 'echarts_series_area_style_opacity'],
+      ],
+    },
+    {
+      label: '雷达图坐标系组件',
+      controlSetRows: [
+        ['echarts_radar_center_1', 'echarts_radar_center_2'],
+        ['echarts_radar_radius_1', 'echarts_radar_radius_2'],
+        ['echarts_radar_start_angle', 'echarts_radar_name_gap'],
+        ['echarts_radar_split_number', 'echarts_radar_shape'],
+        ['echarts_radar_split_line_show', 'echarts_radar_split_area_show'],
+      ],
     },
     {
       label: '图例组件',
@@ -66,8 +81,8 @@ export default {
       label: '指标最大值',
       description: '指标的最大值',
     },
-    echarts_background_color: {
-      default: { r: 22, g: 22, b: 39, a: 100 },
+    echarts_series_symbol: {
+      default: 'none',
     },
     echarts_legend_icon: {
       default: 'circle',

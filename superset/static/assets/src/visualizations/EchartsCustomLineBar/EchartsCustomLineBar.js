@@ -35,7 +35,7 @@ function drawChart(chart, teamData, teamIndex, propsConfig, propsLabel) {
       type: propsConfig.echarts_series_line_style_type,
     },
     areaStyle: {
-      opacity: propsConfig.echarts_series_area_style_opacity ? 0.6 : 0,
+      opacity: propsConfig.echarts_series_area_style_opacity_boolean ? 0.6 : 0,
     },
     smooth: propsConfig.echarts_series_smooth,
     data: chartData.map(data => data[item]),

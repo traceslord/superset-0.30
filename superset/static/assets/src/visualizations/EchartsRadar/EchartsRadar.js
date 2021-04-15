@@ -30,31 +30,17 @@ function drawChart(chart, teamData, teamIndex, propsConfig, propsLabel) {
       data: data.map(subdata => propsConfig.echarts_indicators.map(item => subdata[item])),
     }));
   const radar = {
-    name: {
-      textStyle: {
-        color: 'rgb(238, 197, 102)',
-      },
-    },
-    shape: 'circle',
-    axisLine: {
-      lineStyle: {
-        color: 'rgba(238, 197, 102, 0.5)',
-      },
-    },
+    center: [propsConfig.echarts_radar_center_1, propsConfig.echarts_radar_center_2],
+    radius: [propsConfig.echarts_radar_radius_1, propsConfig.echarts_radar_radius_2],
+    startAngle: propsConfig.echarts_radar_start_angle,
+    nameGap: propsConfig.echarts_radar_name_gap,
+    splitNumber: propsConfig.echarts_radar_split_number,
+    shape: propsConfig.echarts_radar_shape,
     splitLine: {
-      lineStyle: {
-        color: [
-          'rgba(238, 197, 102, 0.1)',
-          'rgba(238, 197, 102, 0.2)',
-          'rgba(238, 197, 102, 0.4)',
-          'rgba(238, 197, 102, 0.6)',
-          'rgba(238, 197, 102, 0.8)',
-          'rgba(238, 197, 102, 1)',
-        ].reverse(),
-      },
+      show: propsConfig.echarts_radar_split_line_show,
     },
     splitArea: {
-      show: false,
+      show: propsConfig.echarts_radar_split_area_show,
     },
     indicator: propsConfig.echarts_indicators.map((data, index) => ({
       name: propsLabel[data],
@@ -62,20 +48,23 @@ function drawChart(chart, teamData, teamIndex, propsConfig, propsLabel) {
     })),
   };
   const series = formatData.map(data => ({
-    name: data.name,
     type: 'radar',
+    name: data.name,
+    symbol: propsConfig.echarts_series_symbol,
+    symbolSize: [
+      propsConfig.echarts_series_symbol_size_width,
+      propsConfig.echarts_series_symbol_size_height,
+    ],
+    symbolRotate: propsConfig.echarts_series_symbol_rotate,
     lineStyle: {
-      width: 1,
-      opacity: 0.5,
-    },
-    data: data.data,
-    symbol: 'none',
-    itemStyle: {
-      color: '#F9713C',
+      width: propsConfig.echarts_series_line_style_width,
+      type: propsConfig.echarts_series_line_style_type,
+      opacity: propsConfig.echarts_series_line_style_opacity,
     },
     areaStyle: {
-      opacity: 0.1,
+      opacity: propsConfig.echarts_series_area_style_opacity,
     },
+    data: data.data,
   }));
   chart.setOption({
     legend: {
@@ -90,20 +79,7 @@ function drawChart(chart, teamData, teamIndex, propsConfig, propsLabel) {
       left: propsConfig.echarts_legend_left,
       right: propsConfig.echarts_legend_right,
       selectedMode: 'single',
-      textStyle: {
-        color: '#fff',
-        fontSize: 14,
-      },
     },
-    // visualMap: {
-    //   show: true,
-    //   min: 0,
-    //   max: 20,
-    //   dimension: 6,
-    //   inRange: {
-    //     colorLightness: [0.5, 0.8],
-    //   },
-    // },
     tooltip: {
       show: propsConfig.echarts_tooltip_show,
       // eslint-disable-next-line no-new-func

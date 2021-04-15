@@ -23,7 +23,7 @@ export default {
         ['echarts_series_symbol_size_width', 'echarts_series_symbol_size_height'],
         ['echarts_series_step'],
         ['echarts_series_line_style_width', 'echarts_series_line_style_type'],
-        ['echarts_series_stack', 'echarts_series_area_style_opacity', 'echarts_series_smooth'],
+        ['echarts_series_stack', 'echarts_series_area_style_opacity_boolean', 'echarts_series_smooth'],
       ],
     },
     {

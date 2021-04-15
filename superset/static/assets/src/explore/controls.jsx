@@ -1031,14 +1031,30 @@ export const controls = {
     clearable: false,
   },
 
+  echarts_series_line_style_opacity: {
+    type: 'TextControl',
+    label: '线条透明度',
+    default: 1,
+    isFloat: true,
+    description: '支持从 0 到 1 的数字，为 0 时不绘制该图形',
+  },
+
   echarts_series_area_style_opacity: {
+    type: 'TextControl',
+    label: '区域填充透明度',
+    default: 0,
+    isFloat: true,
+    description: '支持从 0 到 1 的数字，为 0 时不绘制该图形',
+  },
+
+  echarts_series_area_style_opacity_boolean: {
     type: 'CheckboxControl',
     label: '区域填充',
     default: false,
     description: '是否显示成区域面积图',
   },
 
-  echarts_series_2_area_style_opacity: {
+  echarts_series_2_area_style_opacity_boolean: {
     type: 'CheckboxControl',
     label: '区域填充',
     default: false,
@@ -1618,6 +1634,78 @@ export const controls = {
     label: '饼图的外半径',
     default: '75%',
     description: '可设置成绝对值或相对的百分比',
+  },
+
+  echarts_radar_center_1: {
+    type: 'TextControl',
+    label: '圆心横坐标',
+    default: '50%',
+    description: '可设置成绝对的像素值或相对的百分比，设置成百分比时是相对于容器宽度',
+  },
+
+  echarts_radar_center_2: {
+    type: 'TextControl',
+    label: '圆心纵坐标',
+    default: '50%',
+    description: '可设置成绝对的像素值或相对的百分比，设置成百分比时是相对于容器高度',
+  },
+
+  echarts_radar_radius_1: {
+    type: 'TextControl',
+    label: '雷达图的内半径',
+    default: 0,
+    description: '可设置成绝对值或相对的百分比',
+  },
+
+  echarts_radar_radius_2: {
+    type: 'TextControl',
+    label: '雷达图的外半径',
+    default: '75%',
+    description: '可设置成绝对值或相对的百分比',
+  },
+
+  echarts_radar_start_angle: {
+    type: 'TextControl',
+    label: '坐标系起始角度',
+    default: 90,
+    isInt: true,
+    description: '坐标系起始角度，也就是第一个指示器轴的角度',
+  },
+
+  echarts_radar_name_gap: {
+    type: 'TextControl',
+    label: '指示器名称与轴的距离',
+    default: 15,
+    isInt: true,
+    description: '指示器名称和指示器轴的距离',
+  },
+
+  echarts_radar_split_number: {
+    type: 'TextControl',
+    label: '指示器轴的分割段数',
+    default: 5,
+    isInt: true,
+    description: '指示器轴的分割段数',
+  },
+
+  echarts_radar_shape: {
+    type: 'SelectControl',
+    label: '雷达图绘制类型',
+    default: 'polygon',
+    choices: formatSelectOptions(['polygon', 'circle']),
+    clearable: false,
+  },
+
+  echarts_radar_split_line_show: {
+    type: 'CheckboxControl',
+    label: '是否显示分隔线',
+    default: true,
+  },
+
+  echarts_radar_split_area_show: {
+    type: 'CheckboxControl',
+    label: '是否显示分隔区域',
+    default: true,
   },
 
   echarts_background_color: {

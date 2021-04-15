@@ -55,7 +55,7 @@ function drawChart(chart, teamData, teamIndex, propsConfig) {
     yAxis: {
       type: 'category',
       splitArea: { show: true },
-      data: yAxisData.map(item => formatDate.formateDay(item)),
+      data: yAxisData.map(item => formatDate.formatDay(item)),
     },
     visualMap: {
       min: 0,

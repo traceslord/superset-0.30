@@ -18,7 +18,7 @@ const formatTime = (timestamp) => {
   );
 };
 
-const formateDay = (timestamp) => {
+const formatDay = (timestamp) => {
   const date = new Date(timestamp);
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
@@ -26,7 +26,40 @@ const formateDay = (timestamp) => {
   return [year, month, day].map(formatNumber).join('-');
 };
 
+const formatMonth = (timestamp) => {
+  const date = new Date(timestamp);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  return [year, month].map(formatNumber).join('-');
+};
+
+const formatSeason = (timestamp) => {
+  const date = new Date(timestamp);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  if (month < 4) return year + '年一季度';
+  else if (month < 7) return year + '年二季度';
+  else if (month < 10) return year + '年三季度';
+  return year + '年四季度';
+};
+
+const formatYear = timestamp => new Date(timestamp).getFullYear();
+
+const formatBox = (type, val) => {
+  switch (type) {
+    case 'day': return formatDay(val);
+    case 'month': return formatMonth(val);
+    case 'season': return formatSeason(val);
+    case 'year': return formatYear(val);
+    default: return formatTime(val);
+  }
+};
+
 export const formatDate = {
   formatTime,
-  formateDay,
+  formatDay,
+  formatMonth,
+  formatSeason,
+  formatYear,
+  formatBox,
 };

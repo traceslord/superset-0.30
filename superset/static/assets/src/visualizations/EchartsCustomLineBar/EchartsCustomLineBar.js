@@ -86,12 +86,15 @@ function drawChart(chart, teamData, teamIndex, propsConfig, propsLabel) {
       nameRotate: propsConfig.echarts_x_axis_name_rotate,
       inverse: propsConfig.echarts_x_axis_inverse,
       axisLabel: {
-        interval: 0,
+        interval: propsConfig.echarts_x_axis_label_interval,
         rotate: propsConfig.echarts_x_axis_label_rotate,
       },
       data: chartData.map((data) => {
         if (propsConfig.echarts_x_axis_data_format) {
-          return formatDate.formateDay(data[propsConfig.x_axis]);
+          return formatDate.formatBox(
+            propsConfig.echarts_x_axis_data_format_type,
+            data[propsConfig.x_axis],
+          );
         }
         return data[propsConfig.x_axis];
       }),

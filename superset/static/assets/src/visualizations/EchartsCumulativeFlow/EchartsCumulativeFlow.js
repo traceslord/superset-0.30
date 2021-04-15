@@ -55,7 +55,7 @@ function drawChart(chart, teamData, teamIndex, propsConfig, propsLabel) {
         type: 'category',
         name: propsConfig.x_axis_label,
         boundaryGap: false,
-        data: chartData.map(data => formatDate.formateDay(data[propsConfig.x_axis])),
+        data: chartData.map(data => formatDate.formatDay(data[propsConfig.x_axis])),
       },
     ],
     yAxis: [

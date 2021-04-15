@@ -129,7 +129,7 @@ export default {
     const n = num.toString();
     return n[1] ? n : '0' + n;
   };
-  const formateDay = (timestamp) => {
+  const formatDay = (timestamp) => {
     const date = new Date(timestamp);
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
@@ -141,8 +141,8 @@ export default {
     return data + '：' + Object.values(params[3].data)[index] + '<br />';
   }).join('');
   let res = params[0].name.split('|||')[0].split('：')[1] + '：<br />';
-  res += '计划开始时间：' + formateDay(params[0].value) + '<br />';
-  res += '计划结束时间：' + formateDay(params[1].value) + '<br />';
+  res += '计划开始时间：' + formatDay(params[0].value) + '<br />';
+  res += '计划结束时间：' + formatDay(params[1].value) + '<br />';
   res += params[2].seriesName + '：' + progress + '<br />';
   res += otherData;
   return res;

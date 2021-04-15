@@ -83,7 +83,7 @@ function drawChart(chart, teamData, teamIndex, propsConfig, propsLabel) {
         symbol: ['none', 'none'],
         label: {
           formatter: params => propsConfig.echarts_series_mark_line_formatter_prefix +
-          formatDate.formateDay(params.value),
+          formatDate.formatDay(params.value),
         },
         lineStyle: {
           color: '#909399',
@@ -152,7 +152,7 @@ function drawChart(chart, teamData, teamIndex, propsConfig, propsLabel) {
       axisLabel: {
         rotate: propsConfig.echarts_x_axis_label_rotate,
         margin: 12,
-        formatter: value => formatDate.formateDay(value),
+        formatter: value => formatDate.formatDay(value),
         color: '#303133',
       },
       splitLine: {
@@ -195,10 +195,10 @@ function drawChart(chart, teamData, teamIndex, propsConfig, propsLabel) {
         const obj = JSON.parse(JSON.stringify(item));
         const startTime = obj[propsConfig.echarts_start_time];
         const endTime = obj[propsConfig.echarts_end_time];
-        obj[propsConfig.echarts_start_time] = formatDate.formateDay(startTime);
+        obj[propsConfig.echarts_start_time] = formatDate.formatDay(startTime);
         obj[propsConfig.echarts_end_time] = endTime
-          ? formatDate.formateDay(endTime)
-          : formatDate.formateDay(startTime + 86400000 * propsConfig.echarts_gantt_plan_period);
+          ? formatDate.formatDay(endTime)
+          : formatDate.formatDay(startTime + 86400000 * propsConfig.echarts_gantt_plan_period);
         obj[propsConfig.x_axis] = Math.round(obj[propsConfig.x_axis] * 100) / 100;
         let str = '';
         Object.keys(obj).forEach((data) => {

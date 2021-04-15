@@ -62,6 +62,7 @@ export default {
         ['echarts_x_axis_name_rotate', 'echarts_x_axis_label_rotate'],
         ['echarts_x_axis_inverse'],
         ['echarts_x_axis_data_format'],
+        ['echarts_x_axis_data_format_type', 'echarts_x_axis_label_interval'],
       ],
     },
     {
@@ -146,6 +147,9 @@ export default {
     },
     echarts_grid_right: {
       default: '4%',
+    },
+    echarts_x_axis_label_interval: {
+      default: 0,
     },
   },
 };

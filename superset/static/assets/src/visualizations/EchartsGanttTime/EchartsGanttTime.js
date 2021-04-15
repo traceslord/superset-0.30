@@ -73,8 +73,8 @@ function echartsGanttTimeVis(element, props) {
             (params[0].value - params[2].value)) *
           100;
         let res = params[0].name + '：<br />';
-        res += '计划开始时间：' + formatDate.formateDay(params[2].value) + '<br />';
-        res += '计划结束时间：' + formatDate.formateDay(params[0].value) + '<br />';
+        res += '计划开始时间：' + formatDate.formatDay(params[2].value) + '<br />';
+        res += '计划结束时间：' + formatDate.formatDay(params[0].value) + '<br />';
         res += params[1].seriesName + '：' + progress;
         return res;
       },
@@ -105,7 +105,7 @@ function echartsGanttTimeVis(element, props) {
       axisLabel: {
         margin: 12,
         color: '#1c2431',
-        formatter: value => formatDate.formateDay(value),
+        formatter: value => formatDate.formatDay(value),
       },
       splitLine: {
         show: false,
@@ -175,7 +175,7 @@ function echartsGanttTimeVis(element, props) {
         markLine: {
           symbol: ['none', 'none'],
           label: {
-            formatter: params => '今天：' + formatDate.formateDay(params.value),
+            formatter: params => '今天：' + formatDate.formatDay(params.value),
           },
           lineStyle: {
             color: '#909399',

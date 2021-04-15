@@ -675,8 +675,22 @@ export const controls = {
 
   echarts_x_axis_data_format: {
     type: 'CheckboxControl',
-    label: '是否格式化刻度标签的时间格式',
+    label: '是否规范刻度标签的时间格式',
     default: false,
+  },
+
+  echarts_x_axis_data_format_type: {
+    type: 'SelectControl',
+    label: '刻度标签的时间格式',
+    default: 'day',
+    choices: formatSelectOptions(['day', 'month', 'season', 'year']),
+  },
+
+  echarts_x_axis_label_interval: {
+    type: 'TextControl',
+    label: '刻度标签的显示间隔',
+    default: 'auto',
+    description: '设置成 auto，默认会采用标签不重叠的策略间隔显示标签；设置成 0 强制显示所有标签，设置为 1，表示『隔一个标签显示一个标签』；也可以通过回调函数控制。',
   },
 
   echarts_y_axis_name: {

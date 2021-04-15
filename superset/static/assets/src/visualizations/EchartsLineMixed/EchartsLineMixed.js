@@ -87,7 +87,7 @@ function drawChart(chart, teamData, teamIndex, propsConfig, propsLabel) {
         },
         data: chartData.map((data) => {
           if (propsConfig.echarts_checkbox) {
-            return formatDate.formateDay(data[propsConfig.x_axis]);
+            return formatDate.formatDay(data[propsConfig.x_axis]);
           }
           return data[propsConfig.x_axis];
         }),

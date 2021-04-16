@@ -33,6 +33,7 @@ export default {
         ['echarts_legend_type', 'echarts_legend_icon'],
         ['echarts_legend_item_gap', 'echarts_legend_item_width', 'echarts_legend_item_height'],
         ['echarts_legend_top', 'echarts_legend_bottom', 'echarts_legend_left', 'echarts_legend_right'],
+        ['echarts_legend_not_selected'],
       ],
     },
     {

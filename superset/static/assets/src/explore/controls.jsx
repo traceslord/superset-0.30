@@ -553,6 +553,20 @@ export const controls = {
     description: '图例组件离容器右侧的距离',
   },
 
+  echarts_legend_not_selected: {
+    type: 'SelectControl',
+    multi: true,
+    label: '默认不选中状态',
+    default: [],
+    description: '图例默认不选中状态',
+    optionRenderer: c => <ColumnOption column={c} showType />,
+    valueRenderer: c => <ColumnOption column={c} />,
+    valueKey: 'column_name',
+    mapStateToProps: state => ({
+      options: (state.datasource) ? state.datasource.columns : [],
+    }),
+  },
+
   echarts_grid_width: {
     type: 'TextControl',
     label: '网格宽度',

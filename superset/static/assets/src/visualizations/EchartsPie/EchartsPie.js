@@ -16,6 +16,10 @@ function drawChart(chart, teamData, teamIndex, propsConfig, propsLabel) {
   if (propsConfig.echarts_sort) {
     sort(chartData, propsConfig.echarts_sort, propsConfig.echarts_order);
   }
+  const legendNotSelected = {};
+  propsConfig.echarts_legend_not_selected.forEach((data) => {
+    legendNotSelected[propsLabel[data]] = false;
+  });
   const seriesValues = propsConfig.echarts_indicators.map(data => chartData[0][data]);
   const series = [{
     type: 'pie',
@@ -50,6 +54,7 @@ function drawChart(chart, teamData, teamIndex, propsConfig, propsLabel) {
   chart.setOption({
     legend: {
       type: propsConfig.echarts_legend_type === '普通图例' ? 'plain' : 'scroll',
+      selected: legendNotSelected,
       data: propsConfig.echarts_indicators.map(data => propsLabel[data]),
       icon: propsConfig.echarts_legend_icon,
       itemGap: propsConfig.echarts_legend_item_gap,

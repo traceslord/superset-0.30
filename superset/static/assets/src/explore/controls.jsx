@@ -1596,7 +1596,7 @@ export const controls = {
     type: 'TextControl',
     label: '上',
     default: 0,
-    description: '组件离容器左侧的距离',
+    description: '组件离容器上侧的距离',
   },
 
   echarts_pie_bottom: {
